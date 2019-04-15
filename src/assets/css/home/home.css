@@ -111,14 +111,6 @@
   color: #999;
   margin-top: 60upx;
 }
-.scroll_div {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 70%;
-  width: 100%;
-  background: #f8f8f8;
-}
 .banner {
   height: 200px;
 }

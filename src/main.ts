@@ -7,6 +7,7 @@ import store from './store'
 import util from './util/utils'
 import {createAPI} from 'cube-ui'
 import 'amfe-flexible'
+import './types/vue.d.ts'
 Vue.config.productionTip = false
 Vue.prototype.$util = util
 
@@ -23,10 +24,3 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
-declare module 'vue/types/vue' {
-  // 可以使用 `VueConstructor` 接口
-  // 来声明全局属性
-  interface Vue {
-    $util: any
-  }
-}
