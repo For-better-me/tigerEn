@@ -31,9 +31,9 @@ export default new Router({
       }
     },
     {
-      path: '/feature/:id',
-      name: 'feature',
-      component: () => import('./views/home/songGif.vue'),
+      path: '/song',
+      name: 'song',
+      component: () => import('./views/home/song.vue'),
       meta:{
         title:'儿歌'
       }

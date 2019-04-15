@@ -92,3 +92,58 @@
   color: #999;
   margin-top: 60upx;
 }
+.user {
+  padding-top: 50px;
+  text-align: center;
+}
+.user img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.user p {
+  font-size: 18px;
+  color: #000;
+  margin-top: 13px;
+}
+.list {
+  margin-top: 30px;
+}
+.list ul li {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: url(../../img/icon_arrow.png) no-repeat right center;
+  background-size: 9px 16px;
+}
+.list ul li:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid #d9d7d7;
+}
+@media (-webkit-min-device-pixel-ratio: 1.5) {
+  .list ul li:after {
+    transform: scaleY(0.7);
+  }
+}
+@media (-webkit-min-device-pixel-ratio: 2) {
+  .list ul li:after {
+    transform: scaleY(0.5);
+  }
+}
+.list ul li img {
+  width: 30px;
+  height: 30px;
+}
+.list ul li p {
+  font-size: 16px;
+  line-height: 45px;
+  margin-left: 10px;
+}
+.list ul li p span {
+  font-size: 14px;
+  color: #666;
+}

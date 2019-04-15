@@ -24,7 +24,6 @@
       </div>
       <div class="recommend">
         <h4>精彩推荐</h4>
-
         <ul>
           <li>
             <img src="../../assets/img/bg_card.png" alt>
