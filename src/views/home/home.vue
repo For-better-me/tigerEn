@@ -58,14 +58,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import AbstractBaseVueMixins,{MyComponent} from "@/util/AbstractBaseVue";
 import tab from "@/components/tab.vue";
-@Component({
+@MyComponent({
   components: {
     tab
   }
 })
-export default class Home extends Vue {
+export default class Home extends AbstractBaseVueMixins {
   items: object[] = [
     {
       url: "http://www.didichuxing.com/",
