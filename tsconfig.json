@@ -14,6 +14,10 @@
     "types": [
       "webpack-env"
     ],
+    // "typeRoots": [
+    //   "./types",
+    //   "./node_modules/vue/types"
+    // ],
     "paths": {
       "@/*": [
         "src/*"

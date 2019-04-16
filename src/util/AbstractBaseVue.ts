@@ -5,8 +5,8 @@ import {
     Inject, Provide,
     Prop, Watch,
   } from 'vue-property-decorator';
-//   import {Action, Getter, Mutation} from 'vuex-class'; // TODO 使用类型化的vuex
-export default abstract class AbstractBaseVueMixins extends Vue {
+import {Action, Getter, Mutation} from 'vuex-class'; // TODO 使用类型化的vuex
+export default abstract class AbstractBaseMixins extends Vue {
 
 }
 export {
@@ -21,9 +21,9 @@ export {
     Emit as MyEmit,
   
     // TIP 特殊化命名的 Vuex类型工具。
-    // Action as MyAction,
-    // Getter as MyGetter,
-    // Mutation as MyMutation,
+    Action as MyAction,
+    Getter as MyGetter,
+    Mutation as MyMutation,
   
     // // TIP 原生Vue
     // Vue as OriginVue,

@@ -14,5 +14,16 @@ module.exports = {
       postCompile: true,
       theme: true
     }
+  },
+  devServer:{
+      // devServer: {
+      //     proxy: {
+      //       '/api': {
+      //         target: '1',
+      //         ws: true,
+      //         changeOrigin: true
+      //       }
+      //     }
+      // }
   }
 }
