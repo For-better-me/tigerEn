@@ -1,0 +1,147 @@
+@import url('../common/common.less');
+// .introduction{}
+.poster {
+    width: 100%;
+}
+
+.intro_con_wrap {
+    margin-top: 20px;
+    background: #fff;
+    position: relative;
+    h4 {
+        font-size: 18px;
+    }
+    .con {
+        margin-top: 15px;
+        min-height: 180px;
+    }
+    .btn_open {
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 175px;
+        background: linear-gradient(360deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.16) 100%, rgba(255, 255, 255, 0) 100%);
+        p {
+            font-size: 16px;
+            color: #FC5E64;
+            text-align: center;
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            right: 0;
+        }
+    }
+}
+
+.lesson_wrap {
+    margin-top: 20px;
+    h4 {
+        font-size: 18px;
+        span {
+            font-size: 14px;
+            color: #999;
+        }
+    }
+    .lesson_name {
+        width: 100%;
+        height: 44px;
+        background: rgba(252, 94, 100, 0.2);
+        line-height: 44px;
+        text-indent: 15px;
+        font-size: 16px;
+        color: #FC5E64;
+        margin-top: 10px;
+    }
+}
+
+.try_part {
+    padding: 15px 0;
+    position: relative;
+    img {
+        width: 60px;
+        height: 60px;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .try_word {
+        width: 200px;
+        margin-left: 10px;
+        display: inline-block;
+        vertical-align: top;
+        h4 {
+            font-size: 14px;
+            line-height: 1.6;
+            .ellipsis;
+        }
+        p {
+            font-size: 12px;
+            color: #999;
+            line-height: 1.4;
+            margin-top: 2px;
+            .ellipsis_num(2);
+        }
+    }
+    .try_btn {
+        width: 38px;
+        height: 18px;
+        border-radius: 17px;
+        border: 1px solid rgba(252, 94, 100, 1);
+        font-size: 10px;
+        color: #FC5E64;
+        text-align: center;
+        line-height: 18px;
+        position: absolute;
+        right: 9px;
+        top: 14px;
+    }
+}
+
+.part_week {
+    ul {
+        li {
+            .border_1px(top);
+            .common_arrow;
+            line-height: 50px;
+            font-size: 16px;
+            color: #666;
+        }
+    }
+    margin-bottom: 49px;
+}
+
+.pay_wrap {
+    .border_1px(top);
+    background: #fff;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 49px;
+    overflow: hidden;
+    padding: 0 15px;
+    .pay_price {
+        float: left;
+        h6 {
+            font-size: 10px;
+            margin-top: 7px;
+        }
+        p {
+            font-size: 12px;
+            color: #FC5E64;
+            margin-top: 6px;
+        }
+    }
+    .btn-pay {
+        width: 90px;
+        height: 30px;
+        background: rgba(252, 94, 100, 1);
+        border-radius: 44px;
+        font-size: 16px;
+        color: #fff;
+        line-height: 30px;
+        text-align: center;
+        float: right;
+        margin-top: 9.5px;
+    }
+}

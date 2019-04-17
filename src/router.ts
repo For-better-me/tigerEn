@@ -37,6 +37,22 @@ export default new Router({
       meta:{
         title:'儿歌'
       }
+    },
+    {
+      path: '/introduction',
+      name: 'introduction',
+      component: () => import('./views/lesson/lessonIntroduction.vue'),
+      meta:{
+        title:'课程介绍'
+      }
+    },
+    {
+      path: '/income',
+      name: 'income',
+      component: () => import('./views/mine/income.vue'),
+      meta:{
+        title:'收入明细'
+      }
     }
   ]
 })
