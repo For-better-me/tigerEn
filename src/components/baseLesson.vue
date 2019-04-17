@@ -7,13 +7,18 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-
-@Component
-export default class LessonGif extends Vue {
-    @Prop() private text!: string;
-  
+import AbstractBaseVueMixins,{MyComponent,MyProp} from "@/util/AbstractBaseVue";
+import tab from "@/components/tab.vue";
+@MyComponent({
+  components: {
+    tab
+  }
+})
+export default class lesson extends AbstractBaseVueMixins {
+    @MyProp() private text!: string;
 }
+
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

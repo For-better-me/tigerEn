@@ -9,11 +9,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-
-@Component
-export default class LessonRecord extends Vue {
-    // @Prop() private text!: string;
+import AbstractBaseVueMixins,{MyComponent,MyProp} from "@/util/AbstractBaseVue";
+@MyComponent
+export default class LessonRecord extends AbstractBaseVueMixins {
+    @MyProp() private list!: any[];
   
 }
 </script>

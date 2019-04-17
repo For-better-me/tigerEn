@@ -14,11 +14,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-
-@Component
-export default class SongPic extends Vue {
-//   @Prop() private index!: number;
+import AbstractBaseVueMixins,{MyComponent,MyProp} from "@/util/AbstractBaseVue";
+@MyComponent
+export default class LessonRecord extends AbstractBaseVueMixins {
+    @MyProp() private list!: any[];
   
 }
 </script>

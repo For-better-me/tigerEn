@@ -12,10 +12,11 @@
 </template>
 
 <script  lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-export default class scrollPage extends Vue {
-    @Prop() pullDownRefresh !: boolean;
-    @Prop() pullUpLoad !: boolean;
+import AbstractBaseVueMixins,{MyComponent,MyProp,MyEmit} from "@/util/AbstractBaseVue";
+@MyComponent
+export default class scrollPage extends AbstractBaseVueMixins {
+    @MyProp({default:false}) pullDownRefresh !: boolean;
+    @MyProp({default:true}) pullUpLoad !: boolean;
     options:any = {
         pullDownRefresh: this.pullDownRefresh?{
             threshold: 0,
