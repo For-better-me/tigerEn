@@ -53,6 +53,14 @@ export default new Router({
       meta:{
         title:'收入明细'
       }
+    },
+    {
+      path: '/apply',
+      name: 'apply',
+      component: () => import('./views/mine/apply.vue'),
+      meta:{
+        title:'申请'
+      }
     }
   ]
 })

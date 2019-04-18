@@ -12,6 +12,7 @@
     "core-js": "^2.6.5",
     "cube-ui": "~1.12.1",
     "vue": "^2.6.6",
+    "vue-baidu-map": "^0.21.19",
     "vue-class-component": "^6.0.0",
     "vue-property-decorator": "^8.0.0",
     "vue-router": "^3.0.1",
