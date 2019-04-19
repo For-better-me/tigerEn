@@ -21,19 +21,19 @@
       >
         <!-- 关注 -->
         <cube-slide-item>
-          <cube-scroll :data="followersData" :options="scrollOptions">
-            <ul class="list-wrapper">111</ul>
+          <cube-scroll  :options="scrollOptions">
+            <ul class="list-wrapper">{{selectedLabel}}</ul>
           </cube-scroll>
         </cube-slide-item>
         <!-- 推荐 -->
         <cube-slide-item>
-          <cube-scroll :data="recommendData" :options="scrollOptions">
-            <ul class="list-wrapper">222</ul>
+          <cube-scroll :options="scrollOptions">
+            <ul class="list-wrapper">222{{selectedLabel}}</ul>
           </cube-scroll>
         </cube-slide-item>
         <cube-slide-item>
-          <cube-scroll :data="hotData" :options="scrollOptions">
-            <ul class="list-wrapper">333</ul>
+          <cube-scroll  :options="scrollOptions">
+            <ul class="list-wrapper">333{selectedLabel}}</ul>
           </cube-scroll>
         </cube-slide-item>
       </cube-slide>
@@ -44,9 +44,10 @@
 <script lang='ts'>
 import AbstractBaseVueMixins, { MyComponent } from "@/util/AbstractBaseVue";
 @MyComponent({
-  components: {}
+  components: {},
+  
 })
-export default class Home extends AbstractBaseVueMixins {
+export default class Income extends AbstractBaseVueMixins {
     mounted() {}
     selectedLabel: string = "推荐";
     disabled: boolean = false;
@@ -74,23 +75,30 @@ export default class Home extends AbstractBaseVueMixins {
         /* lock x-direction when scrolling horizontally and  vertically at the same time */
         directionLockThreshold: 0
     };
-    // changePage (current:number) {
-    //     this.selectedLabel = this.tabLabels[current].label
-    //     console.log(current)
-    // }
-    // scroll (pos:any) {
-    //     const x = Math.abs(pos.x)
-    //     const tabItemWidth = this.$refs.tabNav.$el.clientWidth
-    //     const slideScrollerWidth = this.$refs.slide.slide.scrollerWidth
-    //     const deltaX = x / slideScrollerWidth * tabItemWidth
-    //     (this.$refs.tabNav as any).setSliderTransform(deltaX)
-    //     },
-    //     resolveTitle (item) {
-    //     return `${item.name}关注了问题 · ${item.postTime} 小时前`
-    // }
+    changePage (current:number) {
+        this.selectedLabel = this.tabLabels[current].label
+        console.log(current)
+    }
+    scroll (pos:any) {
+        // const x = Math.abs(pos.x)
+        // const tabItemWidth = this.$refs.tabNav.$el.clientWidth
+        // const slideScrollerWidth = this.$refs.slide.slide.scrollerWidth
+        // const deltaX = x / slideScrollerWidth * tabItemWidth
+        // (this.$refs.tabNav as any).setSliderTransform(deltaX)
+        // },
+        // resolveTitle (item) {
+        // return `${item.name}关注了问题 · ${item.postTime} 小时前`
+    }
     // resolveQuestionFollowers (item) {
     //     return `${item.answers} 赞同 · ${item.followers} 评论`
     // }
+
+    get initialIndex () {
+        let index = 0
+        index = this.$util.findIndex(this.tabLabels, (item:any) => item.label === this.selectedLabel)
+        return index
+     
+    }
 }
 </script>
 <style lang='less' scoped>

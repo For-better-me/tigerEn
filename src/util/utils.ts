@@ -94,26 +94,38 @@ function getData(el: any, name: string, val?: string) {
 
 //     return vendor + style.charAt(0).toUpperCase() + style.substr(1)
 // }
-import Vue from 'vue'
-// import {createAPI} from 'cube-ui'
-// import Home from '../views/Home.vue'
 
-// // 创建 this.$createHello and $Hello.create API
-// createAPI(Vue,Home, ['click'], true)
 //状态提示相关方法
+import Vue from 'vue'
 function showLoad(self:	Vue){
-    console.log('self',self)
     return self.$createToast({
-        txt: 'Timeout',
-        time: 1000,
-        $events: {
-            timeout: () => {
-                console.log('Timeout')
-            }
-        }
+        txt: '加载中...',
+        time: 0,
+        mask: true,
+        type:'loading'
     })
 }
-
+function showToast(self:Vue,txt:string,type:string='txt'){
+    return self.$createToast({
+        txt: txt,
+        time: 1500,
+        type:type
+    })
+}
+function findIndex(ary:any[], fn:any) {
+    if (ary.findIndex) {
+      return ary.findIndex(fn)
+    }
+    let index = -1
+    ary.some(function (item, i, ary) {
+      const ret = fn(item, i, ary)
+      if (ret) {
+        index = i
+        return ret
+      }
+    })
+    return index
+}
 export default {
     formatNumber,
     formatTime,
@@ -123,6 +135,8 @@ export default {
     hasClass,
     addClass,
     getData,
-    showLoad
+    showLoad,
+    showToast,
+    findIndex
 }
 

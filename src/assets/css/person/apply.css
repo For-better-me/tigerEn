@@ -92,64 +92,60 @@
   color: #999;
   margin-top: 60upx;
 }
-.home {
-  position: absolute;
-  width: 100%;
+#map {
+  position: fixed;
   top: 0;
   left: 0;
-  bottom: 50px;
-}
-.banner {
-  height: 200px;
-}
-.feature {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 0px;
-  background: #fff;
-}
-.feature a {
-  display: block;
-  width: 75px;
-  height: 75px;
-}
-.feature a img {
   width: 100%;
+  height: 100%;
+  z-index: 999;
 }
-.recommend {
-  border-top: #f8f8f8 solid 15px;
-  background: #fff;
+.apply ul {
+  border-top: #f3f3f3 solid 10px;
+  padding-left: 15px;
 }
-.recommend h4 {
-  font-size: 18px;
+.apply ul li {
+  height: 44px;
+  position: relative;
+}
+.apply ul li:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid #d9d7d7;
+}
+@media (-webkit-min-device-pixel-ratio: 1.5) {
+  .apply ul li:after {
+    transform: scaleY(0.7);
+  }
+}
+@media (-webkit-min-device-pixel-ratio: 2) {
+  .apply ul li:after {
+    transform: scaleY(0.5);
+  }
+}
+.apply ul li.tel input {
+  width: 250px;
+  display: inline-block;
+}
+.apply ul li.tel .code_btn {
+  float: right;
+  font-size: 14px;
+  margin-right: 15px;
+}
+.apply ul li.chooseAddr {
+  background: url(../../img/icon_arrow.png) no-repeat right center;
+  background-size: 9px 16px;
+  background-position-x: 330px;
+}
+.apply ul li:nth-last-of-type(1):after {
+  display: none;
+}
+.apply ul li input {
+  font-size: 14px;
   color: #333;
-  margin: 15px auto;
-  text-align: center;
-}
-.recommend ul {
-  overflow: hidden;
-}
-.recommend ul li {
-  width: 165px;
-  margin-left: 15px;
-  float: left;
-  margin-bottom: 15px;
-}
-.recommend ul li img {
-  width: 165px;
-  height: 165px;
-  overflow: hidden;
-  border-radius: 4px;
-}
-.recommend ul li p {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  font-size: 16px;
-  color: #333;
-  margin-top: 10px;
+  line-height: 44px;
+  text-indent: 3px;
 }

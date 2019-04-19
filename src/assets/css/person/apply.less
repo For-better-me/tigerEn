@@ -1,0 +1,44 @@
+@import url('../common/common.less');
+#map {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+.apply{
+    ul{
+        border-top: #f3f3f3 solid 10px;
+        padding-left: 15px;
+        li{
+            height: 44px;
+            .border_1px(bottom);
+            &.tel{
+                input{
+                    width: 250px;
+                    display: inline-block;
+                }
+                .code_btn{
+                    float: right;
+                    font-size: 14px;
+                    margin-right: 15px;
+                }
+            }
+            &.chooseAddr{
+                .common_arrow;
+                background-position-x: 330px;
+            }
+            &:nth-last-of-type(1):after{
+                display: none;
+            }
+            input{
+                font-size: 14px;
+                color: #333;
+                line-height: 44px;
+                text-indent: 3px;
+            }
+        }
+
+    }
+}

@@ -7,10 +7,8 @@ import store from './store'
 import util from './util/utils'
 import {createAPI} from 'cube-ui'
 import 'amfe-flexible'
-// import './types/vue.d.ts'
 Vue.config.productionTip = false
-// Vue.prototype.$util = util
-
+Vue.prototype.$util = util
 // Vue.use(VueLazyload, {
 //   preLoad: 1.3,
 //   error: '',
