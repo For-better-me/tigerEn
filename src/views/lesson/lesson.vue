@@ -1,12 +1,18 @@
 <template>
   <div class="lesson">
-    <item-lesson></item-lesson>
+    <scroll-page @pullingUp='loadMore'>
+      <div slot="content">
+        <item-lesson></item-lesson>
+      </div>
+      
+    </scroll-page>
+    
     <tab index='2'></tab>
   </div>
 </template>
 
 <script lang="ts">
-import AbstractBaseVueMixins,{MyComponent} from "@/util/AbstractBaseVue";
+import AbstractBaseVue,{MyComponent} from "@/util/AbstractBaseVue";
 import tab from "@/components/tab.vue";
 import itemLesson from '@/components/baseRecordL.vue'
 @MyComponent({
@@ -14,7 +20,13 @@ import itemLesson from '@/components/baseRecordL.vue'
     tab,itemLesson
   }
 })
-export default class lesson extends AbstractBaseVueMixins {}
+export default class lesson extends AbstractBaseVue {
+  loadMore(scroll:any) {
+    // 模拟更新数据
+      
+      scroll.forceUpdate();
+  }
+}
 </script>
 <style>
 </style>

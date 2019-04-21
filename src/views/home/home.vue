@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <scroll-page @PullingUp='onPullingUp'>
+    <scroll-page @pullingUp='loadMore'>
       <div slot="content">
         <cube-slide :data="items" class="banner"/>
         <div class="feature wrap">
@@ -24,52 +24,23 @@
               <img src="../../assets/img/bg_card.png" alt>
               <p>Daniel LopezLopezLopezLopez</p>
             </li>
-            <li>
-              <img src="../../assets/img/bg_card.png" alt>
-              <p>Daniel Lopez</p>
-            </li>
-            <li>
-              <img src="../../assets/img/bg_card.png" alt>
-              <p>Daniel Lopez</p>
-            </li>
-            <li>
-              <img src="../../assets/img/bg_card.png" alt>
-              <p>Daniel LopezLopezLopezLopez</p>
-            </li>
-            <li>
-              <img src="../../assets/img/bg_card.png" alt>
-              <p>Daniel Lopez</p>
-            </li>
-            <li>
-              <img src="../../assets/img/bg_card.png" alt>
-              <p>Daniel Lopez</p>
-            </li>
           </ul>
         </div>
       </div>
     </scroll-page>
-    <!-- <cube-scroll
-      ref="scroll"
-      :options="optionsScroll"
-      @pulling-down="onPullingDown"
-      @pulling-up="onPullingUp"
-      class="scroll_div"
-    ></cube-scroll> -->
     <tab index="1"></tab>
   </div>
 </template>
 
 <script lang="ts">
-import AbstractBaseVueMixins, { MyComponent } from "@/util/AbstractBaseVue";
+import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
 import tab from "@/components/tab.vue";
-import scrollPage from "@/components/scrollPage.vue";
 @MyComponent({
   components: {
-    tab,
-    scrollPage
+    tab
   }
 })
-export default class Home extends AbstractBaseVueMixins {
+export default class Home extends AbstractBaseVue {
   items: object[] = [
     {
       url: "http://www.didichuxing.com/",
@@ -87,37 +58,10 @@ export default class Home extends AbstractBaseVueMixins {
         "//webapp.didistatic.com/static/webapp/shield/cube-ui-examples-slide03.png"
     }
   ];
-  optionsScroll: any = {
-    pullDownRefresh: false,
-    pullUpLoad: {
-      threshold: 0,
-      txt: {
-        more: "Load more",
-        noMore: "No more data"
-      }
-    }
-  };
-  onPullingDown() {
+  loadMore(scroll:any) {
     // 模拟更新数据
-    setTimeout(() => {
-      if (Math.random() > 0.5) {
-        // 如果有新数据
-      } else {
-        // 如果没有新数据
-      }
-    }, 1000);
-  }
-  onPullingUp() {
-    // 模拟更新数据
-    console.log(333)
-    setTimeout(() => {
-      if (Math.random() > 0.5) {
-        // 如果有新数据
-      } else {
-        (this.$refs.scroll as any).forceUpdate();
-        console.log(this, this.$refs.scroll);
-      }
-    }, 1000);
+      
+      scroll.forceUpdate();
   }
 }
 </script>

@@ -7,6 +7,9 @@ import store from './store'
 import util from './util/utils'
 import {createAPI} from 'cube-ui'
 import 'amfe-flexible'
+// 注册全局组件
+import scrollPage from "@/components/scrollPage.vue";
+Vue.component('scrollPage',scrollPage)
 Vue.config.productionTip = false
 Vue.prototype.$util = util
 // Vue.use(VueLazyload, {

@@ -4,8 +4,8 @@
     <cube-scroll
       ref="scroll"
       :options="options"
-      @pulling-down="PullingDown"
-      @pulling-up="PullingUp2"
+      @pulling-down="refresh"
+      @pulling-up="loadMore"
       class="scroll_div"
     >   
         <slot name="content"></slot>
@@ -22,16 +22,22 @@ export default class scrollPage extends AbstractBaseVueMixins {
     @MyProp({
         type:Function,
         required:false,
-        default:()=>{}
-    }) PullingDown !: Function;
+        default:()=>{
+            console.log(222)
+        }
+    }) pullingDown !: Function;
     @MyProp({
         type:Function,
         required:false
-    }) PullingUp !: ()=>{};
+    }) pullingUp !: ()=>{};
 
-    PullingUp2(){
-        this.$emit('PullingUp')
-        console.log(3333)
+    loadMore(){
+        this.$emit('pullingUp',this.$refs.scroll)
+        console.log('loadMore')
+    }
+    refresh(){
+        this.$emit('pullingDown',this.$refs.scroll)
+        console.log('refresh')
     }
     // @MyEmit('PullingUp') 
     // PullingUp2()

@@ -37,3 +37,47 @@
         }
     }
 }
+.layer_wrap{
+    .black_wrap;
+}
+.layer{
+    width: 310px;
+    height: 428px;
+    .pos_center;
+    z-index: 9999;
+    background: #fff;
+    border-radius: 3px;
+    border:rgba(0, 0, 0, 0.2) solid 6px;
+    box-sizing:border-box;
+    padding-top: 10px;
+    b.close{
+        position: absolute;
+        right: 8px;
+        top: 6px;
+        width: 24px;
+        height: 24px;
+        background: url(../../img/close.png) no-repeat center;
+        background-size: 100%;
+    }
+    h4{
+        font-size: 18px;
+        text-align: center;
+        margin:30px 0;
+    }
+    p{
+        font-size: 14px;
+        max-height: 230px;
+        overflow: auto;
+        margin: 0 15px;
+        line-height: 1.5;
+
+    }
+    .btn{
+        .btn-style(#fff,#fc5e64);
+        &.wait{
+            .btn-style(#fff,#ccc);
+        }
+        margin-top: 20px;
+        
+    }
+}

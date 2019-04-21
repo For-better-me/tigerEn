@@ -6,8 +6,10 @@ import {
   Prop, Watch,
 } from 'vue-property-decorator';
 import { Action, Getter, Mutation } from 'vuex-class'; // TODO 使用类型化的vuex
-export default abstract class AbstractBaseMixins extends Vue {
+import scrollPage from "@/components/scrollPage.vue";
 
+export default abstract class AbstractBaseVue extends Vue {
+  
 }
 export {
   // TIP 特殊化命名的Component模块，方便引入

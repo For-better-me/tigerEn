@@ -1,1 +1,55 @@
 @import url('../common/common.less');
+body,html{ min-height: 100%; background: #f8f8f8 !important}
+.income{
+    .cube-tab-bar{
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: #fff;
+    }
+    .tab-slide-container{
+        margin-top: 50px;
+    }
+}
+.income_list{
+    width: 345px;
+    margin:0 auto;
+    li{
+        margin-top: 15px;
+        padding: 10px;
+        background: #fff;
+        border:#fc5e64 solid 0.5px;
+        border-radius: 3px;
+        img{
+            width: 56px;
+            height: 56px;
+            border-radius: 100%;
+            display: inline-block;
+            vertical-align: top
+        }
+        .income_info{
+            display: inline-block;
+            vertical-align: top;
+            width: 160px;
+            margin-left: 10px;
+            h5{
+                font-size: 16px;
+                color: #333;
+                .ellipsis;
+                margin-top: 9px;
+            }
+            span{
+                font-size: 14px;
+                color: #999;
+                padding-top: 8px;
+                display: block;
+            }
+        }
+        p{
+            font-size: 14px;
+            color: #ff0000;
+            float: right;
+            margin-top: 32px;
+        }
+    }
+}

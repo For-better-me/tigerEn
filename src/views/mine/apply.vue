@@ -18,7 +18,7 @@
             <input type="text" v-model="formData.address" placeholder="请选择地址" readonly>
         </li>
         <li>
-            <input type="text" v-model="formData.address" placeholder="请输入详细地址">
+            <textarea  rows="6" v-model="formData.address" placeholder="请输入详细地址"></textarea>
         </li>
     </ul>
     <div class="submit_btn" @click="submitForm">立即绑定</div>
@@ -34,12 +34,11 @@
 </template>
 
 <script lang='ts'>
-import AbstractBaseVueMixins, { MyComponent } from "@/util/AbstractBaseVue";
-import { BaiduMap } from "vue-baidu-map";
+import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
 @MyComponent({
-  components: { BaiduMap }
+  components: {  }
 })
-export default class Apply extends AbstractBaseVueMixins {
+export default class Apply extends AbstractBaseVue {
   isShowMap: boolean = false; //地图是否显示
   center: any = { lng: 0, lat: 0 }; //经纬度
   formData: any = {

@@ -51,11 +51,11 @@
 </template>
 
 <script lang='ts'>
-import AbstractBaseVueMixins, { MyComponent } from "@/util/AbstractBaseVue";
+import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
 @MyComponent({
   components: {}
 })
-export default class Home extends AbstractBaseVueMixins {
+export default class Home extends AbstractBaseVue {
   mounted() {}
 }
 </script>

@@ -5,14 +5,15 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 999;
+    z-index: 9999999;
+    background: #fff;
 }
 .apply{
     ul{
-        border-top: #f3f3f3 solid 10px;
+        background: #fff;
         padding-left: 15px;
+        margin-bottom: 10px;
         li{
-            height: 44px;
             .border_1px(bottom);
             &.tel{
                 input{
@@ -23,6 +24,13 @@
                     float: right;
                     font-size: 14px;
                     margin-right: 15px;
+                    line-height: 24px;
+                    font-size: 14px;
+                    padding: 0 12px;
+                    border-radius: 20px;
+                    color: #FC5E64;
+                    border:#FC5E64 solid 0.5px;
+                    margin-top: 8.5px;
                 }
             }
             &.chooseAddr{
@@ -33,12 +41,26 @@
                 display: none;
             }
             input{
+                line-height: 44px;
+                width: 300px;
+            }
+            textarea{
+                width: 95%;
+                line-height: 1.4;
+                padding-top: 9px;
+                resize: none;
+            }
+            input,textarea{
                 font-size: 14px;
                 color: #333;
-                line-height: 44px;
-                text-indent: 3px;
+                padding-left: 3px;
             }
+            
         }
 
     }
+}
+.submit_btn{
+    .btn-style(#fff,#fc5e64);
+    margin-top: 50px;
 }

@@ -22,18 +22,46 @@
         <!-- 关注 -->
         <cube-slide-item>
           <cube-scroll  :options="scrollOptions">
-            <ul class="list-wrapper">{{selectedLabel}}</ul>
+            <ul class="list-wrapper income_list">
+              <li>
+                <img src="../../assets/img/pic_card.png" alt="">
+                <div class="income_info">
+                  <h5>一根小竹子</h5>
+                  <span>2018年3月5日</span>
+                </div>
+                <p>消费：¥168.00</p>
+              </li>
+            </ul>
           </cube-scroll>
         </cube-slide-item>
         <!-- 推荐 -->
         <cube-slide-item>
           <cube-scroll :options="scrollOptions">
-            <ul class="list-wrapper">222{{selectedLabel}}</ul>
+            <ul class="list-wrapper income_list">
+              
+              <li>
+                <img src="../../assets/img/pic_card.png" alt="">
+                <div class="income_info">
+                  <h5>一根小竹子</h5>
+                  <span>2018年3月5日</span>
+                </div>
+                <p>消费：¥168.00</p>
+              </li>
+            </ul>
           </cube-scroll>
         </cube-slide-item>
         <cube-slide-item>
           <cube-scroll  :options="scrollOptions">
-            <ul class="list-wrapper">333{selectedLabel}}</ul>
+            <ul class="list-wrapper income_list">
+              <li>
+                <img src="../../assets/img/bg_song.png" alt="">
+                <div class="income_info">
+                  <h5>一根小竹子</h5>
+                  <span>2018年3月5日</span>
+                </div>
+                <p>消费：¥168.00</p>
+              </li>
+            </ul>
           </cube-scroll>
         </cube-slide-item>
       </cube-slide>
@@ -42,24 +70,24 @@
 </template>
 
 <script lang='ts'>
-import AbstractBaseVueMixins, { MyComponent } from "@/util/AbstractBaseVue";
+import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
 @MyComponent({
   components: {},
   
 })
-export default class Income extends AbstractBaseVueMixins {
+export default class Income extends AbstractBaseVue {
     mounted() {}
-    selectedLabel: string = "推荐";
+    selectedLabel: string = "一级分销";
     disabled: boolean = false;
     tabLabels: any = [
         {
-        label: "关注"
+        label: "一级分销"
         },
         {
-        label: "推荐"
+        label: "二级分销"
         },
         {
-        label: "热榜"
+        label: "三级分销"
         }
     ];
     loop: boolean = false;
@@ -68,11 +96,9 @@ export default class Income extends AbstractBaseVueMixins {
     slideOptions: any = {
         listenScroll: true,
         probeType: 3,
-        /* lock y-direction when scrolling horizontally and  vertically at the same time */
         directionLockThreshold: 0
     };
     scrollOptions: any = {
-        /* lock x-direction when scrolling horizontally and  vertically at the same time */
         directionLockThreshold: 0
     };
     changePage (current:number) {
@@ -102,5 +128,5 @@ export default class Income extends AbstractBaseVueMixins {
 }
 </script>
 <style lang='less' scoped>
-@import url("../../assets/css/person/income.less");
+  @import url("../../assets/css/person/income.less");
 </style>

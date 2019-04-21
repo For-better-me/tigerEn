@@ -1,5 +1,5 @@
 
-body,html{ min-height: 100%; background: #fff;font-size: 14px;color: #333;}
+body,html{ min-height: 100%;font-size: 14px;background: #f8f8f8;color: #333;}
 body,input,button,textarea,select,option,label,a{ font-family:"微软雅黑",Tahoma,Arial,Roboto,"Droid Sans","Helvetica Neue","Droid Sans Fallback","Heiti SC","Hiragino Sans GB",\5B8B\4F53,\5FAE\8F6F\96C5\9ED1,\9ED1\4F53,sans-self; color: #333; }
 div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,menu,nav,section,summary,time,mark,audio,video{ margin:0; padding:0; border:0; outline:0; font-size:14px; vertical-align: baseline; background: transparent; font-weight: normal; font-style: normal; }
 article,aside,details,figcaption,figure,footer,header,menu,nav,section{ display:block; }
@@ -48,5 +48,19 @@ input:-ms-input-placeholder{
 }
 textarea::-webkit-input-placeholder {
     color: #ccc;
+}
+
+.income .cube-tab{
+    padding: 17px 0;
+    font-size:16px;
+    color:#333;
+}
+.income .cube-tab_active{
+    color: #333;
+}
+.income .cube-tab-bar-slider{
+    background: #fc5e64;
+    height: 2px;
+    /* width: 75px !important; */
 }
 
