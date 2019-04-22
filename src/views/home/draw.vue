@@ -1,9 +1,8 @@
 <template>
-  <div class="common_feature wrap">
+  <div class="common_feature">
       <scroll-page @pullingUp='loadMore'>
          <div slot='content'>
-             <item-gif text='儿歌'></item-gif>
-             <item-gif text='儿歌'></item-gif>
+            <item-song></item-song>
          </div>
       </scroll-page>
     
@@ -13,9 +12,9 @@
 
 <script lang="ts">
 import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
-import itemGif from '@/components/baseLesson.vue'
+import itemSong from '@/components/baseSongPic.vue'
 @MyComponent({
-  components:{itemGif}
+  components:{itemSong}
 })
 export default class Song extends AbstractBaseVue {
   loadMore(scroll:any) {

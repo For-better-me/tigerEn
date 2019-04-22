@@ -23,7 +23,6 @@ export default class scrollPage extends AbstractBaseVueMixins {
         type:Function,
         required:false,
         default:()=>{
-            console.log(222)
         }
     }) pullingDown !: Function;
     @MyProp({

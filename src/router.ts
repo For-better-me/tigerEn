@@ -61,6 +61,31 @@ export default new Router({
       meta:{
         title:'申请'
       }
-    }
+    },
+    {
+      path: '/draw',
+      name: 'draw',
+      component: () => import('./views/home/draw.vue'),
+      meta:{
+        title:'绘本'
+      }
+    },
+    {
+      path: '/cartoon',
+      name: 'apply',
+      component: () => import('./views/home/gif.vue'),
+      meta:{
+        title:'动画'
+      }
+    },
+    {
+      path: '/card',
+      name: 'card',
+      component: () => import('./views/home/card.vue'),
+      meta:{
+        title:'词卡'
+      }
+    },
+    
   ]
 })
