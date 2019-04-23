@@ -5,6 +5,7 @@ import router from './router'
 import store from './store'
 // import VueLazyload from 'vue-lazyload'
 import util from './util/utils'
+import _http from './util/myAxios'
 import {createAPI} from 'cube-ui'
 import 'amfe-flexible'
 // 注册全局组件
@@ -12,6 +13,7 @@ import scrollPage from "@/components/scrollPage.vue";
 Vue.component('scrollPage',scrollPage)
 Vue.config.productionTip = false
 Vue.prototype.$util = util
+Vue.prototype.$http = _http
 // Vue.use(VueLazyload, {
 //   preLoad: 1.3,
 //   error: '',
@@ -19,9 +21,12 @@ Vue.prototype.$util = util
 //   attempt: 1
 // })
 
-new Vue({
+const vue = new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount('#app')
+
+export default vue
+
 

@@ -1,3 +1,4 @@
+import Vue from 'vue'
 function formatNumber(n: number | string): string {
     const str = n.toString()
     return str[1] ? str : `0${str}`
@@ -96,7 +97,7 @@ function getData(el: any, name: string, val?: string) {
 // }
 
 //状态提示相关方法
-import Vue from 'vue'
+
 function showLoad(self:	Vue){
     return self.$createToast({
         txt: '加载中...',
@@ -112,6 +113,10 @@ function showToast(self:Vue,txt:string,type:string='txt'){
         type:type
     })
 }
+
+
+
+
 function findIndex(ary:any[], fn:any) {
     if (ary.findIndex) {
       return ary.findIndex(fn)

@@ -35,7 +35,9 @@
 <script lang="ts">
 import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
 import tab from "@/components/tab.vue";
+import {LessonApi} from '@/api/lesson'
 @MyComponent({
+  name:'Home',
   components: {
     tab
   }
@@ -62,6 +64,14 @@ export default class Home extends AbstractBaseVue {
     // 模拟更新数据
       
       scroll.forceUpdate();
+  }
+  test(){
+    LessonApi.hotLesson(this).then((res:any)=>{
+      console.log(res)
+    })
+  }
+  mounted(){
+    this.test()
   }
 }
 </script>
