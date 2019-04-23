@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import context from '../main'
 function formatNumber(n: number | string): string {
     const str = n.toString()
     return str[1] ? str : `0${str}`
@@ -98,16 +98,16 @@ function getData(el: any, name: string, val?: string) {
 
 //状态提示相关方法
 
-function showLoad(self:	Vue){
-    return self.$createToast({
+function showLoad(){
+    return context.$createToast({
         txt: '加载中...',
         time: 0,
         mask: true,
         type:'loading'
     })
 }
-function showToast(self:Vue,txt:string,type:string='txt'){
-    return self.$createToast({
+function showToast(txt:string,type:string='txt'){
+    return context.$createToast({
         txt: txt,
         time: 1500,
         type:type

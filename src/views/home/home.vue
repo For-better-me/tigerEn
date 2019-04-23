@@ -66,7 +66,7 @@ export default class Home extends AbstractBaseVue {
       scroll.forceUpdate();
   }
   test(){
-    LessonApi.hotLesson(this).then((res:any)=>{
+    LessonApi.hotLesson().then((res:any)=>{
       console.log(res)
     })
   }

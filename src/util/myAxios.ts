@@ -19,7 +19,7 @@ export interface RequestOptions {
     loading?: boolean
 }
 
-// export type MyAxiosFunc = (option: RequestOptions) => AxiosPromise<BaseBean<any>>;
+export type MyAxiosFunc = (option: RequestOptions) => AxiosPromise<BaseBean<any>>;
 
 
 // 请求base url
@@ -35,15 +35,16 @@ const axiosClient = axios.create({
 
 // TIP axios-request拦截器：在每个请求头中，都附带【token】，让后端对请求作出权限验证；
 // request interceptor
-axiosClient.interceptors.request.use((config: any) => {            // TIP 对于【Request】的拦截。
+axiosClient.interceptors.request.use((config) => {            // TIP 对于【Request】的拦截。
     // Do something before request is sent
-    if (config.url.indexOf('login') == -1) {
+    if (config.url && config.url.indexOf('login') == -1) {
         if (localStorage.token != undefined) {              // TIP 从本地获取Token值。（若本地Token存在的话。）
-            config.headers.Authorization = localStorage.token; // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
+            config.headers.token = localStorage.token; // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
         } else {
             // to login
         }
     }
+    console.log(config)
 
     return config;
 }, (error) => {   // TIP 若出错了，打印日志，Promise返回失败。
@@ -73,7 +74,7 @@ axiosClient.interceptors.request.use((config: any) => {            // TIP 对于
 
 //     });
 
-let _http :any = function (opt: RequestOptions, self: Vue) {
+let _http :any = function (opt: RequestOptions) {
     return new Promise((resolve, reject) => {
         let defaultOpt: RequestOptions = {
             url:'',
@@ -99,7 +100,6 @@ let _http :any = function (opt: RequestOptions, self: Vue) {
                 })
             } else if(res.data.code == 0){
                 resolve(res.data.data)
-                util.showToast(self,'请求成功')
                 console.log('请求成功',opt.url,res.data);
             }  else if(res.data.code == -1){
                 util.showToast(res.data.msg,'error')
@@ -107,8 +107,6 @@ let _http :any = function (opt: RequestOptions, self: Vue) {
                 reject(res.data)
             }
         }).catch(err=>{
-            console.log(Vue2)
-            util.showToast(Vue2,'请求成功').show()
             reject(err)
             console.log(err)
         })

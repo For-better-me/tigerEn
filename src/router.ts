@@ -12,7 +12,10 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      meta:{
+        title:'趣虎'
+      }
     },
     {
       path: '/lesson',
@@ -72,7 +75,7 @@ export default new Router({
     },
     {
       path: '/cartoon',
-      name: 'apply',
+      name: 'cartoon',
       component: () => import('./views/home/gif.vue'),
       meta:{
         title:'动画'
