@@ -71,7 +71,7 @@ export default class Home extends AbstractBaseVue {
     })
   }
   mounted(){
-    this.test()
+    // this.test()
   }
 }
 </script>

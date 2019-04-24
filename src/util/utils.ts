@@ -1,4 +1,5 @@
 import context from '../main'
+import qs from "qs";
 function formatNumber(n: number | string): string {
     const str = n.toString()
     return str[1] ? str : `0${str}`
@@ -114,9 +115,6 @@ function showToast(txt:string,type:string='txt'){
     })
 }
 
-
-
-
 function findIndex(ary:any[], fn:any) {
     if (ary.findIndex) {
       return ary.findIndex(fn)
@@ -131,6 +129,13 @@ function findIndex(ary:any[], fn:any) {
     })
     return index
 }
+// 将url后的参数组合成对象并返回
+function urlParams(url?:string){
+    url = url ? url:window.location.href.split("#")[0];
+    let queryStringUrl = url.slice(url.indexOf("?") + 1);
+    var urlParamsObj = qs.parse(queryStringUrl, { ignoreQueryPrefix: true });
+    return urlParams
+}
 export default {
     formatNumber,
     formatTime,
@@ -142,6 +147,7 @@ export default {
     getData,
     showLoad,
     showToast,
-    findIndex
+    findIndex,
+    urlParams
 }
 

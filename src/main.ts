@@ -20,13 +20,6 @@ Vue.prototype.$http = _http
 //   loading: '',
 //   attempt: 1
 // })
-router.beforeEach((to,from,next)=>{
-  document.title = to.meta.title;
-  next()
-})
-
-
-
 
 
 const vue = new Vue({
