@@ -20,9 +20,9 @@
         <div class="recommend">
           <h4>精彩推荐</h4>
           <ul>
-            <li>
-              <img src="../../assets/img/bg_card.png" alt>
-              <p>Daniel LopezLopezLopezLopez</p>
+            <li v-for='(item,i) in list' :key='item.id'>
+              <img :src="imgPre+item.img" alt>
+              <p>{{item.title}}</p>
             </li>
           </ul>
         </div>
@@ -43,35 +43,36 @@ import {LessonApi} from '@/api/lesson'
   }
 })
 export default class Home extends AbstractBaseVue {
-  items: object[] = [
-    {
-      url: "http://www.didichuxing.com/",
-      image:
-        "//webapp.didistatic.com/static/webapp/shield/cube-ui-examples-slide01.png"
-    },
-    {
-      url: "http://www.didichuxing.com/",
-      image:
-        "//webapp.didistatic.com/static/webapp/shield/cube-ui-examples-slide02.png"
-    },
-    {
-      url: "http://www.didichuxing.com/",
-      image:
-        "//webapp.didistatic.com/static/webapp/shield/cube-ui-examples-slide03.png"
-    }
-  ];
+  items: object[] = [];
+  list: object[] = [];
+  totalPage:number = 0
+  limit:number =  1
+  page:number = 1
   loadMore(scroll:any) {
-    // 模拟更新数据
+      if(this.page<this.totalPage){
+        this.page++
+        this.getList(this.page)
+      } else{
+        scroll.forceUpdate();
+      }
       
-      scroll.forceUpdate();
   }
-  getLesson(){
-    LessonApi.hotLesson().then((res:any)=>{
+  getList(page:number = 1,limit:number=this.limit){
+    let data = {page,limit}
+    LessonApi.hotLesson(data).then(res=>{
+      console.log(this)
+      if(page == 1){
+        this.list = res.data
+        this.totalPage = res.total_page
+      } else{
+        this.list = this.list.concat(res.data)
+      }
+      console.log(this.list,333333333,res)
       
     })
   }
   mounted(){
-    this.getLesson()
+    this.getList()
   }
 }
 </script>

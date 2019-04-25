@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import http ,{RequestOptions} from '../util/myAxios'
 export class SongApi {
-    public static list:any = (data?:{},params?:{})=>{
+    public static list(data?:{},params?:{}):Promise<any>{
         return  http({
             url:'ARhymes/getList',
             method:'post',
             data
         })
     }
-    public static detail:any = (data?:{},params?:{})=>{
+    public static detail(data?:{},params?:{}):Promise<any>{
         return  http({
             url:'rhymes/getInfo',
             method:'post',
@@ -17,14 +17,14 @@ export class SongApi {
     }
 }
 export class WordApi {
-    public static list:any = (data?:{},params?:{})=>{
+    public static list(data?:{},params?:{}):Promise<any>{
         return  http({
             url:'Wordcard/getList',
             method:'post',
             data
         })
     }
-    public static pageViews:any = (data?:{},params?:{})=>{
+    public static const pageViews = (data?:{},params?:{}):Promise<any>=>{
         return  http({
             url:'Wordcard/getInfo',
             method:'post',
@@ -33,14 +33,14 @@ export class WordApi {
     }
 }
 export class CartoonApi {
-    public static list:any = (data?:{},params?:{})=>{
+    public static const list = (data?:{},params?:{}):Promise<any>=>{
         return  http({
             url:'Animation/getList',
             method:'post',
             data
         })
     }
-    public static pageViews:any = (data?:{},params?:{})=>{
+    public static const pageViews:any = (data?:{},params?:{}):Promise<any>=>{
         return  http({
             url:'Animation/getInfo',
             method:'post',
@@ -49,14 +49,14 @@ export class CartoonApi {
     }
 }
 export class PictureApi {
-    public static list:any = (data?:{},params?:{})=>{
+    public static const list:any = (data?:{},params?:{}):Promise<any>=>{
         return  http({
             url:'Painting/getList',
             method:'post',
             data
         })
     }
-    public static detail:any = (data?:{},params?:{})=>{
+    public static const detail:any = (data?:{},params?:{}):Promise<any>=>{
         return  http({
             url:'/Painting/getInfo',
             method:'post',

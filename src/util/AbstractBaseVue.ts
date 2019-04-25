@@ -9,7 +9,7 @@ import { Action, Getter, Mutation } from 'vuex-class'; // TODO 使用类型化�
 import scrollPage from "@/components/scrollPage.vue";
 
 export default abstract class AbstractBaseVue extends Vue {
-  imgPre:string = 'imgPre'
+  imgPre:string = 'https://www.tjitfw.com'
   
 }
 export {

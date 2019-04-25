@@ -57,7 +57,7 @@ export default class scrollPage extends AbstractBaseVueMixins {
     };
     created() {}
     mounted() {
-        console.log(this.options)
+        // console.log(this.options)
     }
 }
 </script>

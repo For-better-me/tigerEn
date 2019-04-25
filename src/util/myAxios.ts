@@ -45,7 +45,6 @@ axiosClient.interceptors.request.use((config) => {            // TIP 对于【Re
             // to login
         }
     }
-    console.log(config)
 
     return config;
 }, (error) => {   // TIP 若出错了，打印日志，Promise返回失败。
@@ -75,7 +74,7 @@ axiosClient.interceptors.request.use((config) => {            // TIP 对于【Re
 
 //     });
 
-let _http :any = function (opt: RequestOptions) {
+let _http = function (opt: RequestOptions):Promise<any> {
     return new Promise((resolve, reject) => {
         let defaultOpt: RequestOptions = {
             url:'',
@@ -100,7 +99,7 @@ let _http :any = function (opt: RequestOptions) {
                     msg: opt.url + '接口需要token参数，但系统中不存在token'
                 })
             } else if(res.data.code == 0){
-                resolve(res.data.data)
+                resolve(res.data)
                 console.log('请求成功',opt.url,res.data);
             }  else if(res.data.code == -1){
                 util.showToast(res.data.msg,'error')

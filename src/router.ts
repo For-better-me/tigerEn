@@ -160,7 +160,7 @@ router.beforeEach((to,from,next)=>{
   document.title = to.meta.title;
   let _url = window.location.origin + to.fullPath
   reqConfig(_url)
-  console.log(_url,to)
+  // console.log(_url,to)
   next()
 })
 

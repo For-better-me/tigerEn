@@ -33,7 +33,7 @@ export default class Song extends Vue {
   }
   getList(page:number = 1,limit:number=this.limit){
     let data = {page,limit}
-    CartoonApi.list(data).then((res:any)=>{
+    CartoonApi.list(data).then(res=>{
       if(page == 1){
         this.list = res.data.list
         this.totalPage = res.data.total_page

@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import http ,{RequestOptions} from '../util/myAxios'
 export class LessonApi {
-    public static hotLesson:any = (data?:{},params?:{})=>{
+    public static  hotLesson = (data?:{},params?:{}):Promise<any>=>{
         return  http({
-            url:'Info/getList'
+            url:'Info/getList',
+            method:'get'
         })
     }
-    public static lessonList:any = (data?:{},params?:{})=>{
+    public static lessonList = (data?:{},params?:{}):Promise<any>=>{
         return  http({
             url:'Curriculum/getList',
             method:'post',

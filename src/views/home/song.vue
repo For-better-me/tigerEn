@@ -33,7 +33,7 @@ export default class Song extends AbstractBaseVue {
   }
   getList(page:number = 1,limit:number=this.limit){
     let data = {page,limit}
-    SongApi.list(data).then((res:any)=>{
+    SongApi.list(data).then((res)=>{
       if(page == 1){
         this.list = res.data.list
         this.totalPage = res.data.total_page

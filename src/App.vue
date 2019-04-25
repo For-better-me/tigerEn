@@ -11,7 +11,9 @@ import AbstractBaseVue, { MyComponent, MyWatch } from "@/util/AbstractBaseVue";
   components: {}
 })
 export default class WordCard extends AbstractBaseVue {
-  created() {}
+  created() {
+    
+  }
 
 }
 </script>
