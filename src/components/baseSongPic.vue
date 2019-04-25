@@ -1,11 +1,11 @@
 <template>
     <div class="common_song">
         <div class="poster">
-            <img src="../assets/img/bg_card.png" alt="">
+            <img :src="imgPre+item.img" alt="">
         </div>
-        <h4>幼儿神曲欢迎幼儿神曲欢迎你来看你来看</h4>
+        <h4>{{item.title}}</h4>
         <div class="text">
-            <span>3小时前</span>
+            <span>{{item.time}}</span>
             <img src="../assets/img/icon_eye.png" alt="">
             <span>2.1k</span>
         </div>
@@ -17,7 +17,7 @@
 import AbstractBaseVueMixins,{MyComponent,MyProp} from "@/util/AbstractBaseVue";
 @MyComponent
 export default class LessonRecord extends AbstractBaseVueMixins {
-    @MyProp() private list!: any[];
+    @MyProp() private item!: any;
   
 }
 </script>

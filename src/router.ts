@@ -91,6 +91,14 @@ const router =  new Router({
         title:'词卡'
       }
     },
+    {
+      path: '/info',
+      name: 'info',
+      component: () => import('./views/home/info.vue'),
+      meta:{
+        title:'详情'
+      }
+    },
     
   ]
 })

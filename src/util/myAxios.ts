@@ -92,7 +92,7 @@ let _http :any = function (opt: RequestOptions) {
             method: opt.method,
             data: opt.data,
             headers: opt.headers,
-        }).then(res=>{
+        }).then((res:any)=>{
             if(res.data.code == 10001){
                 reject({
                     code: 10001,
