@@ -16,14 +16,15 @@ module.exports = {
     }
   },
   devServer:{
-      // devServer: {
-      //     proxy: {
-      //       '/api': {
-      //         target: '1',
-      //         ws: true,
-      //         changeOrigin: true
-      //       }
-      //     }
-      // }
+    proxy: {
+      '/apis': {
+        target: 'https://www.tjitfw.com',
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+            '^/apis': ''   //需要rewrite的,
+        }  
+      }
+    }
   }
 }

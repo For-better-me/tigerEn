@@ -3,7 +3,7 @@ import http ,{RequestOptions} from '../util/myAxios'
 export class LessonApi {
     public static hotLesson:any = (data?:{},params?:{})=>{
         return  http({
-            url:'Info/getInfoList'
+            url:'Info/getList'
         })
     }
     public static lessonList:any = (data?:{},params?:{})=>{

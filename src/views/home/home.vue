@@ -65,13 +65,13 @@ export default class Home extends AbstractBaseVue {
       
       scroll.forceUpdate();
   }
-  test(){
+  getLesson(){
     LessonApi.hotLesson().then((res:any)=>{
-      console.log(res)
+      
     })
   }
   mounted(){
-    // this.test()
+    this.getLesson()
   }
 }
 </script>

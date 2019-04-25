@@ -28,7 +28,8 @@ export type MyAxiosFunc = (option: RequestOptions) => AxiosPromise<BaseBean<any>
 
 // TODO 传入选项，创建axios实例
 const axiosClient = axios.create({
-    baseURL: 'https://www.99tjit.cn/api/',   // TIP API 的 BASE_URL
+    baseURL: '/apis/api/',   // TIP API 的 BASE_URL
+    // baseURL: 'https://www.tjitfw.com',   // TIP API 的 BASE_URL
     timeout: 15000,        // TIP 请求的超时时间
 });
 

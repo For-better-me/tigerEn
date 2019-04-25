@@ -7,7 +7,7 @@ declare module 'vue/types/vue' {
     // 来声明实例
     interface Vue {
       $util: any,
-      // $http:any
+      $http:any
       
     }
     

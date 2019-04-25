@@ -26,6 +26,16 @@ export default class lesson extends AbstractBaseVue {
       
       scroll.forceUpdate();
   }
+  mounted(){
+    this.$http({
+      url:'Payment/purchase',
+      data:{curriculum_id:18}
+    }).then((res:any)=>{
+        console.log(res)
+    }).catch((err:any)=>{
+      console.log(err)
+    })
+  }
 }
 </script>
 <style>
