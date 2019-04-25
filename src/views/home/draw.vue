@@ -2,7 +2,7 @@
   <div class="common_feature">
       <scroll-page @pullingUp='loadMore'>
          <div slot='content'>
-            <item-song></item-song>
+            <item-song v-for='item in list' :key='item.id' :item = 'item'></item-song>
          </div>
       </scroll-page>
     
@@ -13,15 +13,38 @@
 <script lang="ts">
 import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
 import itemSong from '@/components/baseSongPic.vue'
+import {PictureApi} from '@/api/feature'
 @MyComponent({
   components:{itemSong}
 })
 export default class Song extends AbstractBaseVue {
+  // data
+  list:any[] = []
+  totalPage:number = 0
+  limit:number =  5
+  page:number = 1
   loadMore(scroll:any) {
-    // 模拟更新数据
+      if(this.page<this.totalPage){
+        this.page++
+        this.getList(this.page)
+      } else{
+        scroll.forceUpdate();
+      }
       
-      scroll.forceUpdate();
   }
+  getList(page:number = 1,limit:number=this.limit){
+    let data = {page,limit}
+    PictureApi.list(data).then((res:any)=>{
+      if(page == 1){
+        this.list = res.data.list
+        this.totalPage = res.data.total_page
+      } else{
+        this.list = this.list.concat(res.data.list)
+      }
+      
+    })
+  }
+  
   
 }
 </script>

@@ -1,0 +1,111 @@
+.shadow_btn {
+  box-shadow: #e8e8e8 0px 0px 12px 1px;
+}
+.shadow_wrap {
+  box-shadow: #e8e8e8 0px 0px 15px 1px;
+}
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.black_wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+}
+.pos_center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.pos_fix_full {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+/*.img_wrap{
+  position: relative;
+  background: #f5f5f5;
+  b{
+    width:0.4upx;
+    height: 0.4upx;
+    background: url('../img/close.png') no-repeat center;
+    background-size: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 0;
+  }
+}*/
+.flex {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+.flex_center {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+}
+/* 省略号 */
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+/* 向右箭头 */
+.common_arrow {
+  background: url(../../img/icon_arrow.png) no-repeat right center;
+  background-size: 9px 16px;
+}
+/* 1px边框 */
+.bg-btn {
+  background: #ccc !important;
+}
+.btn-small {
+  width: 105upx;
+  height: 45upx;
+  background: #fed351;
+  line-height: 45upx;
+  text-align: center;
+  font-size: 24upx;
+  color: #626469;
+  margin: 0 auto;
+  border-radius: 100px;
+}
+.nodata {
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+}
+.nodata img {
+  margin-top: 280upx;
+  width: 200upx;
+  height: 200upx;
+}
+.nodata p {
+  font-size: 30upx;
+  color: #999;
+  margin-top: 60upx;
+}
