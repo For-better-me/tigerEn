@@ -24,7 +24,7 @@ export class WordApi {
             data
         })
     }
-    public static const pageViews = (data?:{},params?:{}):Promise<any>=>{
+    public static pageViews(data?:{},params?:{}):Promise<any>{
         return  http({
             url:'Wordcard/getInfo',
             method:'post',
@@ -33,14 +33,14 @@ export class WordApi {
     }
 }
 export class CartoonApi {
-    public static const list = (data?:{},params?:{}):Promise<any>=>{
+    public static list(data?:{},params?:{}):Promise<any>{
         return  http({
             url:'Animation/getList',
             method:'post',
             data
         })
     }
-    public static const pageViews:any = (data?:{},params?:{}):Promise<any>=>{
+    public static pageViews(data?:{},params?:{}):Promise<any>{
         return  http({
             url:'Animation/getInfo',
             method:'post',
@@ -49,14 +49,14 @@ export class CartoonApi {
     }
 }
 export class PictureApi {
-    public static const list:any = (data?:{},params?:{}):Promise<any>=>{
+    public static list(data?:{},params?:{}):Promise<any>{
         return  http({
             url:'Painting/getList',
             method:'post',
             data
         })
     }
-    public static const detail:any = (data?:{},params?:{}):Promise<any>=>{
+    public static detail(data?:{},params?:{}):Promise<any>{
         return  http({
             url:'/Painting/getInfo',
             method:'post',

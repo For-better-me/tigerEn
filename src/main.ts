@@ -14,6 +14,7 @@ Vue.component('scrollPage',scrollPage)
 Vue.config.productionTip = false
 Vue.prototype.$util = util
 Vue.prototype.$http = _http
+Vue.prototype.imgPre = 'https://www.tjitfw.com'
 // Vue.use(VueLazyload, {
 //   preLoad: 1.3,
 //   error: '',

@@ -36,17 +36,17 @@ export default class lesson extends AbstractBaseVue {
   }
   getList(page:number = 1,limit:number=this.limit){
     let data = {page,limit}
-    LessonApi.hotLesson(data).then(res=>{
-      console.log(this)
-      if(page == 1){
-        this.list = res.data
-        this.totalPage = res.total_page
-      } else{
-        this.list = this.list.concat(res.data)
-      }
-      console.log(this.list,333333333,res)
+    // LessonApi.hotLesson(data).then(res=>{
+    //   console.log(this)
+    //   if(page == 1){
+    //     this.list = res.data
+    //     this.totalPage = res.total_page
+    //   } else{
+    //     this.list = this.list.concat(res.data)
+    //   }
+    //   console.log(this.list,333333333,res)
       
-    })
+    // })
   }
   mounted(){
     // this.$http({

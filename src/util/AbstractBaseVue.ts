@@ -7,9 +7,9 @@ import {
 } from 'vue-property-decorator';
 import { Action, Getter, Mutation } from 'vuex-class'; // TODO 使用类型化的vuex
 import scrollPage from "@/components/scrollPage.vue";
-
-export default abstract class AbstractBaseVue extends Vue {
-  imgPre:string = 'https://www.tjitfw.com'
+export default class AbstractBaseVue extends Vue {
+  
+  public static readonly Mixins = Mixins;
   
 }
 export {
