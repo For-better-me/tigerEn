@@ -1,6 +1,6 @@
 <template>
   <div class="common_feature">
-      <scroll-page @pullingUp='loadMore'>
+      <scroll-page @pullingUp='loadMore'   :scrollData='list'>
          <div slot='content'>
             <item-song v-for='item in list' :key='item.id' :item = 'item'></item-song>
          </div>
@@ -19,35 +19,10 @@ import {PictureApi} from '@/api/feature'
   components:{itemSong}
 })
 export default class Song extends AbstractBaseVue.Mixins(FeatureMinix) {
-// export default class Song extends AbstractBaseVue {
-  // data
-  // list:any[] = []
-  // totalPage:number = 0
-  // limit:number =  5
-  // page:number = 1
-  // loadMore(scroll:any) {
-  //     if(this.page<this.totalPage){
-  //       this.page++
-  //       this.getList(this.page)
-  //     } else{
-  //       scroll.forceUpdate();
-  //     }
-      
-  // }
-  // getList(page:number = 1,limit:number=this.limit){
-  //   let data = {page,limit}
-  //   PictureApi.list(data).then((res:any)=>{
-  //     if(page == 1){
-  //       this.list = res.data.list
-  //       this.totalPage = res.data.total_page
-  //     } else{
-  //       this.list = this.list.concat(res.data.list)
-  //     }
-      
-  //   })
-  // }
-  // minix
 
+  created(){
+	  this.getList(PictureApi.list)
+  }
   
   
 }

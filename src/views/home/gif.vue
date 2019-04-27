@@ -1,7 +1,7 @@
 <template>
   <div class="common_feature">
       <scroll-page @pullingUp='loadMore'>
-         <div slot='content'>
+         <div slot='content' class='wrap'>
              <item-gif text='动画' v-for='item in list' :key='item.id' :item = 'item'></item-gif>
          </div>
       </scroll-page>
@@ -10,38 +10,18 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import AbstractBaseVue, { MyComponent,MyMixins} from "@/util/AbstractBaseVue";
 import itemGif from '@/components/baseLesson.vue'
 import {CartoonApi} from '@/api/feature'
-@Component({
+import {FeatureMinix} from "@/util/mixins";
+@MyComponent({
   components:{itemGif}
 })
-export default class Song extends Vue {
+export default class Song extends AbstractBaseVue.Mixins(FeatureMinix)  {
     // data
-  list:any[] = []
-  totalPage:number = 0
-  limit:number =  5
-  page:number = 1
-  loadMore(scroll:any) {
-      if(this.page<this.totalPage){
-        this.page++
-        this.getList(this.page)
-      } else{
-        scroll.forceUpdate();
-      }
-      
-  }
-  getList(page:number = 1,limit:number=this.limit){
-    let data = {page,limit}
-    CartoonApi.list(data).then(res=>{
-      if(page == 1){
-        this.list = res.data.list
-        this.totalPage = res.data.total_page
-      } else{
-        this.list = this.list.concat(res.data.list)
-      }
-      
-    })
+
+  created(){
+	  this.getList(CartoonApi.list)
   }
   
 }

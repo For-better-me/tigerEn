@@ -7,7 +7,7 @@
         <div class="text">
             <span>{{item.time}}</span>
             <img src="../assets/img/icon_eye.png" alt="">
-            <span>2.1k</span>
+            <span>{{item.hits}}</span>
         </div>
         
     </div>

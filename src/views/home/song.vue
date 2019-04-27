@@ -1,6 +1,6 @@
 <template>
   <div class="common_feature wrap">
-      <scroll-page @pullingUp='loadMore'>
+      <scroll-page @pullingUp='loadMore'  :scrollData='list'>
          <div slot='content'>
              <item-song v-for='item in list' :key='item.id' :item = 'item'></item-song>
          </div>
@@ -13,36 +13,15 @@
 <script lang="ts">
 import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
 import itemSong from '@/components/baseSongPic.vue'
+import {FeatureMinix} from "@/util/mixins";
 import {SongApi} from '@/api/feature'
 @MyComponent({
   components:{itemSong}
 })
-export default class Song extends AbstractBaseVue {
-  list:any[] = []
-  totalPage:number = 0
-  limit:number =  5
-  page:number = 1
-  loadMore(scroll:any) {
-      if(this.page<this.totalPage){
-        this.page++
-        this.getList(this.page)
-      } else{
-        scroll.forceUpdate();
-      }
-      
+export default class Song extends AbstractBaseVue.Mixins(FeatureMinix) {
+  created(){
+	  this.getList(SongApi.list)
   }
-  getList(page:number = 1,limit:number=this.limit){
-    let data = {page,limit}
-    SongApi.list(data).then((res)=>{
-      if(page == 1){
-        this.list = res.data.list
-        this.totalPage = res.data.total_page
-      } else{
-        this.list = this.list.concat(res.data.list)
-      }
-    })
-  }
-  
 }
 </script>
 

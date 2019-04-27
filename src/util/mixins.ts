@@ -6,32 +6,50 @@ import {
     Prop, Watch,
   } from 'vue-property-decorator';
   
-@Component
-export class FeatureMinix extends Vue{
+  import {LessonApi} from '@/api/lesson'
+  import {SongApi,CartoonApi,PictureApi} from '@/api/feature'
+  @Component
+  export class FeatureMinix extends Vue{
     list:any[] = []
     totalPage:number = 0
-    limit:number =  5
+    limit:number =  10
     page:number = 1
-    loadMore(scroll:any):void {
-        if(this.page<this.totalPage){
-            this.page++
-            this.getList(this.page)
+    api:any
+    loadMore(scroll:any,api:any):void {
+        this.page = this.page+1;
+        if(this.page<=this.totalPage){
+            this.getList(this.api,this.page)
         } else{
             scroll.forceUpdate();
         }
         
     }
-    getList(list:any,page:number = 1,limit:number=this.limit){
+    getList(api:any,page:number = 1,limit:number=this.limit){
+        this.api = api
         let data = {page,limit}
-        list(data).then((res:any)=>{
-        if(page == 1){
-            this.list = res.data
-            this.totalPage = res.total_page
-        } else{
-            this.list = this.list.concat(res.data)
-        }
+        api(data).then((res:any)=>{
+            if(page == 1){
+                this.list = res.data
+                this.totalPage = res.total_page
+            } else{
+                this.list = this.list.concat(res.data)
+
+            }
         
         })
     }
+    // getHotLesson(){
+    //     this.getList(LessonApi.hotLesson)
+    // }
+    // getsong(){
+    //     this.getList(SongApi.list)
+    // }
+    // getcartoon(){
+    //     this.getList(CartoonApi.list)
+    // }
+    // getPic(){
+    //     this.getList(PictureApi.list)
+    // }
+   
     
 }

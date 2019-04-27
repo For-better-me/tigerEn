@@ -3,7 +3,7 @@ import http ,{RequestOptions} from '../util/myAxios'
 export class SongApi {
     public static list(data?:{},params?:{}):Promise<any>{
         return  http({
-            url:'ARhymes/getList',
+            url:'rhymes/getList',
             method:'post',
             data
         })

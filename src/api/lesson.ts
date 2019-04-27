@@ -4,7 +4,8 @@ export class LessonApi {
     public static  hotLesson(data?:{},params?:{}):Promise<any>{
         return  http({
             url:'Info/getList',
-            method:'get'
+            method:'post',
+            data
         })
     }
     public static lessonList(data?:{},params?:{}):Promise<any>{

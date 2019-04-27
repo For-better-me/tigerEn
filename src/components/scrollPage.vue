@@ -4,6 +4,7 @@
     <cube-scroll
       ref="scroll"
       :options="options"
+      :data="scrollData"
       @pulling-down="refresh"
       @pulling-up="loadMore"
       class="scroll_div"
@@ -14,11 +15,12 @@
 </template>
 
 <script  lang="ts">
-import AbstractBaseVueMixins,{MyComponent,MyProp,MyEmit} from "@/util/AbstractBaseVue";
+import AbstractBaseVueMixins,{MyComponent,MyProp,MyEmit,MyWatch} from "@/util/AbstractBaseVue";
 @MyComponent
 export default class scrollPage extends AbstractBaseVueMixins {
     @MyProp({default:false,required:false}) pullDownRefresh !: boolean;
     @MyProp({default:true,required:false}) pullUpLoad !: boolean;
+    @MyProp({required:false}) scrollData !: any[];
     @MyProp({
         type:Function,
         required:false,
@@ -43,12 +45,12 @@ export default class scrollPage extends AbstractBaseVueMixins {
     
     options:any = {
         pullDownRefresh: this.pullDownRefresh?{
-            threshold: 0,
+            threshold: 60,
             stopTime:600,
             txt:'刷新成功'
         }:false,
         pullUpLoad: this.pullUpLoad?{
-            threshold: 0,
+            threshold: 60,
             txt: {
                 more: "Load more",
                 noMore: "No more data"
