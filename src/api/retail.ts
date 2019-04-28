@@ -8,4 +8,19 @@ export class RetailApi {
             data
         })
     }
+    public static info(data?:{},params?:{}):Promise<any>{
+        return  http({
+            url:'user/showPrice',
+            method:'post',
+            data
+        })
+    }
+    public static income(data?:{},params?:{}):Promise<any>{
+        return  http({
+            url:'Profit/getList',
+            method:'post',
+            data
+        })
+    }
+
 }

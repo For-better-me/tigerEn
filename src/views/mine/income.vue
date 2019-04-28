@@ -1,132 +1,210 @@
 <!--  -->
 <template>
   <div class="income">
-    <cube-tab-bar
-      v-model="selectedLabel"
-      show-slider
-      :use-transition="disabled"
-      ref="tabNav"
-      :data="tabLabels"
-    ></cube-tab-bar>
-    <div class="tab-slide-container">
-      <cube-slide
-        ref="slide"
-        :loop="loop"
-        :initial-index="initialIndex"
-        :auto-play="autoPlay"
-        :show-dots="showDots"
-        :options="slideOptions"
-        @scroll="scroll"
-        @change="changePage"
-      >
-        <!-- 关注 -->
-        <cube-slide-item>
-          <cube-scroll  :options="scrollOptions">
-            <ul class="list-wrapper income_list">
-              <li>
-                <img src="../../assets/img/pic_card.png" alt="">
-                <div class="income_info">
-                  <h5>一根小竹子</h5>
-                  <span>2018年3月5日</span>
-                </div>
-                <p>消费：¥168.00</p>
-              </li>
-            </ul>
-          </cube-scroll>
-        </cube-slide-item>
-        <!-- 推荐 -->
-        <cube-slide-item>
-          <cube-scroll :options="scrollOptions">
-            <ul class="list-wrapper income_list">
-              
-              <li>
-                <img src="../../assets/img/pic_card.png" alt="">
-                <div class="income_info">
-                  <h5>一根小竹子</h5>
-                  <span>2018年3月5日</span>
-                </div>
-                <p>消费：¥168.00</p>
-              </li>
-            </ul>
-          </cube-scroll>
-        </cube-slide-item>
-        <cube-slide-item>
-          <cube-scroll  :options="scrollOptions">
-            <ul class="list-wrapper income_list">
-              <li>
-                <img src="../../assets/img/bg_song.png" alt="">
-                <div class="income_info">
-                  <h5>一根小竹子</h5>
-                  <span>2018年3月5日</span>
-                </div>
-                <p>消费：¥168.00</p>
-              </li>
-            </ul>
-          </cube-scroll>
-        </cube-slide-item>
-      </cube-slide>
-    </div>
+    <scroll-page @pullingUp="loadMore" :scrollData="list">
+      <div slot="content">
+        <cube-tab-bar
+          v-model="selectedLabel"
+          show-slider
+          :use-transition="disabled"
+          ref="tabNav"
+          :data="tabLabels"
+        ></cube-tab-bar>
+        <div class="tab-slide-container">
+          <cube-slide
+            ref="slide"
+            :loop="loop"
+            :initial-index="initialIndex"
+            :auto-play="autoPlay"
+            :show-dots="showDots"
+            :options="slideOptions"
+            @scroll="scroll"
+            @change="changePage"
+          >
+            <!-- 关注 -->
+            <cube-slide-item>
+              <cube-scroll :options="scrollOptions">
+                <ul class="list-wrapper income_list">
+                  <li>
+                    <img src="../../assets/img/pic_card.png" alt>
+                    <div class="income_info">
+                      <h5>一根小竹子</h5>
+                      <span>2018年3月5日</span>
+                    </div>
+                    <p>消费：¥168.00</p>
+                  </li>
+                </ul>
+              </cube-scroll>
+            </cube-slide-item>
+            <!-- 推荐 -->
+            <cube-slide-item>
+              <cube-scroll :options="scrollOptions">
+                <ul class="list-wrapper income_list">
+                  <li>
+                    <img src="../../assets/img/pic_card.png" alt>
+                    <div class="income_info">
+                      <h5>一根小竹子</h5>
+                      <span>2018年3月5日</span>
+                    </div>
+                    <p>消费：¥168.00</p>
+                  </li>
+                </ul>
+              </cube-scroll>
+            </cube-slide-item>
+            <cube-slide-item>
+              <cube-scroll :options="scrollOptions">
+                <ul class="list-wrapper income_list">
+                  <li>
+                    <img src="../../assets/img/bg_song.png" alt>
+                    <div class="income_info">
+                      <h5>一根小竹子</h5>
+                      <span>2018年3月5日</span>
+                    </div>
+                    <p>消费：¥168.00</p>
+                  </li>
+                </ul>
+              </cube-scroll>
+            </cube-slide-item>
+          </cube-slide>
+        </div>
+      </div>
+    </scroll-page>
   </div>
 </template>
 
 <script lang='ts'>
 import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
+import { RetailApi } from "@/api/retail";
 @MyComponent({
-  components: {},
-  
+  components: {}
 })
 export default class Income extends AbstractBaseVue {
-    mounted() {}
-    selectedLabel: string = "一级分销";
-    disabled: boolean = false;
-    tabLabels: any = [
-        {
-        label: "一级分销"
-        },
-        {
-        label: "二级分销"
-        },
-        {
-        label: "三级分销"
-        }
-    ];
-    loop: boolean = false;
-    autoPlay: boolean = false;
-    showDots: boolean = false;
-    slideOptions: any = {
-        listenScroll: true,
-        probeType: 3,
-        directionLockThreshold: 0
-    };
-    scrollOptions: any = {
-        directionLockThreshold: 0
-    };
-    changePage (current:number) {
-        this.selectedLabel = this.tabLabels[current].label
-        console.log(current)
+  mounted() {}
+  selectedLabel: string = "一级分销";
+  disabled: boolean = false;
+  tabLabels: any = [
+    {
+      label: "一级分销"
+    },
+    {
+      label: "二级分销"
+    },
+    {
+      label: "三级分销"
     }
-    scroll (pos:any) {
-        // const x = Math.abs(pos.x)
-        // const tabItemWidth = this.$refs.tabNav.$el.clientWidth
-        // const slideScrollerWidth = this.$refs.slide.slide.scrollerWidth
-        // const deltaX = x / slideScrollerWidth * tabItemWidth
-        // (this.$refs.tabNav as any).setSliderTransform(deltaX)
-        // },
-        // resolveTitle (item) {
-        // return `${item.name}关注了问题 · ${item.postTime} 小时前`
-    }
-    // resolveQuestionFollowers (item) {
-    //     return `${item.answers} 赞同 · ${item.followers} 评论`
-    // }
+  ];
+  list_1: any[] = [];
+  list_2: any[] = [];
+  list_3: any[] = [];
+  limit: number = 10;
+  page_1: number = 1;
+  page_2: number = 1;
+  page_3: number = 1;
+  totalPage: number = 0;
+  totalPage_2: number = 0;
+  totalPage_3: number = 0;
+  loop: boolean = false;
+  autoPlay: boolean = false;
+  showDots: boolean = false;
+  slideOptions: any = {
+    listenScroll: true,
+    probeType: 3,
+    directionLockThreshold: 0
+  };
+  scrollOptions: any = {
+    directionLockThreshold: 0
+  };
+  changePage(current: number) {
+    this.selectedLabel = this.tabLabels[current].label;
+    console.log(current);
+  }
 
-    get initialIndex () {
-        let index = 0
-        index = this.$util.findIndex(this.tabLabels, (item:any) => item.label === this.selectedLabel)
-        return index
-     
+  loadMore(scroll: any, api: any): void {
+    if (this.initialIndex == 1) {
+      this.page_1 = this.page_1 + 1;
+      if (this.page_1 <= this.totalPage) {
+        this.getList_1(this.page_1);
+      } else {
+        scroll.forceUpdate();
+      }
+    } else if(this.initialIndex == 2){
+        this.page_2 = this.page_2 + 1;
+        if (this.page_2 <= this.totalPage_2) {
+            this.getList_2(this.page_2);
+        } else {
+            scroll.forceUpdate();
+        }
+    } else{
+        this.page_3 = this.page_3 + 1;
+        if (this.page_3 <= this.totalPage_3) {
+            this.getList_3(this.page_3);
+        } else {
+            scroll.forceUpdate();
+        }
     }
+  }
+  getList_1(page: number = 1, limit: number = this.limit) {
+    let data = { page, limit };
+    RetailApi.income(data).then((res: any) => {
+      if (page == 1) {
+        this.list_1 = res.data;
+        this.totalPage = res.total_page;
+      } else {
+        this.list_1 = this.list_1.concat(res.data);
+      }
+    });
+  }
+  getList_2(page: number = 1, limit: number = this.limit) {
+    let data = { page, limit };
+    RetailApi.income(data).then((res: any) => {
+      if (page == 1) {
+        this.list_2 = res.data;
+        this.totalPage = res.total_page;
+      } else {
+        this.list_2 = this.list_2.concat(res.data);
+      }
+    });
+  }
+  getList_3(page: number = 1, limit: number = this.limit) {
+    let data = { page, limit };
+    RetailApi.income(data).then((res: any) => {
+      if (page == 1) {
+        this.list_3 = res.data;
+        this.totalPage_3 = res.total_page;
+      } else {
+        this.list_3 = this.list_3.concat(res.data);
+      }
+    });
+  }
+  scroll(pos: any) {
+    // const x = Math.abs(pos.x)
+    // const tabItemWidth = this.$refs.tabNav.$el.clientWidth
+    // const slideScrollerWidth = this.$refs.slide.slide.scrollerWidth
+    // const deltaX = x / slideScrollerWidth * tabItemWidth
+    // (this.$refs.tabNav as any).setSliderTransform(deltaX)
+    // },
+    // resolveTitle (item) {
+    // return `${item.name}关注了问题 · ${item.postTime} 小时前`
+  }
+  // resolveQuestionFollowers (item) {
+  //     return `${item.answers} 赞同 · ${item.followers} 评论`
+  // }
+
+  get initialIndex() {
+    let index = 0;
+    index = this.$util.findIndex(
+      this.tabLabels,
+      (item: any) => item.label === this.selectedLabel
+    );
+    return index;
+  }
+  created(){
+      this.getList_1()
+      this.getList_2()
+      this.getList_3()
+  }
 }
 </script>
 <style lang='less' scoped>
-  @import url("../../assets/css/person/income.less");
+@import url("../../assets/css/person/income.less");
 </style>

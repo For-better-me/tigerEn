@@ -1,7 +1,7 @@
 <template>
   <div class="lesson">
     <scroll-page @pullingUp='loadMore' :scrollData='list'>
-      <div slot="content">
+      <div slot="content"  class='wrap content'>
         <item-lesson text='课程' v-for='item in list' :key='item.id' :item = 'item'></item-lesson>
       </div>
       
@@ -14,7 +14,7 @@
 <script lang="ts">
 import AbstractBaseVue,{MyComponent} from "@/util/AbstractBaseVue";
 import tab from "@/components/tab.vue";
-import itemLesson from '@/components/baseRecordL.vue'
+import itemLesson from '@/components/baseLesson.vue'
 import {LessonApi} from '@/api/lesson'
 import {FeatureMinix} from "@/util/mixins";
 @MyComponent({
@@ -29,6 +29,9 @@ export default class lesson extends AbstractBaseVue.Mixins(FeatureMinix) {
   }
 }
 </script>
-<style>
+<style scoped lang="less">
+    @import url('../../assets/css/home/common_feature.less');
+    
 </style>
+
 

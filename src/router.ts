@@ -92,11 +92,35 @@ const router =  new Router({
       }
     },
     {
-      path: '/info',
-      name: 'info',
-      component: () => import('./views/home/info.vue'),
+      path: '/songInfo',
+      name: 'songInfo',
+      component: () => import('./views/home/songInfo.vue'),
       meta:{
-        title:'详情'
+        title:'儿歌详情'
+      }
+    },
+    {
+      path: '/drawInfo',
+      name: 'drawInfo',
+      component: () => import('./views/home/drawInfo.vue'),
+      meta:{
+        title:'绘本详情'
+      }
+    },
+    {
+      path: '/lessonRecord',
+      name: 'lessonRecord',
+      component: () => import('./views/mine/lessonRecord.vue'),
+      meta:{
+        title:'浏览记录'
+      }
+    },
+    {
+      path: '/retailCenter',
+      name: 'retailCenter',
+      component: () => import('./views/mine/retailCenter.vue'),
+      meta:{
+        title:'分销中心'
       }
     },
     

@@ -17,10 +17,10 @@
             <router-link tag="a" :to="'/draw'">
                 <img src="../../assets/img/bg_draw.png" alt>
             </router-link>
-            <router-link tag="a" :to="'cartoon'">
+            <router-link tag="a" :to="'/cartoon'">
                 <img src="../../assets/img/bg_pic.png" alt>
             </router-link>
-            <router-link tag="a" :to="''">
+            <router-link tag="a" :to="'/card'">
                 <img src="../../assets/img/bg_card.png" alt>
             </router-link>    
             </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="common_feature">
-      <scroll-page @pullingUp='loadMore'>
-         <div slot='content' class='wrap'>
+      <scroll-page @pullingUp='loadMore' :scrollData='list'>
+         <div slot='content' class='wrap content'>
              <item-gif text='动画' v-for='item in list' :key='item.id' :item = 'item'></item-gif>
          </div>
       </scroll-page>

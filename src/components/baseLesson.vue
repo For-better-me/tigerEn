@@ -1,7 +1,7 @@
 <template>
     <div class="common_gif">
-        <img src="../assets/img/bg_pic.png" alt="">
-        <p>小白兔小白兔~白又白</p>
+        <img :src="imgPre+item.img" alt="">
+        <p>{{item.title}}</p>
         <span>{{text}}</span>
     </div>
 </template>
@@ -16,6 +16,7 @@ import tab from "@/components/tab.vue";
 })
 export default class lesson extends AbstractBaseVueMixins {
     @MyProp() private text!: string;
+    @MyProp() private item!: any;
 }
 
 

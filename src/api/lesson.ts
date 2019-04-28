@@ -29,4 +29,18 @@ export class LessonApi {
             data
         })
     }
+    public static lessonRecord(data?:{},params?:{}):Promise<any>{
+        return  http({
+            url:'Browse/getList',
+            method:'post',
+            data
+        })
+    }
+    public static lessonMy(data?:{},params?:{}):Promise<any>{
+        return  http({
+            url:'user/myCurriculum',
+            method:'post',
+            data
+        })
+    }
 }
