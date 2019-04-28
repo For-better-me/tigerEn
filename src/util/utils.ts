@@ -103,7 +103,6 @@ function showLoad(){
     return context.$createToast({
         txt: '加载中...',
         time: 0,
-        mask: true,
         type:'loading'
     })
 }

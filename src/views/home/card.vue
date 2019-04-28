@@ -11,7 +11,7 @@
         @waiting="onWaiting"
         @pause="onPause"
         @ended="onEnd"
-        :src="currentWord.music"
+        :src="imgPre+currentWord.music"
         ref="audio"
         id="audio"
       ></audio>

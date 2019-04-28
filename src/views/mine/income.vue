@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="income">
-    <scroll-page @pullingUp="loadMore" :scrollData="list">
+    <scroll-page @pullingUp="loadMore" >
       <div slot="content">
         <cube-tab-bar
           v-model="selectedLabel"
@@ -144,7 +144,7 @@ export default class Income extends AbstractBaseVue {
     }
   }
   getList_1(page: number = 1, limit: number = this.limit) {
-    let data = { page, limit };
+    let data = {level:1,page, limit };
     RetailApi.income(data).then((res: any) => {
       if (page == 1) {
         this.list_1 = res.data;
@@ -155,7 +155,7 @@ export default class Income extends AbstractBaseVue {
     });
   }
   getList_2(page: number = 1, limit: number = this.limit) {
-    let data = { page, limit };
+    let data = {level:2, page, limit };
     RetailApi.income(data).then((res: any) => {
       if (page == 1) {
         this.list_2 = res.data;
@@ -166,7 +166,7 @@ export default class Income extends AbstractBaseVue {
     });
   }
   getList_3(page: number = 1, limit: number = this.limit) {
-    let data = { page, limit };
+    let data = {level:3, page, limit };
     RetailApi.income(data).then((res: any) => {
       if (page == 1) {
         this.list_3 = res.data;

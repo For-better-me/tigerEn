@@ -62,8 +62,8 @@ export default class Home extends AbstractBaseVue.Mixins(FeatureMinix) {
     })
   }
   mounted(){
-	this.getList(LessonApi.hotLesson)
-	this.getBanner()
+      this.getList(LessonApi.hotLesson)
+      this.getBanner()
   }
 }
 </script>

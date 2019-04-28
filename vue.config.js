@@ -16,6 +16,7 @@ module.exports = {
     }
   },
   devServer:{
+    disableHostCheck: true,
     proxy: {
       '/apis': {
         target: 'https://www.tjitfw.com',

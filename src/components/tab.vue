@@ -3,19 +3,22 @@
     <ul>
         <li :class="index== '1'?'on':''">
             <router-link tag='a' :to="'/'" >
-                <img src="../assets/img/bg_card.png" alt="">
+                <img v-if='index== "1"' src="../assets/img/home-red.png" alt="">
+                <img v-else src="../assets/img/home.png" alt="">
                 <p>首页</p>
             </router-link>
         </li>
         <li :class="index== '2'?'on':''">
             <router-link tag='a' :to="'/lesson'" >
-                <img src="../assets/img/bg_card.png" alt="">
+                <img v-if='index== "2"' src="../assets/img/course-red.png" alt="">
+                <img v-else src="../assets/img/course.png" alt="">
                 <p>课程</p>
             </router-link>
         </li>
         <li :class="index== '3'?'on':''">
             <router-link tag='a' :to="'/person'" >
-                <img src="../assets/img/bg_card.png" alt="">
+                <img v-if='index== "3"' src="../assets/img/mine-red.png" alt="">
+                <img v-else src="../assets/img/mine.png" alt="">
                 <p>我的</p>
             </router-link>
         </li>

@@ -33,10 +33,13 @@ const axiosClient = axios.create({
     timeout: 15000,        // TIP 请求的超时时间
 });
 
-
+var load:any
 // TIP axios-request拦截器：在每个请求头中，都附带【token】，让后端对请求作出权限验证；
 // request interceptor
-axiosClient.interceptors.request.use((config) => {            // TIP 对于【Request】的拦截。
+axiosClient.interceptors.request.use((config) => { 
+    load = util.showLoad() 
+    load.show()
+            // TIP 对于【Request】的拦截。
     // Do something before request is sent
     if (config.url && config.url.indexOf('login') == -1) {
         if (localStorage.token != undefined) {              // TIP 从本地获取Token值。（若本地Token存在的话。）
@@ -86,6 +89,8 @@ let _http = function (opt: RequestOptions):Promise<any> {
 
             }
         }
+       
+     
         opt = Object.assign({}, defaultOpt, opt)
         axiosClient({
             url: opt.url,
@@ -93,6 +98,7 @@ let _http = function (opt: RequestOptions):Promise<any> {
             data: opt.data,
             headers: opt.headers,
         }).then((res:any)=>{
+            load.hide()
             if(res.data.code == 10001){
                 reject({
                     code: 10001,

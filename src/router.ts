@@ -16,7 +16,8 @@ const router =  new Router({
       name: 'home',
       component: Home,
       meta:{
-        title:'趣虎'
+        title:'趣虎',
+        keepAlive:true,
       }
     },
     {
@@ -24,7 +25,8 @@ const router =  new Router({
       name: 'lesson',
       component: () => import('./views/lesson/lesson.vue'),
       meta:{
-        title:'课程'
+        title:'课程',
+        keepAlive:true,
       }
     },
     {
@@ -32,7 +34,8 @@ const router =  new Router({
       name: 'person',
       component: () => import('./views/mine/mine.vue'),
       meta:{
-        title:'个人中心'
+        title:'个人中心',
+        keepAlive:true,
       }
     },
     {
@@ -40,7 +43,8 @@ const router =  new Router({
       name: 'song',
       component: () => import('./views/home/song.vue'),
       meta:{
-        title:'儿歌'
+        title:'儿歌',
+        keepAlive:true,
       }
     },
     {
@@ -72,7 +76,8 @@ const router =  new Router({
       name: 'draw',
       component: () => import('./views/home/draw.vue'),
       meta:{
-        title:'绘本'
+        title:'绘本',
+        keepAlive:true,
       }
     },
     {
@@ -80,7 +85,8 @@ const router =  new Router({
       name: 'cartoon',
       component: () => import('./views/home/gif.vue'),
       meta:{
-        title:'动画'
+        title:'动画',
+        keepAlive:true,
       }
     },
     {
@@ -112,7 +118,7 @@ const router =  new Router({
       name: 'lessonRecord',
       component: () => import('./views/mine/lessonRecord.vue'),
       meta:{
-        title:'浏览记录'
+        title:'浏览记录',
       }
     },
     {
