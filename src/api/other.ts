@@ -8,4 +8,11 @@ export class otherApi {
             data
         })
     }
+    public static jsConfig(data?:{},params?:{}):Promise<any>{
+        return  http({
+            url:'Share/getShareConfig',
+            method:'get',
+            data
+        })
+    }
 }

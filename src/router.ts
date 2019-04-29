@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/home/home.vue'
 import wx from 'wx-sdk-ts'
+import {otherApi} from './api/other'
 import {stringify} from 'qs'
 import qs from 'qs';
 Vue.use(Router)
@@ -133,15 +134,17 @@ const router =  new Router({
   ]
 })
 function reqConfig(shareLink:string) {
-  // axios.get('/h5/jsconfig',{
+  // encodeURIComponent
+  // {
   //   params:{
   //     'url': window.location.href.split('#')[0],
   //   }
-  // }).then((response) => {
-  //   wxstart(response.data,shareLink);
-  // }).catch( ()=> {
-  //   console.log('err');
-  // })
+  // }
+  otherApi.jsConfig().then((response) => {
+    wxstart(response.data,shareLink);
+  }).catch( ()=> {
+    console.log('err');
+  })
 }
 interface wxconfig {
   debug: boolean;
@@ -190,7 +193,7 @@ router.beforeEach((to,from,next)=>{
   document.title = to.meta.title;
   let _url = window.location.origin + to.fullPath
   reqConfig(_url)
-  // console.log(_url,to)
+  console.log(_url,to)
   next()
 })
 

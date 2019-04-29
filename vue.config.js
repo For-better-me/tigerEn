@@ -15,7 +15,9 @@ module.exports = {
       theme: true
     }
   },
+  publicPath:'./',
   devServer:{
+    port:8888,
     disableHostCheck: true,
     proxy: {
       '/apis': {
