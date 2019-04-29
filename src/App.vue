@@ -16,6 +16,9 @@ import AbstractBaseVue, { MyComponent, MyWatch } from "@/util/AbstractBaseVue";
 export default class WordCard extends AbstractBaseVue {
   created() {
     
+    let url = 'https://www.tjitfw.com/quhu/'
+    url = encodeURIComponent(url)
+    // window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx16cb5a501e876d70&redirect_uri='+url+'&response_type=code&scope=snsapi_userinfo&state=8fff58aa7393ef3f3cd61945f49db12d&connect_redirect=1#wechat_redirect/'
   }
 
 }

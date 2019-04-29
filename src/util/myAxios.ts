@@ -3,6 +3,7 @@ import axios, { AxiosPromise, AxiosRequestConfig, AxiosResponse } from 'axios';
 import util from './utils'
 import Toast from 'cube-ui'
 import Vue2 from '../main'
+import router from '@/router';
 // TODO 一些好用的类型声明
 export interface BaseBean<T = any> {
     data: T;
@@ -28,11 +29,11 @@ export type MyAxiosFunc = (option: RequestOptions) => AxiosPromise<BaseBean<any>
 
 // TODO 传入选项，创建axios实例
 const axiosClient = axios.create({
-    baseURL: '/apis/api/',   // TIP API 的 BASE_URL
-    // baseURL: 'https://www.tjitfw.com',   // TIP API 的 BASE_URL
+    // baseURL: '/apis/api/',   // TIP API 的 BASE_URL
+    baseURL: process.env.NODE_ENV == "development"?"/apis/api/":'https://www.tjitfw.com/api/',   // TIP API 的 BASE_URL
     timeout: 15000,        // TIP 请求的超时时间
 });
-
+console.log()
 var load:any
 // TIP axios-request拦截器：在每个请求头中，都附带【token】，让后端对请求作出权限验证；
 // request interceptor
@@ -99,9 +100,10 @@ let _http = function (opt: RequestOptions):Promise<any> {
             headers: opt.headers,
         }).then((res:any)=>{
             load.hide()
-            if(res.data.code == 10001){
+            if(res.data.code == 1001){
+                router.push('./login')
                 reject({
-                    code: 10001,
+                    code: 1001,
                     msg: opt.url + '接口需要token参数，但系统中不存在token'
                 })
             } else if(res.data.code == 0){

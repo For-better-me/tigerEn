@@ -11,7 +11,7 @@ export class otherApi {
     public static jsConfig(data?:{},params?:{}):Promise<any>{
         return  http({
             url:'Share/getShareConfig',
-            method:'get',
+            method:'post',
             data
         })
     }

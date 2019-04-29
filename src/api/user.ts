@@ -15,4 +15,19 @@ export class UserApi {
             data
         })
     }
+    public static getUser:any = (data?:{},params?:{})=>{
+        return  http({
+            url:'/user/getUserInfo',
+            method:'post',
+            data
+        })
+    }
+    public static login:any = (data?:{},params?:{})=>{
+        return  http({
+            url:'user/wechatLoginCallback',
+            method:'get',
+            data,
+            params
+        })
+    }
 }
