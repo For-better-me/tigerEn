@@ -154,7 +154,8 @@ interface wxconfig {
   jsApiList: any;
 }
 function reqConfig(shareLink: string) {
-  otherApi.jsConfig({ url: shareLink }).then((response) => {
+  let url = encodeURIComponent(shareLink)
+  otherApi.jsConfig({ url}).then((response) => {
     wxstart(response.data, shareLink);
   }).catch(() => {
     console.log('err');
@@ -175,7 +176,7 @@ function wxstart(data: wxconfig, shareLink: string) {
     wx.onMenuShareAppMessage({
       title: "测试未来",
       desc: "如果现在不移民，你的未来将会...",
-      link: 'https://www.tjitfw.com/',
+      link: shareLink,
       imgUrl: "https://static.prim.im/8cdaa42c5887ab8c6ff0.jpeg",
       success: function () {
         console.log("分享成功");
@@ -187,7 +188,7 @@ function wxstart(data: wxconfig, shareLink: string) {
     // 分享给朋友圈
     wx.onMenuShareTimeline({
       title: "如果不移民，你的未来会怎样", // 分享标题
-      link: 'https://www.tjitfw.com/', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+      link: shareLink, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
       imgUrl: "https://static.prim.im/8cdaa42c5887ab8c6ff0.jpeg", // 分享图标
       success: function () {
         // 用户点击了分享后执行的回调函数
@@ -199,7 +200,7 @@ function wxstart(data: wxconfig, shareLink: string) {
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title;
   let _url = window.location.origin + to.fullPath
-  _url = encodeURIComponent(_url)
+  
   reqConfig(_url)
   console.log(_url, to)
   if (to.meta.author) {
