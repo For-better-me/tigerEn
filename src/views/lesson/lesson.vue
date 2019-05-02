@@ -2,11 +2,10 @@
   <div class="lesson">
     <scroll-page @pullingUp='loadMore' :scrollData='list'>
       <div slot="content"  class='wrap content'>
-        <item-lesson text='课程' v-for='item in list' :key='item.id' :item = 'item'></item-lesson>
+        <item-lesson text='课程' v-for='item in list' :key='item.id' :item = 'item' @infoEvent = goDetail></item-lesson>
       </div>
       
     </scroll-page>
-    
     <tab index='2'></tab>
   </div>
 </template>
@@ -26,6 +25,9 @@ export default class lesson extends AbstractBaseVue.Mixins(FeatureMinix) {
   
   created(){
 	  this.getList(LessonApi.lessonList)
+  }
+  goDetail(id:number|string){
+    this.$router.push('/introduction/'+id)
   }
 }
 </script>

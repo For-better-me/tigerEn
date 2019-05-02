@@ -2,7 +2,7 @@
   <div class="common_feature">
       <scroll-page @pullingUp='loadMore'   :scrollData='list'>
          <div slot='content'>
-            <item-song v-for='item in list' :key='item.id' :item = 'item'></item-song>
+            <item-song v-for='item in list' :key='item.id' :item = 'item' @infoEvent='toDetail'></item-song>
          </div>
       </scroll-page>
     
@@ -18,12 +18,14 @@ import {PictureApi} from '@/api/feature'
 @MyComponent({
   components:{itemSong}
 })
-export default class Song extends AbstractBaseVue.Mixins(FeatureMinix) {
+export default class Draw extends AbstractBaseVue.Mixins(FeatureMinix) {
 
   created(){
 	  this.getList(PictureApi.list)
   }
-  
+  toDetail(id:number|string){
+    this.$router.push('/drawInfo/'+id)
+  }
   
 }
 </script>

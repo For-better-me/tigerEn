@@ -1,5 +1,7 @@
 @import url('../common/common.less');
-// .introduction{}
+.introduction{
+    background: #fff;
+}
 .poster {
     width: 100%;
 }
@@ -13,7 +15,13 @@
     }
     .con {
         margin-top: 15px;
-        min-height: 180px;
+        height: 180px;
+        overflow: hidden;
+        line-height: 1.5;
+        padding-bottom: 10px;
+        &.open{
+            height: auto;
+        }
     }
     .btn_open {
         width: 100%;

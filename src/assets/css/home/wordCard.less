@@ -1,9 +1,11 @@
 @import url('../common/common.less');
 .word_show{
     .pos_fix_full;
-    background: #cfcfcf;
+    background: #F7C29C;
+    width: 100%;
     h4{
-        padding-top: 70%;
+        margin-top: 25px;
+        margin-bottom: 10px;
     }
     h4,p{
         font-size: 16px;
@@ -11,16 +13,24 @@
         text-align: center;
     }
     img{
-        .pos_center;
+        margin-top: 20px;
+        height: 375px;
         width: 100%;
+        display:block;
+        overflow: hidden;
     }
 }
 .btn_control{
     position: fixed;
-    bottom: 20px;
+    bottom: 60px;
+    display: flex;
+    align-items: center;
+    width: 195px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
     .btn{
         display: inline-block;
-        margin: 0 10px;
     }
     .prev,.next{
         width: 36px;
@@ -29,6 +39,7 @@
     .play{
         width: 60px;
         height: 60px;
+        margin: 0 30px;
     }
 }
 #audio{

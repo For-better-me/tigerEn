@@ -50,16 +50,24 @@ export default class HelloWorld extends Vue {
         background: #fff;
         z-index: 999;
         ul{
-            width: 230px;
+            width: 310px;
             display: -webkit-flex;
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin:0 auto;
-            margin-top: 9px;
             li{
+                padding-top: 9px;
+                width: 33.3%;
+                text-align: center;
+                a{
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                }
                 img{
                     width: 20px;
+                    
                 }
                 p{
                     font-size: 10px;

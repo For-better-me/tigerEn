@@ -46,6 +46,9 @@ export default class Login extends AbstractBaseVue {
     .then((res:any)=>{})
     .catch((err:any)=>{
       self.getUser()
+      let url = localStorage.beforeLoginUrl;
+      self.$router.push(url);
+      localStorage.beforeLoginUrl = ''
       console.log(err,'GetUserInfo')
     })
   }

@@ -21,7 +21,7 @@ export default class LessonRecord extends AbstractBaseVue.Mixins(FeatureMinix)  
     // data
     // method
     init(){
-        const type:any = this.$route.query.type
+        const type:any = this.$route.params.type
         document.title = type == 1?'我的课程':'浏览记录'
         if(type == 1){//我的课程
             this.getList(LessonApi.lessonMy)

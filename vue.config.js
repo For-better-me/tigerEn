@@ -15,9 +15,9 @@ module.exports = {
       theme: true
     }
   },
-  publicPath:'./',
+  publicPath:'/',//history不要设置成'./'https://www.jianshu.com/p/12786a8ec70c
   devServer:{
-    port:8888,
+    port:80,
     disableHostCheck: true,
     proxy: {
       '/apis': {

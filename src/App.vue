@@ -25,5 +25,5 @@ export default class WordCard extends AbstractBaseVue {
 </script>
 
 <style lang="less">
-@import url("./assets/css/common/reset.css");
+  @import url("./assets/css/common/reset.css");
 </style>

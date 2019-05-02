@@ -3,7 +3,7 @@
       <img src="../../assets/img/bg_song.png" alt="" class="poster">
       <div class="intro_con_wrap wrap">
             <h4>课程介绍</h4>
-            <div class="con">
+            <div class="con" :class='isOpen?"open":""'>
                 百度推广凭借强大的用户产品优势，每天数十亿
                 次搜索请求、超过1亿用户浏览百度信息流、800亿次定位服
                 务请求，为客户提供全系列产品广告资源覆盖用户生活十大场景。
@@ -18,7 +18,7 @@
                 百度推广凭借强大的用户产品优势，每天数十亿次搜索请求、超过1亿用户浏览百度信息流、
                 800亿次定位服务请求，为客户提供全系列产品广告资源覆盖用户生活十大场景。
             </div>
-            <div class="btn_open"><p>展开</p></div>
+            <div class="btn_open" @click="isOpen = true" v-if='!isOpen'><p>展开</p></div>
       </div>
       <div class="lesson_wrap">
           <h4 class="wrap">课程表 <span>40首儿歌课，每周更新1首</span></h4>
@@ -52,11 +52,22 @@
 
 <script lang='ts'>
 import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
+import {LessonApi} from '@/api/lesson'
 @MyComponent({
   components: {}
 })
-export default class Home extends AbstractBaseVue {
-  mounted() {}
+export default class LessonBrief extends AbstractBaseVue {
+    lessonBrief:any = null
+    isOpen:boolean = false
+    mounted() {
+        this.init()
+    }
+    init(){
+        let id = this.$route.params.id
+        LessonApi.lessonBrief({id}).then(res=>{
+            this.lessonBrief = res.data
+        })
+    }
 }
 </script>
 <style lang='less' scoped>

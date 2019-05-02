@@ -21,7 +21,8 @@
         <img src="../../assets/img/arrow1.png" alt>
       </div>
       <div class="btn play" @click="startPlayOrPause()">
-        <img src="../../assets/img/btn-play.png" alt>
+        <img src="../../assets/img/btn-play.png" v-if='!audio.playing' alt>
+        <img src="../../assets/img/btn-pause.png" v-else alt>
       </div>
       <div class="btn next" @click="next()">
         <img src="../../assets/img/arrow2.png" alt>

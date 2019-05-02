@@ -6,15 +6,15 @@
     </div>
     <div class="list wrap">
       <ul>
-        <router-link tag='li' to='/lessonRecord?type=1' class="arrow">
+        <router-link tag='li' to='/lessonRecord/1' class="arrow">
           <img src="../../assets/img/icon_lesson.png" alt>
           <p>我的课程</p>
         </router-link>
-        <router-link tag='li' to='/lessonRecord?type=2'  class="arrow">
+        <router-link tag='li' to='/lessonRecord/2'  class="arrow">
           <img src="../../assets/img/icon_lesson.png" alt>
           <p>浏览记录</p>
         </router-link>
-        <router-link tag='li' to='/apply'  class="arrow">
+        <router-link tag='li' to='/apply/1'  class="arrow">
           <img src="../../assets/img/icon_lesson.png" alt>
           <p>绑定个人资料 <span>（有好礼）</span></p>
         </router-link>

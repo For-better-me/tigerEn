@@ -1,5 +1,5 @@
 <template>
-    <div class="common_gif">
+    <div class="common_gif" @click="goDetail(item.id)">
         <img :src="imgPre+item.img" alt="">
         <p>{{item.title}}</p>
         <span>{{text}}</span>
@@ -17,6 +17,10 @@ import tab from "@/components/tab.vue";
 export default class lesson extends AbstractBaseVueMixins {
     @MyProp() private text!: string;
     @MyProp() private item!: any;
+    @MyProp({required:false,type:Function}) infoEvent!: ()=>{};
+    goDetail(id:string|number){
+        this.$emit('infoEvent',id)
+    }
 }
 
 

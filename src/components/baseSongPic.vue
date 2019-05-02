@@ -1,5 +1,5 @@
 <template>
-    <div class="common_song">
+    <div class="common_song"  @click='goDetail(item.id)'>
         <div class="poster">
             <img :src="imgPre+item.img" alt="">
         </div>
@@ -17,8 +17,12 @@
 import AbstractBaseVueMixins,{MyComponent,MyProp} from "@/util/AbstractBaseVue";
 @MyComponent
 export default class LessonRecord extends AbstractBaseVueMixins {
-    @MyProp() private item!: any;
-  
+    @MyProp() item!: any;
+    @MyProp({type:Function}) infoEvent!: ()=>{};
+
+    goDetail(id:string|number){
+        this.$emit('infoEvent',id)
+    }
 }
 </script>
 

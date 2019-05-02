@@ -1,7 +1,6 @@
-<!-- s -->
 <template>
     <div class="lesson_info">
-        
+        lesson_info
     </div>
 </template>
 
@@ -10,10 +9,10 @@ import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
 @MyComponent({
     components: {}
 })
-export default class Home extends AbstractBaseVue {
+export default class LessonInfo extends AbstractBaseVue {
     mounted() {}
 }
 </script>
 <style lang='less' scoped>
-    @import url("../../assets/css/.less");
+    // @import url("../../assets/css/.less");
 </style>
