@@ -47,7 +47,7 @@ function wxstart(data: wxconfig, shareLink: string) {
     wx.onMenuShareAppMessage({
       title: "测试未来",
       desc: "如果现在不移民，你的未来将会...",
-      link: shareLink,
+      link: `${shareLink}?id=3`,
       imgUrl: "https://static.prim.im/8cdaa42c5887ab8c6ff0.jpeg",
       success: function () {
         console.log("分享成功");
@@ -70,6 +70,7 @@ function wxstart(data: wxconfig, shareLink: string) {
 }
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title;
+  localStorage.beforeLoginUrl = to.fullPath;
   // let _url = location.href.split('#')[0]
   let _url = window.location.origin + to.fullPath
   var u = navigator.userAgent;
@@ -80,7 +81,6 @@ router.beforeEach((to, from, next) => {
   console.log(_url, to)
   if (to.meta.author) {
     if (!store.state.user.id && to.path != '/login') {
-      localStorage.beforeLoginUrl = to.fullPath;
       next('/login')
       return false
     }

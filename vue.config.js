@@ -15,7 +15,7 @@ module.exports = {
       theme: true
     }
   },
-  publicPath:'/',//history不要设置成'./'https://www.jianshu.com/p/12786a8ec70c
+  publicPath:'/',//history不要设置成'./'https://www.jianshu.com/p/12786a8ec70c,不然js会有两个文件获取不到，报错unexpected '<'
   devServer:{
     port:80,
     disableHostCheck: true,

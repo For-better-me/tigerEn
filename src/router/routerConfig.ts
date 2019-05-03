@@ -11,6 +11,11 @@ export default [
           }
         },
         {
+          path: '*',
+          name: '404',
+          component: () => import('../views/lesson/lesson.vue'),
+        },
+        {
           path: '/',
           name: 'home',
           component: Home,

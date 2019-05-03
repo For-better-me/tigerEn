@@ -16,4 +16,32 @@ export class otherApi {
             data
         })
     }
+
+    
+}
+export class AreaApi {
+    public static getProvinceList(data?:{},params?:{}):Promise<any>{
+        return  http({
+            loading:false,
+            url:'Area/getProvinceList',
+            method:'post',
+            data
+        })
+    }
+    public static getCityList(data?:{},params?:{}):Promise<any>{
+        return  http({
+            loading:false,
+            url:'Area/getCityList',
+            method:'post',
+            data
+        })
+    }
+    public static getAreaList(data?:{},params?:{}):Promise<any>{
+        return  http({
+            loading:false,
+            url:'Area/getAreaList',
+            method:'post',
+            data
+        })
+    }
 }

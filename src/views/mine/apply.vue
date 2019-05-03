@@ -31,6 +31,7 @@
 <script lang='ts'>
 import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
 import {UserApi} from '@/api/user'
+import {AreaApi} from '@/api/other'
 @MyComponent({
   components: {}
 })
@@ -46,14 +47,33 @@ export default class Apply extends AbstractBaseVue {
     code: "",
     address: ""
   };
+  provice:any[] = []
+  city:any[] = []
+  area:any[] = []
   created(){
     this.mode = this.$route.params.mode;//1是个人资料，2是申请开通分销
     document.title = this.mode == '1'? '个人资料':'申请'
   }
   mounted() {
-   
+    this.getProvince()
   }
- 
+  getProvince(){
+    AreaApi.getProvinceList().then(res=>{
+      this.provice = res.data
+      this.getCity(this.provice[0].id)
+    })
+  }
+  getCity(id:number){
+    AreaApi.getCityList({id}).then(res=>{
+      this.city = res.data
+      this.getArea(this.city[0].id)
+    })
+  }
+  getArea(id:number){
+    AreaApi.getAreaList({id}).then(res=>{
+      this.area = res.data
+    })
+  }
   //  表单提交
   submitForm() {
     // this.$util.showToast(this, "xxxx").show();

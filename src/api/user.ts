@@ -22,11 +22,10 @@ export class UserApi {
             data
         })
     }
-    public static login(data?:{},params?:{}):Promise<any>{
+    public static login(params?:{},data?:{}):Promise<any>{
         return  http({
             url:'user/wechatLoginCallback',
             method:'get',
-            data,
             params
         })
     }

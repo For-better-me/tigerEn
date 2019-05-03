@@ -133,7 +133,7 @@ function urlParams(url?:string){
     url = url ? url:window.location.href.split("#")[0];
     let queryStringUrl = url.slice(url.indexOf("?") + 1);
     var urlParamsObj = qs.parse(queryStringUrl, { ignoreQueryPrefix: true });
-    return urlParams
+    return urlParamsObj
 }
 export default {
     formatNumber,
