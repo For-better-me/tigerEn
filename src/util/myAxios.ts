@@ -36,8 +36,7 @@ const axiosClient = axios.create({
 var load:any
 // TIP axios-request拦截器：在每个请求头中，都附带【token】，让后端对请求作出权限验证；
 // request interceptor
-axiosClient.interceptors.request.use((config) => { 
-  console.log(config)
+axiosClient.interceptors.request.use((config) => {
             // TIP 对于【Request】的拦截。
     // Do something before request is sent
     if (config.url && config.url.indexOf('login') == -1) {
@@ -103,7 +102,7 @@ let _http = function (opt: RequestOptions):Promise<any> {
         }).then((res:any)=>{
             // load.hide()
             if(res.data.code == 1001){
-                // router.push('/login')
+                router.push('/login')
                 reject({
                     code: 1001,
                     msg: opt.url + '接口需要token参数，但系统中不存在token'
@@ -112,7 +111,8 @@ let _http = function (opt: RequestOptions):Promise<any> {
                 resolve(res.data)
                 console.log('请求成功',opt.url,res.data);
             }  else if(res.data.code == -1){
-                util.showToast(res.data.msg,'error')
+                util.showToast(res.data.msg,'error').show()
+                reject(res.data)
             } else{
                 reject(res.data)
             }

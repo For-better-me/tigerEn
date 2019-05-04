@@ -28,7 +28,7 @@
         <div class="recommend">
           <h4>精彩推荐</h4>
           <ul>
-            <li v-for='item in list' :key='item.id'>
+            <li v-for='item in list' :key='item.id' @click="hotInfo(item)">
               <img :src="imgPre+item.img" alt>
               <p>{{item.title}}</p>
             </li>
@@ -64,6 +64,17 @@ export default class Home extends AbstractBaseVue.Mixins(FeatureMinix) {
   mounted(){
       this.getList(LessonApi.hotLesson)
       this.getBanner()
+  }
+  hotInfo(item:any){
+    if(item.tid == 2){
+      this.$router.push('/songInfo/'+item.id)
+    } else if(item.tid == 207){
+      this.$router.push('/drawInfo/'+item.id)
+    } else if(item.tid == 208){
+      window.location.href = item.url
+    } else if(item.tid == 209){
+      this.$router.push('/card')
+    }
   }
 }
 </script>

@@ -25,13 +25,12 @@
             <cube-slide-item>
               <cube-scroll :options="scrollOptions">
                 <ul class="list-wrapper income_list">
-                  <li>
-                    <img src="../../assets/img/pic_card.png" alt>
+                  <li v-for='(item,i) in list_1' :key='i'>
                     <div class="income_info">
-                      <h5>一根小竹子</h5>
-                      <span>2018年3月5日</span>
+                      <h5>{{item.curriculum_title}}</h5>
+                      <span>{{item.time}}</span>
                     </div>
-                    <p>消费：¥168.00</p>
+                    <p>消费：¥{{item.type == 1?"+":"-"}}{{item.price}}</p>
                   </li>
                 </ul>
               </cube-scroll>
@@ -40,13 +39,12 @@
             <cube-slide-item>
               <cube-scroll :options="scrollOptions">
                 <ul class="list-wrapper income_list">
-                  <li>
-                    <img src="../../assets/img/pic_card.png" alt>
+                  <li v-for='(item,i) in list_2' :key='i'>
                     <div class="income_info">
-                      <h5>一根小竹子</h5>
-                      <span>2018年3月5日</span>
+                      <h5>{{item.curriculum_title}}</h5>
+                      <span>{{item.time}}</span>
                     </div>
-                    <p>消费：¥168.00</p>
+                    <p>消费：¥{{item.type == 1?"+":"-"}}{{item.price}}</p>
                   </li>
                 </ul>
               </cube-scroll>
@@ -54,13 +52,12 @@
             <cube-slide-item>
               <cube-scroll :options="scrollOptions">
                 <ul class="list-wrapper income_list">
-                  <li>
-                    <img src="../../assets/img/bg_song.png" alt>
+                  <li v-for='(item,i) in list_3' :key='i'>
                     <div class="income_info">
-                      <h5>一根小竹子</h5>
-                      <span>2018年3月5日</span>
+                      <h5>{{item.curriculum_title}}</h5>
+                      <span>{{item.time}}</span>
                     </div>
-                    <p>消费：¥168.00</p>
+                    <p>消费：¥{{item.type == 1?"+":"-"}}{{item.price}}</p>
                   </li>
                 </ul>
               </cube-scroll>

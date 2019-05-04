@@ -69,6 +69,10 @@ function wxstart(data: wxconfig, shareLink: string) {
   });
 }
 router.beforeEach((to, from, next) => {
+  // 保存分享用户的id
+  if(to.query.id){
+    sessionStorage.id = to.query.id
+  }
   document.title = to.meta.title;
   localStorage.beforeLoginUrl = to.fullPath;
   // let _url = location.href.split('#')[0]

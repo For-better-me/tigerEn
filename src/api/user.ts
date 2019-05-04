@@ -8,6 +8,13 @@ export class UserApi {
             data
         })
     }
+    public static fillInfo(data?:{},params?:{}):Promise<any>{
+        return  http({
+            url:'Binduser/bindMeans',
+            method:'post',
+            data
+        })
+    }
     public static sms(data?:{},params?:{}):Promise<any>{
         return  http({
             url:'Sms/sendSms',
@@ -29,4 +36,5 @@ export class UserApi {
             params
         })
     }
+
 }

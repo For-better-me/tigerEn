@@ -39,7 +39,8 @@ export default [
           component: () => import('../views/mine/mine.vue'),
           meta: {
             title: '个人中心',
-            keepAlive: true,
+            keepAlive: false,
+            author:true
           }
         },
         {

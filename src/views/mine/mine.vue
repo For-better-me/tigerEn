@@ -37,7 +37,7 @@
 </template>
 
 <script lang="ts">
-import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
+import AbstractBaseVue, { MyComponent,MyAction,MyGetter} from "@/util/AbstractBaseVue";
 import tab from "@/components/tab.vue";
 @MyComponent({
   components: {
@@ -46,6 +46,12 @@ import tab from "@/components/tab.vue";
 })
 export default class Person extends AbstractBaseVue {
   layerShow:boolean = false;
+  @MyGetter('userInfo') public userInfo!: any
+  @MyAction('GetUserInfo') public getUserInfo!: any
+  created(){
+    this.getUserInfo()
+    console.log(this.userInfo)
+  }
 }
 </script>
 <style <style lang="less" scoped>

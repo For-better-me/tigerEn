@@ -135,6 +135,30 @@ function urlParams(url?:string){
     var urlParamsObj = qs.parse(queryStringUrl, { ignoreQueryPrefix: true });
     return urlParamsObj
 }
+
+function isFilled(obj:any):Promise<any>{
+    return new Promise((resolve,reject)=>{
+        if(isFilled){
+            let arr = Object.keys(obj);
+            let flag = 0;
+            for(let i = 0;i<arr.length;i++){
+              if(obj[arr[i]] == ''){
+                reject();
+                flag = 0;
+                break; 
+              } else{
+                flag = 1
+              }
+            }
+            if(flag){
+                resolve()
+            } else{
+                reject();
+            }
+        }
+    })
+    
+}
 export default {
     formatNumber,
     formatTime,
@@ -147,6 +171,7 @@ export default {
     showLoad,
     showToast,
     findIndex,
-    urlParams
+    urlParams,
+    isFilled
 }
 

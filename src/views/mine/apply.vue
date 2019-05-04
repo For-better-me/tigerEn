@@ -16,8 +16,9 @@
       </li>
     </ul>
     <ul>
-      <li class="chooseAddr" @click="isShowMap = true">
-        <input type="text" v-model="formData.address" placeholder="请选择地址" readonly>
+      <li class="chooseAddr" @click="chooseSite()">
+        <input type="text" v-if='!province_name' placeholder="请选择地址" readonly>
+        <p v-else> {{province_name}} - {{city_name}} - {{area_name}}</p>
       </li>
       <li>
         <textarea rows="6" v-model="formData.address" placeholder="请输入详细地址"></textarea>
@@ -40,16 +41,24 @@ export default class Apply extends AbstractBaseVue {
   center: any = { lng: 0, lat: 0 }; //经纬度
   disable:boolean = false
   captcha:string = '验证码'
-  mode:string = '1'
+  mode:string = '1'//1--个人资料 2--申请分销
   formData: any = {
     name: "",
     phone: "",
     code: "",
+    province_id: "",
+    city_id	: "",
+    area_id: "",
     address: ""
   };
+  province_name:string =  ""
+  city_name	:string =  ""
+  area_name:string =  ""
   provice:any[] = []
   city:any[] = []
   area:any[] = []
+  indexArr:number[] = [0,0,0]
+  updatePropsPicker:any = null
   created(){
     this.mode = this.$route.params.mode;//1是个人资料，2是申请开通分销
     document.title = this.mode == '1'? '个人资料':'申请'
@@ -57,10 +66,50 @@ export default class Apply extends AbstractBaseVue {
   mounted() {
     this.getProvince()
   }
+  chooseSite(){
+     if(this.provice.length == 0 || this.city.length == 0 || this.area.length == 0){
+       return;
+     }
+     if (!this.updatePropsPicker) {
+        this.updatePropsPicker = this.$createPicker({
+          title: '请选择',
+          data: [this.provice,this.city,this.area],
+          selectedIndex: this.indexArr,
+          onSelect: this.selectHandle,
+          onCancel: this.cancelHandle,
+          onChange:this.change,
+          alias:{
+             text:'title',
+             value:'id'
+          }
+        })
+      }
+      this.updatePropsPicker.show()
+  }
+  change(col:number,index:number){
+    let indexArr = this.indexArr
+    if(col == 0){
+      this.getCity(this.provice[index].id)
+      indexArr = [index,0,0]
+    } else if(col == 1){
+      indexArr = [this.indexArr[0],index,0]
+      this.getArea(this.city[index].id)
+    } else{
+      indexArr[col] = index
+    }
+    this.indexArr = indexArr
+   
+  }
+  selectHandle(selectedVal:number[], selectedIndex:number[], selectedText:string[]){
+    [this.formData.province_id,this.formData.city_id,this.formData.area_id] = selectedVal;
+    [this.province_name,this.city_name,this.area_name] = selectedText
+    
+  }
+  cancelHandle(){}
   getProvince(){
     AreaApi.getProvinceList().then(res=>{
       this.provice = res.data
-      this.getCity(this.provice[0].id)
+      this.getCity(res.data[0].id)
     })
   }
   getCity(id:number){
@@ -72,12 +121,51 @@ export default class Apply extends AbstractBaseVue {
   getArea(id:number){
     AreaApi.getAreaList({id}).then(res=>{
       this.area = res.data
+      this.updatePropsPicker.$updateProps({
+        data: [this.provice,this.city,this.area],
+        selectedIndex:this.indexArr
+      })
     })
   }
   //  表单提交
   submitForm() {
-    // this.$util.showToast(this, "xxxx").show();
+      alert(sessionStorage.id)
+      let self = this;
+      let mode = this.mode
+      this.$util.isFilled(this.formData).then(()=>{
+         let data = self.formData
+         const toast = self.$createToast({
+           txt: '提交中，请稍等',
+           mask: true,
+           time:0
+         })
+         toast.show()
+        if(mode == '2'){
+          if(sessionStorage.id){
+             data = Object.assign({},self.formData,{parent_user_id:sessionStorage.id})
+          }
+          UserApi.apply(data).then(res=>{
+              toast.hide()
+          }).catch(err=>{
+              toast.hide()
+          })
+        } else{
+          UserApi.fillInfo(data).then(res=>{
+              toast.hide()
+          }).catch(err=>{
+              toast.hide()
+         
+          })
+        }
+      }).catch(()=>{
+          this.$createToast({
+            type: 'warn',
+            txt: '请完善资料后再提交',
+            time: 1000
+          }).show()
+      })
   }
+
   sendCode(){
       let tel = this.formData.phone;
       let self = this;
