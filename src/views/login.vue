@@ -12,7 +12,8 @@ import {UserApi} from '@/api/user'
 })
 export default class Login extends AbstractBaseVue {
   created(){
-    let code:string = this.$util.urlParams(window.location.href)
+    let code:string = this.$util.urlParams(window.location.href).code
+    alert(code)
     if(!code){
       if(!localStorage.token){
         this.getCode()
@@ -44,23 +45,27 @@ export default class Login extends AbstractBaseVue {
   getUser(){
     let self = this
     this.$store.dispatch('GetUserInfo')
-    .then((res:any)=>{})
+    .then((res:any)=>{
+      console.log('user',res)
+      let url = localStorage.beforeLoginUrl;
+      localStorage.beforeLoginUrl = ''
+      self.$router.push(url);
+    })
     .catch((err:any)=>{
       self.getUser()
-      let url = localStorage.beforeLoginUrl;
-      self.$router.push(url);
-      localStorage.beforeLoginUrl = ''
       console.log(err,'GetUserInfo')
     })
   }
   login(code:string){
     let self = this
     UserApi.login({code}).then((res:any)=>{
-      localStorage.token = res.token
+      localStorage.token = res.data.token
+      alert(res.data.token)
       localStorage.time = new Date().getTime()
       this.getUser()
     }).catch((err:any)=>{
-      self.getCode()
+      // self.getCode()
+      console.log(err)
     })
   }
 }

@@ -32,6 +32,7 @@ const axiosClient = axios.create({
     // baseURL: '/apis/api/',   // TIP API 的 BASE_URL
     baseURL: process.env.NODE_ENV == "development"?"/apis/api/":'https://www.tjitfw.com/api/',   // TIP API 的 BASE_URL
     timeout: 15000,        // TIP 请求的超时时间
+    
 });
 var load:any
 // TIP axios-request拦截器：在每个请求头中，都附带【token】，让后端对请求作出权限验证；
@@ -41,7 +42,7 @@ axiosClient.interceptors.request.use((config) => {
     // Do something before request is sent
     if (config.url && config.url.indexOf('login') == -1) {
         if (localStorage.token != undefined) {              // TIP 从本地获取Token值。（若本地Token存在的话。）
-            config.headers.token = localStorage.token; // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
+            config.headers['token'] = localStorage.token; // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
         } else {
             // to login
         }
@@ -84,15 +85,15 @@ let _http = function (opt: RequestOptions):Promise<any> {
             data: {}, // 入参
             params:{},
             headers: {
-
+                token:''
             }
         }
      
-        // opt = Object.assign({}, defaultOpt, opt)
+        opt = Object.assign({}, defaultOpt, opt)
         // load = util.showLoad()
-        if(opt.loading){
-            load.show()
-        }
+        // if(opt.loading){
+        //     load.show()
+        // }
         axiosClient({
             url: opt.url,
             method: opt.method,

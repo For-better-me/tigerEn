@@ -12,7 +12,9 @@ interface userParams {
 }
 Vue.use(Vuex)
 
-let user: userParams = {}
+let user: userParams = {
+  
+}
 export default new Vuex.Store({
   state: {
     user: user
@@ -32,6 +34,7 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         UserApi.getUser().then((response: any) => {
           commit('SET_USERINFO', response.data);
+          sessionStorage.userInfo = JSON.stringify(response.data)
           resolve(response);
         }).catch((error: any) => {
           reject(error);

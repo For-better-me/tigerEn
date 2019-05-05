@@ -71,10 +71,13 @@ function wxstart(data: wxconfig, shareLink: string) {
 router.beforeEach((to, from, next) => {
   // 保存分享用户的id
   if(to.query.id){
+    alert(to.query.id)
     sessionStorage.id = to.query.id
   }
   document.title = to.meta.title;
-  localStorage.beforeLoginUrl = to.fullPath;
+  if(to.path.indexOf('login') == -1){
+    localStorage.beforeLoginUrl = to.fullPath;
+  }
   // let _url = location.href.split('#')[0]
   let _url = window.location.origin + to.fullPath
   var u = navigator.userAgent;
@@ -84,7 +87,8 @@ router.beforeEach((to, from, next) => {
   }
   console.log(_url, to)
   if (to.meta.author) {
-    if (!store.state.user.id && to.path != '/login') {
+    let user = sessionStorage.userInfo ? JSON.parse(sessionStorage.userInfo):{};
+    if (!user.id && to.path != '/login') {
       next('/login')
       return false
     }
