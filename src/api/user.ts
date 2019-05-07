@@ -24,6 +24,7 @@ export class UserApi {
     }
     public static getUser(data?:{},params?:{}):Promise<any>{
         return  http({
+            loading:false,
             url:'/user/getUserInfo',
             method:'post',
             data

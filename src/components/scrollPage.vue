@@ -52,8 +52,8 @@ export default class scrollPage extends AbstractBaseVueMixins {
         pullUpLoad: this.pullUpLoad?{
             threshold: 60,
             txt: {
-                more: "Load more",
-                noMore: "No more data"
+                more: "上拉加载更多",
+                noMore: "— 这是我的底线了 —"
             }
         }:false
     };

@@ -13,7 +13,6 @@ import {UserApi} from '@/api/user'
 export default class Login extends AbstractBaseVue {
   created(){
     let code:string = this.$util.urlParams(window.location.href).code
-    alert(code)
     if(!code){
       if(!localStorage.token){
         this.getCode()
@@ -22,7 +21,7 @@ export default class Login extends AbstractBaseVue {
         let time:number = localStorage.time;
         let now:number = new Date().getTime()
         let secondHDay :number = 24*60*60*1000
-        const Expire_Date  = 1//token有效期
+        const Expire_Date  = 7//token有效期
         if((now - time)/secondHDay < Expire_Date){
           this.getUser()
         } else{
@@ -49,7 +48,7 @@ export default class Login extends AbstractBaseVue {
       console.log('user',res)
       let url = localStorage.beforeLoginUrl;
       localStorage.beforeLoginUrl = ''
-      self.$router.push(url);
+      self.$router.replace(url);
     })
     .catch((err:any)=>{
       self.getUser()
@@ -60,7 +59,6 @@ export default class Login extends AbstractBaseVue {
     let self = this
     UserApi.login({code}).then((res:any)=>{
       localStorage.token = res.data.token
-      alert(res.data.token)
       localStorage.time = new Date().getTime()
       this.getUser()
     }).catch((err:any)=>{

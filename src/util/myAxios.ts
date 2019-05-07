@@ -47,6 +47,10 @@ axiosClient.interceptors.request.use((config) => {
             // to login
         }
     }
+    if(config.headers['loading']){
+        load = util.showLoad()
+        load.show()
+    }
 
     return config;
 }, (error) => {   // TIP 若出错了，打印日志，Promise返回失败。
@@ -90,18 +94,15 @@ let _http = function (opt: RequestOptions):Promise<any> {
         }
      
         opt = Object.assign({}, defaultOpt, opt)
-        // load = util.showLoad()
-        // if(opt.loading){
-        //     load.show()
-        // }
+        
         axiosClient({
             url: opt.url,
             method: opt.method,
             data: opt.data,
             params: opt.params,
-            headers: opt.headers,
+            headers: Object.assign(opt.headers,{loading:opt.loading}),
         }).then((res:any)=>{
-            // load.hide()
+            if(opt.loading) load.hide();
             if(res.data.code == 1001){
                 router.push('/login')
                 reject({

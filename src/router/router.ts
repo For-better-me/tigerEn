@@ -24,6 +24,9 @@ interface wxconfig {
   signature: string;
   jsApiList: any;
 }
+var u:any = navigator.userAgent;
+var isiOS:boolean = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+var urlParam :string  = ''
 function reqConfig(shareLink: string) {
   // let url = encodeURIComponent(shareLink)
   otherApi.jsConfig({ url:shareLink }).then((response) => {
@@ -44,10 +47,11 @@ function wxstart(data: wxconfig, shareLink: string) {
   });
   wx.ready(() => {
     // 分享到朋友
+    
     wx.onMenuShareAppMessage({
-      title: "测试未来",
+      title: "趣虎",
       desc: "如果现在不移民，你的未来将会...",
-      link: `${shareLink}?id=3`,
+      link: isiOS?window.location.href+urlParam:shareLink+urlParam,
       imgUrl: "https://static.prim.im/8cdaa42c5887ab8c6ff0.jpeg",
       success: function () {
         console.log("分享成功");
@@ -58,8 +62,8 @@ function wxstart(data: wxconfig, shareLink: string) {
     });
     // 分享给朋友圈
     wx.onMenuShareTimeline({
-      title: "如果不移民，你的未来会怎样", // 分享标题
-      link: shareLink, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+      title: "趣虎", // 分享标题
+      link: isiOS?window.location.href+urlParam:shareLink+urlParam, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
       imgUrl: "https://static.prim.im/8cdaa42c5887ab8c6ff0.jpeg", // 分享图标
       success: function () {
         // 用户点击了分享后执行的回调函数
@@ -68,26 +72,32 @@ function wxstart(data: wxconfig, shareLink: string) {
     });
   });
 }
+
 router.beforeEach((to, from, next) => {
+  // 设置浏览器标题
+  document.title = to.meta.title;
+  //设置分享时的用户id 
+  if(store.getters.userInfo.is_distribution == 1){
+   
+    urlParam = '?id='+store.getters.userInfo.id
+  }
   // 保存分享用户的id
   if(to.query.id){
-    alert(to.query.id)
     sessionStorage.id = to.query.id
   }
-  document.title = to.meta.title;
+  //保存登录返回的页面路径
   if(to.path.indexOf('login') == -1){
     localStorage.beforeLoginUrl = to.fullPath;
   }
   // let _url = location.href.split('#')[0]
   let _url = window.location.origin + to.fullPath
-  var u = navigator.userAgent;
-  var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+
   if(!isiOS){
     reqConfig(_url)
   }
   console.log(_url, to)
   if (to.meta.author) {
-    let user = sessionStorage.userInfo ? JSON.parse(sessionStorage.userInfo):{};
+    let user = store.getters.userInfo;
     if (!user.id && to.path != '/login') {
       next('/login')
       return false
@@ -99,23 +109,14 @@ router.beforeEach((to, from, next) => {
 
 })
 
-// router.afterEach((to, from) => {
-//   let _url = window.location.origin + to.fullPath
-//   // 非ios设备，切换路由时候进行重新签名
 
-//   // 微信分享配置
-//   wx.ready(function () {
-//     // wx.onMenuShareTimeline({
-//     //  ...
-//     // })
-//     // wx.onMenuShareAppMessage({
-//     //   ...
-//     // })
-//   })
-// })
 
 
 // ios 设备进入页面则进行js-sdk签名
+if(isiOS){
+  let url = window.location.href.split('#')[0]
+  reqConfig(url)
+}
 
 
 
