@@ -24,7 +24,7 @@
             <!-- 关注 -->
             <cube-slide-item>
               <cube-scroll :options="scrollOptions">
-                <ul class="list-wrapper income_list">
+                <ul class="list-wrapper income_list" v-if = 'list_1.length>0'>
                   <li v-for='(item,i) in list_1' :key='i'>
                     <div class="income_info">
                       <h5>{{item.curriculum_title}}</h5>
@@ -33,12 +33,13 @@
                     <p>消费：¥{{item.type == 1?"+":"-"}}{{item.price}}</p>
                   </li>
                 </ul>
+                 <no-data v-else tip-text='暂无记录'></no-data>
               </cube-scroll>
             </cube-slide-item>
             <!-- 推荐 -->
             <cube-slide-item>
-              <cube-scroll :options="scrollOptions">
-                <ul class="list-wrapper income_list">
+              <cube-scroll :options="scrollOptions"  v-if = 'list_2.length>0'>
+                <ul class="list-wrapper income_list" >
                   <li v-for='(item,i) in list_2' :key='i'>
                     <div class="income_info">
                       <h5>{{item.curriculum_title}}</h5>
@@ -48,6 +49,7 @@
                   </li>
                 </ul>
               </cube-scroll>
+              <no-data v-else tip-text='暂无记录'></no-data>
             </cube-slide-item>
             <cube-slide-item>
               <cube-scroll :options="scrollOptions">

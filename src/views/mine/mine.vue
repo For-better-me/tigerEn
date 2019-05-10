@@ -1,8 +1,8 @@
 <template>
   <div class="mine">
     <div class="user">
-      <img src="../../assets/img/bg_song.png" alt>
-      <p>Frank</p>
+      <img :src="userInfo.avatar" alt>
+      <p>{{userInfo.nickname}}</p>
     </div>
     <div class="list wrap">
       <ul>
@@ -11,15 +11,15 @@
           <p>我的课程</p>
         </router-link>
         <router-link tag='li' to='/lessonRecord/2'  class="arrow">
-          <img src="../../assets/img/icon_lesson.png" alt>
+          <img src="../../assets/img/icon_record.png" alt>
           <p>浏览记录</p>
         </router-link>
         <router-link tag='li' to='/apply/1'  class="arrow">
-          <img src="../../assets/img/icon_lesson.png" alt>
+          <img src="../../assets/img/icon_info.png" alt>
           <p v-if='!userInfo.is_bind|| !userInfo.name'>绑定个人资料 <span>（有好礼）</span></p>
         </router-link>
         <li class="arrow" @click='goRetail'>
-          <img src="../../assets/img/icon_lesson.png" alt>
+          <img src="../../assets/img/icon_fx.png" alt>
           <p>分销中心</p>
         </li>
       </ul>

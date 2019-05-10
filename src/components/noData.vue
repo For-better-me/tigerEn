@@ -1,6 +1,6 @@
 <template>
   <div class="no_data">
-    <img src="../assets/img/bg_draw.png" alt="">
+    <img src="../assets/img/no_data.png" alt="">
     <p>{{tipText}}</p>
   </div>
 </template>
@@ -19,9 +19,17 @@ export default class NoData extends Vue {
 <style scoped lang="less">
     @import url('../assets/css/common/common.less');
     .no_data{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
         img{
-            width: 100px;
-            margin: 0 auto;
+            width: 120px;
+            display: block;
+            margin: 40% auto;
+            margin-bottom: 30px;
         }
         p{
             font-size:16px;

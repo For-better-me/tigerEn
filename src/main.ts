@@ -10,7 +10,9 @@ import {createAPI} from 'cube-ui'
 import 'amfe-flexible'
 // 注册全局组件
 import scrollPage from "@/components/scrollPage.vue";
+import NoData from "@/components/noData.vue"
 Vue.component('scrollPage',scrollPage)
+Vue.component('NoData',NoData)
 Vue.config.productionTip = false
 Vue.prototype.$util = util
 Vue.prototype.$http = _http

@@ -38,7 +38,7 @@ function reqConfig(shareLink: string) {
 
 function wxstart(data: wxconfig, shareLink: string) {
   wx.config({
-    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
     appId: data.appId, // 必填，公众号的唯一标识
     timestamp: data.timestamp, // 必填，生成签名的时间戳
     nonceStr: data.nonceStr, // 必填，生成签名的随机串
@@ -54,9 +54,11 @@ function wxstart(data: wxconfig, shareLink: string) {
       link: isiOS?window.location.href+urlParam:shareLink+urlParam,
       imgUrl: "https://static.prim.im/8cdaa42c5887ab8c6ff0.jpeg",
       success: function () {
+        alert(urlParam)
         console.log("分享成功");
       },
       cancel: function () {
+        alert(urlParam)
         console.log("取消分享");
       }
     });
@@ -66,9 +68,10 @@ function wxstart(data: wxconfig, shareLink: string) {
       link: isiOS?window.location.href+urlParam:shareLink+urlParam, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
       imgUrl: "https://static.prim.im/8cdaa42c5887ab8c6ff0.jpeg", // 分享图标
       success: function () {
+        alert(urlParam)
         // 用户点击了分享后执行的回调函数
       },
-      cancel: function () { }
+      cancel: function () { alert(urlParam)}
     });
   });
 }
@@ -83,6 +86,7 @@ router.beforeEach((to, from, next) => {
   }
   // 保存分享用户的id
   if(to.query.id){
+    alert(to.query.id)
     sessionStorage.id = to.query.id
   }
   //保存登录返回的页面路径
