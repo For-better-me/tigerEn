@@ -37,6 +37,7 @@ export default class Slider extends AbstractBaseVueMixins {
         this.touchInfo.startX = e.touches[0].pageX
         // 点击时进度条长度
         this.touchInfo.left =( this.$refs.progress as HTMLElement).clientWidth
+        console.log(e.touches[0].pageX,e)
       }
       // 开始移动
       progressTouchMove(e:any) {
@@ -57,15 +58,15 @@ export default class Slider extends AbstractBaseVueMixins {
         this._triggerPercent()
       }
       // 进度条点击事件
+        // 设置进度条及按钮偏移
       progressClick(e:any) {
         console.log('clikc')
-        // 设置进度条及按钮偏移
         this._setOffset(e.offsetX)
         // 通知父组件播放进度变化
         this._triggerPercent()
       }
       _triggerPercent() {
-        const barWidth =(this.$refs.progressBtn as HTMLElement).clientWidth - this.btnWidth
+        const barWidth =(this.$refs.progressBar as HTMLElement).clientWidth - this.btnWidth
         const percent = Math.min(1, (this.$refs.progress as HTMLElement).clientWidth / barWidth)
         this.$emit('percentChange', percent)
       }

@@ -119,6 +119,7 @@ let _http = function (opt: RequestOptions):Promise<any> {
                 reject(res.data)
             }
         }).catch(err=>{
+            if(opt.loading) load.hide();
             reject(err)
             console.log(err)
         })

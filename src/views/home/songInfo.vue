@@ -8,19 +8,20 @@
           <img src="../../assets/img/icon-play.png" style="background: #fff;" v-if='!audio.playing'>
           <img src="../../assets/img/btn-pause.png" style="background: #FC5E64;" v-else>
         </div>
-        <p>{{currentTime}}</p>
+        <p>{{format(currentTime)}}</p>
         <div class="slider_wrap">
           <slider :percent="percent" @percentChange='percentChange'></slider>
         </div>
-        <p>{{duration}}</p>
+        <p>{{format(duration)}}</p>
         <audio
           ref="audio"
           @play="onPlay"
           @error="onError"
           @waiting="onWaiting"
+          @timeupdate="updateTime"
           @pause="onPause"
           @ended="onEnd"
-          src="http://m10.music.126.net/20190502172457/243fc446f6f2320c448d0989b7b9075c/ymusic/76b4/dcbb/0a65/9198b18815ee8ce42ae368ae29276f78.mp3"></audio>
+          src="http://m10.music.126.net/20190514145408/0d93bcbcf3b9f3e76408f2dc3efeffaa/ymusic/76b4/dcbb/0a65/9198b18815ee8ce42ae368ae29276f78.mp3"></audio>
       </div>
       <div class="info">
         <h4>{{infoContent.title}}</h4>
@@ -39,9 +40,9 @@ import Slider from "@/components/slider.vue";
 @MyComponent({
   components: { Slider }
 })
-export default class SongInfo extends Vue {
-  percent: number = 0;
-  duration:number = 120;
+export default class SongInfo extends Vue {   
+  duration:number = 269;
+  currentTime:number = 0;
   infoContent: any = true; //详情页面得内容
   audio: any = {
     playing: false,
@@ -55,9 +56,8 @@ export default class SongInfo extends Vue {
     this.init();
   }
 //   computed
-  get currentTime(): number {
-    let time = this.percent*this.duration/100
-    return time
+  get percent():number{
+    return this.currentTime/this.duration
   }
   // methods
   init() {
@@ -84,6 +84,10 @@ export default class SongInfo extends Vue {
   onWaiting(res: any) {
     console.log(res);
   }
+  updateTime(e:any){
+     this.currentTime = e.target.currentTime
+   
+  }
   // 当音频开始播放
   onPlay(res: any) {
     this.audio.playing = true;
@@ -93,10 +97,28 @@ export default class SongInfo extends Vue {
     this.audio.playing = false;
     console.log(res);
   }
-  onEnd(res: any) {}
+  onEnd(res: any) {
+    (this.$refs.audio as HTMLAudioElement).currentTime = 0
+  }
   percentChange(percent:number){
-      this.percent = percent/100
-      console.log(percent)
+    console.log(percent,'percent')
+      const currentTime = this.duration * percent;
+      (this.$refs.audio as HTMLAudioElement).currentTime = currentTime
+       
+  }
+  format(interval:number) {
+    interval = interval | 0
+    const minute = interval / 60 | 0
+    const second = this._pad(interval % 60)
+    return `${minute}:${second}`
+  }
+  _pad(num:string|number, n = 2) {
+    let len = num.toString().length
+    while (len < n) {
+      num = '0' + num
+      len++
+    }
+    return num
   }
 }
 </script>
