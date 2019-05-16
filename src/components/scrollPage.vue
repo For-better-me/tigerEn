@@ -21,26 +21,34 @@ export default class scrollPage extends AbstractBaseVueMixins {
     @MyProp({default:false,required:false}) pullDownRefresh !: boolean;
     @MyProp({default:true,required:false}) pullUpLoad !: boolean;
     @MyProp({required:false}) scrollData !: any[];
-    @MyProp({
-        type:Function,
-        required:false,
-        default:()=>{
-        }
-    }) pullingDown !: Function;
-    @MyProp({
-        type:Function,
-        required:false
-    }) pullingUp !: ()=>{};
+    // @MyProp({
+    //     type:Function,
+    //     required:false,
+    //     default:()=>{
+    //     }
+    // }) pullingDown !: Function;
+    // @MyProp({
+    //     type:Function,
+    //     required:false
+    // }) pullingUp !: ()=>{};
 
-    loadMore(){
-        this.$emit('pullingUp',this.$refs.scroll)
-        console.log('loadMore')
-    }
+    // loadMore(){
+    //     this.$emit('pullingUp',this.$refs.scroll)
+    //     console.log('loadMore')
+    // }
+    @MyEmit('pullingDown') 
     refresh(){
-        this.$emit('pullingDown',this.$refs.scroll)
+        // this.$emit('pullingDown',this.$refs.scroll)
+        return this.$refs.scroll
         console.log('refresh')
     }
-    // @MyEmit('PullingUp') 
+     @MyEmit('PullingUp') 
+    loadMore(){
+        // this.$emit('pullingDown',this.$refs.scroll)
+        return this.$refs.scroll
+        console.log('loadMore')
+    }
+    
     // PullingUp2()
     
     options:any = {
