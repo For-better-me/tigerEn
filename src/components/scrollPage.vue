@@ -1,17 +1,17 @@
 <!--  -->
 <template>
-  <div class="scroll_page">
-    <cube-scroll
-      ref="scroll"
-      :options="options"
-      :data="scrollData"
-      @pulling-down="refresh"
-      @pulling-up="loadMore"
-      class="scroll_div"
-    >   
-        <slot name="content"></slot>
-    </cube-scroll>
-  </div>
+    <div class="scroll_page">
+        <cube-scroll
+        ref="scroll"
+        :options="options"
+        :data="scrollData"
+        @pulling-down="refresh"
+        @pulling-up="loadMore"
+        class="scroll_div"
+        >   
+            <slot name="content"></slot>
+        </cube-scroll>
+    </div>
 </template>
 
 <script  lang="ts">
