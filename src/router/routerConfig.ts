@@ -61,6 +61,14 @@ export default [
           }
         },
         {
+          path: '/detail/:id',
+          name: 'detail',
+          component: () => import('../views/lesson/lessonInfo.vue'),
+          meta: {
+            title: '课程详情'
+          }
+        },
+        {
           path: '/income',
           name: 'income',
           component: () => import('../views/mine/income.vue'),
