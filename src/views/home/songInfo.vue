@@ -40,7 +40,7 @@ import Slider from "@/components/slider.vue";
 @MyComponent({
   components: { Slider }
 })
-export default class SongInfo extends Vue {   
+export default class SongInfo extends AbstractBaseVue {   
   duration:number = 269;
   currentTime:number = 0;
   infoContent: any = true; //详情页面得内容
