@@ -30,7 +30,6 @@ const vue = new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
-console.log(vue,3333333333333333)
 
 export default vue
 

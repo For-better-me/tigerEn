@@ -12,20 +12,6 @@
               <p>finger</p>
             </div>
           </li>
-          <li>
-            <img src alt>
-            <div class="text">
-              <h4>手指</h4>
-              <p>finger</p>
-            </div>
-          </li>
-          <li>
-            <img src alt>
-            <div class="text">
-              <h4>手指</h4>
-              <p>finger</p>
-            </div>
-          </li>
         </ul>
       </div>
     </div>
@@ -40,18 +26,13 @@
           <div class="target_info">
               <p>固儿歌特别适合孩子的英语启蒙，初孩子的英语启蒙，初期我们建议每周学习一首。</p>
           </div>
-          <!-- <player
-          src='http://m10.music.126.net/20190517172355/ab42ea337c5b8d9a8bf9aa378327d977/ymusic/76b4/dcbb/0a65/9198b18815ee8ce42ae368ae29276f78.mp3'
-         
-          ></player> -->
-        
-          <!-- <player
-          src='http://m10.music.126.net/20190517173756/5654fbbe79efb0b3560fadfcae41445d/ymusic/b467/b763/d123/404dd1f70f4c155f676854d2692e4d3e.mp3'
-         
-          ></player> -->
       </div>
         <player
-          src='http://m10.music.126.net/20190517173845/27227e5adfe84d4c0a5377ef0f14aa59/ymusic/59c5/8f95/298d/11d842f39fb503bb9b29c37ad4080a14.mp3'
+          src='http://m10.music.126.net/20190517224256/a3a788c9150fc336f26967e31fd21694/ymusic/76b4/dcbb/0a65/9198b18815ee8ce42ae368ae29276f78.mp3'
+         
+          ></player>
+          <player
+          src='http://m10.music.126.net/20190517223841/bd8ed816c4f88b6d8a9d2140071394a3/ymusic/683a/f9d9/d013/e64a3aa2581c0f08de0f9a6fbe0b81f9.mp3'
          
           ></player>
       <div class="common_con">
@@ -73,6 +54,7 @@
 <script lang='ts'>
 import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
 import Player from '@/components/player.vue'
+import { LessonApi } from "@/api/lesson";
 @MyComponent({
   components: {Player}
 })

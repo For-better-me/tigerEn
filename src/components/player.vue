@@ -18,7 +18,7 @@
             @timeupdate="updateTime"
             @pause="onPause"
             @ended="onEnd"
-            :scr='src'></audio>
+            :src='srcAudio'></audio>
             </div>
     </div>
 </template>
@@ -32,7 +32,7 @@ import Slider from "@/components/slider.vue";
 })
 export default class Player extends AbstractBaseVue {   
     duration:number = 269;
-    // src:string = '';
+    srcAudio:string = '';
     currentTime:number = 0;
     audio: any = {
         playing: false,
@@ -42,7 +42,10 @@ export default class Player extends AbstractBaseVue {
     @MyProp({required:true}) src!:string ;
     // @MyProp({required:true}) duration!:number
     //生命周期 - 创建完成（可以访问当前this实例）
-    created() {}
+    created() {
+      this.srcAudio = this.src
+      console.log(this.srcAudio)
+    }
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
     
@@ -85,6 +88,7 @@ export default class Player extends AbstractBaseVue {
     console.log(res);
   }
   onEnd(res: any) {
+    this.audio.playing = false;
     (this.$refs.audio as HTMLAudioElement).currentTime = 0
   }
   percentChange(percent:number){

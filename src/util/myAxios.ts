@@ -51,7 +51,7 @@ axiosClient.interceptors.request.use((config) => {
         load = util.showLoad()
         load.show()
     }
-
+    console.log(config)
     return config;
 }, (error) => {   // TIP 若出错了，打印日志，Promise返回失败。
     console.log(error); // for debug

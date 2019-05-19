@@ -21,7 +21,7 @@
           @timeupdate="updateTime"
           @pause="onPause"
           @ended="onEnd"
-          src="http://m10.music.126.net/20190514195745/3d7e1a57f82d1fd38225d0c699d9c959/ymusic/276d/1fe7/c384/bcdabbe9afbfb34fe5324d3a423206be.mp3"></audio>
+          src="http://m10.music.126.net/20190517221531/eadf311a43d2d85ce8d170babaa336ff/ymusic/76b4/dcbb/0a65/9198b18815ee8ce42ae368ae29276f78.mp3"></audio>
       </div>
       <div class="info">
         <h4>{{infoContent.title}}</h4>

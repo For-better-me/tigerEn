@@ -43,4 +43,12 @@ export class LessonApi {
             data
         })
     }
+    //试听课程
+    public static lessonTry(data?:{},params?:{}):Promise<any>{
+        return  http({
+            url:'Audition/getList',
+            method:'post',
+            data
+        })
+    }
 }
