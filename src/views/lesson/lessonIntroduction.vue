@@ -23,27 +23,39 @@
         </div>
         <div class="try_btn">试听</div>
       </div>
-      <div class="part_week wrap">
-        <ul>
-          <li>周一：儿歌词汇学习 & 逐句学唱</li>
-          <li>周二：儿歌词汇复习 & 场景应用</li>
-          <li>周三：社群纠音</li>
-          <li>周四：儿歌拓展 & 尤克里里弹唱</li>
-        </ul>
-      </div>
-      <div v-for="week in lessonBrief.week_info" :key='week.id'>
-        <div class="try_part wrap">
-          <img src="../../assets/img/bg_song.png" alt>
-          <div class="try_word">
-            <h4>{{week.title}}</h4>
-            <p>{{week}}</p>
-          </div>
-        </div>
-        <!-- <div class="part_week wrap">
+      <div>
+        <div class="part_week wrap">
           <ul>
-            <li v-for='day in week.days_list' :key='day.id'>{{day.title}}</li>
+            <li>
+              <h2>试听</h2>
+              <div class="try_part wrap" v-for="day in tryList" :key="day.id" @click="lessonRouter(day.id,2)">
+                <img :src="imgPre+day.img" alt>
+                <div class="try_word">
+                  <h4>{{day.title}}</h4>
+                  <P>{{day.desc}}</P>
+                </div>
+              </div>
+            </li>
           </ul>
-        </div> -->
+        </div>
+      </div>
+      <div v-for="week in lessonBrief.week_list" :key="week.id">
+        <div class="part_week wrap">
+          <ul>
+            <li>
+              <h2>{{week.title}}</h2>
+              <div>
+                <div class="try_part wrap" v-for="day in week.days_list" :key="day.id" @click="lessonRouter(day.id,1)">
+                  <img :src="imgPre+day.img" alt>
+                  <div class="try_word">
+                    <h4>{{day.title}}</h4>
+                    <P>{{day.desc}}</P>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="pay_wrap" v-if="lessonBrief.is_payment == 0">
@@ -83,6 +95,13 @@ export default class LessonBrief extends AbstractBaseVue {
     LessonApi.lessonTry({ curriculum_id }).then(res => {
       this.tryList = res.data;
     });
+  }
+  lessonRouter(id:number,type:number){
+      if(type == 1 && this.lessonBrief.is_payment == 0){
+          this.$util.showToast('请购买后再来看','warn').show()
+          return false;
+      }
+      this.$router.push(`/detail/${id}/${type}`)
   }
 }
 </script>

@@ -31,7 +31,7 @@ import Slider from "@/components/slider.vue";
   components: { Slider }
 })
 export default class Player extends AbstractBaseVue {   
-    duration:number = 269;
+    duration:number = 62;
     srcAudio:string = '';
     currentTime:number = 0;
     audio: any = {
@@ -75,7 +75,6 @@ export default class Player extends AbstractBaseVue {
   }
   updateTime(e:any){
      this.currentTime = e.target.currentTime
-     console.log(e.target.currentTime)
    
   }
   // 当音频开始播放
@@ -114,5 +113,29 @@ export default class Player extends AbstractBaseVue {
 }
 </script>
 <style lang='less' scoped>
-@import url("../assets/css/home/info.less"); //@import url(); 引入公共css类
+  .audio{
+      height:30px;
+      margin: 15px 0;
+      display: flex;
+      align-items: center;
+      .btn-play{
+          width: 31px;
+          height: 31px;
+          border-radius: 50%;
+          overflow: hidden;
+          margin-right: 10px;
+          img{
+              width: 100%;
+          }
+      }
+      p{
+          font-size: 16px;
+          padding-right:5px;
+          color: #666;
+      }
+      .slider_wrap{
+          width: 215px;
+          margin: 0 10px;
+      }
+  }
 </style>
