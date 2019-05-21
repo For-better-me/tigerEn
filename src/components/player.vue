@@ -31,7 +31,7 @@ import Slider from "@/components/slider.vue";
   components: { Slider }
 })
 export default class Player extends AbstractBaseVue {   
-    duration:number = 62;
+    duration:number = 0;
     srcAudio:string = '';
     currentTime:number = 0;
     audio: any = {
@@ -40,11 +40,11 @@ export default class Player extends AbstractBaseVue {
     };
     // prop
     @MyProp({required:true}) src!:string ;
-    // @MyProp({required:true}) duration!:number
+    @MyProp({required:true}) time!:number
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
       this.srcAudio = this.src
-      console.log(this.srcAudio)
+      this.duration = this.$util.formatDuration(this.time)
     }
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
@@ -60,6 +60,7 @@ export default class Player extends AbstractBaseVue {
     return this.audio.playing ? this.pause() : this.play();
   }
   play() {
+    this.$emit('stopAll');
     (this.$refs.audio as HTMLAudioElement).play();
   }
   pause() {
@@ -89,9 +90,10 @@ export default class Player extends AbstractBaseVue {
   onEnd(res: any) {
     this.audio.playing = false;
     (this.$refs.audio as HTMLAudioElement).currentTime = 0
+    this.currentTime = 0
+    console.log(this.percent)
   }
   percentChange(percent:number){
-    console.log(percent,'percent')
       const currentTime = this.duration * percent;
       (this.$refs.audio as HTMLAudioElement).currentTime = currentTime
        

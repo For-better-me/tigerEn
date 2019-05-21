@@ -63,4 +63,12 @@ export class LessonApi {
             data
         })
     }
+    public static lessonPay(data?: {}, params?: {}): Promise<any> {
+        return http({
+            url: 'Payment/purchase',
+            method: 'post',
+            data
+        })
+    }
+
 }

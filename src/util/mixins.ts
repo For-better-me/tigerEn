@@ -38,18 +38,7 @@ import {
         
         })
     }
-    // getHotLesson(){
-    //     this.getList(LessonApi.hotLesson)
-    // }
-    // getsong(){
-    //     this.getList(SongApi.list)
-    // }
-    // getcartoon(){
-    //     this.getList(CartoonApi.list)
-    // }
-    // getPic(){
-    //     this.getList(PictureApi.list)
-    // }
+   
    
     
 }

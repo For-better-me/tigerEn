@@ -159,6 +159,11 @@ function isFilled(obj:any):Promise<any>{
     })
     
 }
+function formatDuration(time:string):number{
+    let arr:any[] = time.split(':')
+    let duration:number = parseInt(arr[0])*60+parseInt(arr[1])
+    return duration
+}
 export default {
     formatNumber,
     formatTime,
@@ -172,6 +177,7 @@ export default {
     showToast,
     findIndex,
     urlParams,
-    isFilled
+    isFilled,
+    formatDuration
 }
 

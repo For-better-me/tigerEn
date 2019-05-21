@@ -2,7 +2,7 @@
   <div class="song_info" v-if="infoContent">
     <div class="wrap">
       <!-- <img src="imgPre+infoContent.img" alt=""> -->
-      <img src="https://up.enterdesk.com/edpic/e5/d5/e0/e5d5e04f5f054f69fa6d182fa891f147.jpg" alt>
+      <img :src="imgPre+infoContent.img" alt>
       <div class="audio">
         <div class="btn-play" @click="startPlayOrPause()">
           <img src="../../assets/img/icon-play.png" style="background: #fff;" v-if='!audio.playing'>
@@ -21,7 +21,7 @@
           @timeupdate="updateTime"
           @pause="onPause"
           @ended="onEnd"
-          src="http://m10.music.126.net/20190517221531/eadf311a43d2d85ce8d170babaa336ff/ymusic/76b4/dcbb/0a65/9198b18815ee8ce42ae368ae29276f78.mp3"></audio>
+          :src="imgPre+infoContent.music"></audio>
       </div>
       <div class="info">
         <h4>{{infoContent.title}}</h4>
@@ -41,7 +41,7 @@ import Slider from "@/components/slider.vue";
   components: { Slider }
 })
 export default class SongInfo extends AbstractBaseVue {   
-  duration:number = 269;
+  duration:number = 0;
   currentTime:number = 0;
   infoContent: any = true; //详情页面得内容
   audio: any = {
@@ -65,6 +65,7 @@ export default class SongInfo extends AbstractBaseVue {
     let data = { id };
     SongApi.detail(data).then(res => {
       this.infoContent = res.data;
+      this.duration = this.$util.formatDuration(res.data.duration_time)
     });
   }
   startPlayOrPause() {

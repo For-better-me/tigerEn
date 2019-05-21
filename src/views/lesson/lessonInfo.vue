@@ -8,7 +8,7 @@
           <div class="common_con words">
             <ul>
               <li v-for="(word,i) in item.text" :key="i">
-                <img :src="imgPre+word.img" alt>
+                <img :src="imgPre+word.word_img" alt>
                 <div class="text">
                   <h4>{{word.word_title}}</h4>
                   <p>{{word.word_eng_title}}</p>
@@ -17,17 +17,36 @@
             </ul>
           </div>
         </div>
-        <div class="common_item item_text" v-if="item.type == 2 || true">
+        <div class="common_item item_text" v-if="item.type == 2">
           <p>{{item.desc}}</p>
           <p>本地占位--固儿歌特别适合孩子的英语启蒙，初期我们建议每周学习一首。本周的“One Little Finger”旋律很简单，适合在不同场景里运用，比如穿衣服、洗澡、挠痒痒等~</p>
         </div>
         <div class="common_item" v-if="item.type == 3">
           <img :src="imgPre+item.img" alt>
         </div>
-        <div class="common_item" v-if="item.type == 4 || true">
-          <player
-            src="http://service.ivydad.com/audio/new/560132223064d34d2438f27393e9f3e1_low.mp3"
-          ></player>
+        <div class="common_item" v-if="item.type == 4">
+          <div class="misic" v-for='(music,j) in item.text' :key='j'>
+            <player
+              :src="imgPre+music.music_file"
+              :time='music.music_time'
+              @stopAll = 'stopAll'
+              ref='player'
+            ></player>
+          </div>
+        </div>
+        <div class="common_item" v-if="item.type == 5">
+          <div class="video" v-for='(video,k) in item.text' :key='k'>
+            <video
+            :src="imgPre+video.video_file"
+            :poster="imgPre+video.video_img"
+            preload="meta"
+            controls="controls"
+            loop="loop"
+            x5-video-player-type="h5"
+            x5-video-player-fullscreen="true"
+          >您的设备不支持HTML5播放器</video>
+          </div>
+          
         </div>
       </div>
     </div>
@@ -79,6 +98,7 @@ export default class LessonInfo extends AbstractBaseVue {
   detail: any = null;
   mounted() {
     this.init();
+    console.log(this)
   }
   init() {
     let type: number = parseInt(this.$route.params.type);
@@ -93,6 +113,18 @@ export default class LessonInfo extends AbstractBaseVue {
     LessonApi.lessonInfo(type, params).then(res => {
       this.detail = res.data;
     });
+  }
+  stopAll(){
+    let arrPlayer = this.$refs.player;
+    (arrPlayer as any[]).forEach((player)=>{
+       (player.$refs.audio as HTMLAudioElement).pause()
+    })
+    console.log(this,typeof(arrPlayer))
+    // for(let i = 0;i<arrPlayer.length;i++){
+
+    // }
+      
+    
   }
 }
 </script>

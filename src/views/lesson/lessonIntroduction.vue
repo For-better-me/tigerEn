@@ -28,7 +28,12 @@
           <ul>
             <li>
               <h2>试听</h2>
-              <div class="try_part wrap" v-for="day in tryList" :key="day.id" @click="lessonRouter(day.id,2)">
+              <div
+                class="try_part wrap"
+                v-for="day in tryList"
+                :key="day.id"
+                @click="lessonRouter(day.id,2)"
+              >
                 <img :src="imgPre+day.img" alt>
                 <div class="try_word">
                   <h4>{{day.title}}</h4>
@@ -45,7 +50,12 @@
             <li>
               <h2>{{week.title}}</h2>
               <div>
-                <div class="try_part wrap" v-for="day in week.days_list" :key="day.id" @click="lessonRouter(day.id,1)">
+                <div
+                  class="try_part wrap"
+                  v-for="day in week.days_list"
+                  :key="day.id"
+                  @click="lessonRouter(day.id,1)"
+                >
                   <img :src="imgPre+day.img" alt>
                   <div class="try_word">
                     <h4>{{day.title}}</h4>
@@ -65,7 +75,7 @@
         </h6>
         <p>实付：￥{{lessonBrief.price}}</p>
       </div>
-      <div class="btn-pay">购买</div>
+      <div class="btn-pay" @click="lessonBuy">购买</div>
     </div>
   </div>
 </template>
@@ -73,6 +83,7 @@
 <script lang='ts'>
 import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
 import { LessonApi } from "@/api/lesson";
+import wx, { chooseWXPay } from "wx-sdk-ts";
 @MyComponent({
   components: {}
 })
@@ -96,12 +107,34 @@ export default class LessonBrief extends AbstractBaseVue {
       this.tryList = res.data;
     });
   }
-  lessonRouter(id:number,type:number){
-      if(type == 1 && this.lessonBrief.is_payment == 0){
-          this.$util.showToast('请购买后再来看','warn').show()
-          return false;
+  lessonRouter(id: number, type: number) {
+    if (type == 1 && this.lessonBrief.is_payment == 0) {
+      this.$util.showToast("请购买后再来看", "warn").show();
+      return false;
+    }
+    this.$router.push(`/detail/${id}/${type}`);
+  }
+  lessonBuy() {
+    let data = { curriculum_id: this.lessonBrief.id };
+    LessonApi.lessonPay(data).then(res => {
+      this.wxPay(res.data)
+    });
+  }
+  wxPay(data: any) {
+    let self = this;
+    wx.chooseWXPay({
+      timestamp: data.timeStamp,
+      nonceStr: data.nonceStr,
+      package: data.package,
+      signType: data.signType,
+      paySign: data.paySign,
+      success:function(){
+        self.$util.showToast('支付成功','success')
+      },
+      fail:function(){
+        self.$util.showToast('支付失败','error')
       }
-      this.$router.push(`/detail/${id}/${type}`)
+    })
   }
 }
 </script>
