@@ -96,13 +96,13 @@ export default class LessonBrief extends AbstractBaseVue {
     this.lessonTry();
   }
   init() {
-    let id = this.$route.params.id;
+    let id = this.$route.params.lessonId;
     LessonApi.lessonBrief({ id }).then(res => {
       this.lessonBrief = res.data;
     });
   }
   lessonTry() {
-    let curriculum_id = this.$route.params.id;
+    let curriculum_id = this.$route.params.lessonId;
     LessonApi.lessonTry({ curriculum_id }).then(res => {
       this.tryList = res.data;
     });
@@ -120,7 +120,7 @@ export default class LessonBrief extends AbstractBaseVue {
       this.wxPay(res.data)
     });
   }
-  wxPay(data: any) {
+  wxPay(data: any) {//配置支付路径params传参也可以（https://www.tjitfw.com/introduction/），query参数，路径可配置成https://www.tjitfw.com/introduction?lessonId/
     let self = this;
     wx.chooseWXPay({
       timestamp: data.timeStamp,
@@ -129,9 +129,9 @@ export default class LessonBrief extends AbstractBaseVue {
       signType: data.signType,
       paySign: data.paySign,
       success:function(){
-        self.$util.showToast('支付成功','success')
+        self.$util.showToast('支付成功','correct')
       },
-      fail:function(){
+      fail:function(err){
         self.$util.showToast('支付失败','error')
       }
     })

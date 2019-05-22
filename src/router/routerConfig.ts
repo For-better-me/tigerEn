@@ -53,7 +53,7 @@ export default [
           }
         },
         {
-          path: '/introduction/:id',
+          path: '/introduction/:lessonId',
           name: 'introduction',
           component: () => import('../views/lesson/lessonIntroduction.vue'),
           meta: {

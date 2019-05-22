@@ -27,6 +27,7 @@ export default class lesson extends AbstractBaseVue.Mixins(FeatureMinix) {
 	  this.getList(LessonApi.lessonList)
   }
   goDetail(id:number|string){
+    // this.$router.push('/introduction?lessonId='+id)
     this.$router.push('/introduction/'+id)
   }
 }

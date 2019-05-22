@@ -7,7 +7,7 @@
         <div class="common_item" v-if="item.type == 1">
           <div class="common_con words">
             <ul>
-              <li v-for="(word,i) in item.text" :key="i">
+              <li :class="wordActive == i?'active':''" v-for="(word,i) in item.text" :key="i" @click="playWords(imgPre+word.word_music_url,i)">
                 <img :src="imgPre+word.word_img" alt>
                 <div class="text">
                   <h4>{{word.word_title}}</h4>
@@ -39,17 +39,26 @@
             <video
             :src="imgPre+video.video_file"
             :poster="imgPre+video.video_img"
+            width="100%"
             preload="meta"
             controls="controls"
-            loop="loop"
             x5-video-player-type="h5"
             x5-video-player-fullscreen="true"
+            @play = 'videoPlay'
           >您的设备不支持HTML5播放器</video>
+          </div>
+          
+        </div>
+        <div class="common_item" v-if="item.type == 6 || true">
+          <div class="video" v-for='(game,q) in item.game' :key='q'>
+            <p>{{game.title}}</p>
+            <a :href="game.game_url"><img :src="img+game.img" alt=""></a>
           </div>
           
         </div>
       </div>
     </div>
+    <audio src="" ref='wordAudio' @pause="onWordPause"></audio>
 
     <!-- <div class="common_box module_con">
       <div class="common_tit">关键句型</div>
@@ -96,6 +105,7 @@ import { LessonApi } from "@/api/lesson";
 })
 export default class LessonInfo extends AbstractBaseVue {
   detail: any = null;
+  wordActive:number = -1;
   mounted() {
     this.init();
     console.log(this)
@@ -119,12 +129,18 @@ export default class LessonInfo extends AbstractBaseVue {
     (arrPlayer as any[]).forEach((player)=>{
        (player.$refs.audio as HTMLAudioElement).pause()
     })
-    console.log(this,typeof(arrPlayer))
-    // for(let i = 0;i<arrPlayer.length;i++){
-
-    // }
-      
     
+  }
+  videoPlay(){
+    this.stopAll()
+  }
+  playWords(src:string,i:number){
+    this.wordActive = i;
+    (this.$refs.wordAudio as HTMLAudioElement).src = src;
+    (this.$refs.wordAudio as HTMLAudioElement).play()
+  }
+  onWordPause(){
+    this.wordActive = -1;
   }
 }
 </script>
