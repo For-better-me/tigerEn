@@ -121,13 +121,15 @@ export default class Player extends AbstractBaseVue {
       display: flex;
       align-items: center;
       .btn-play{
-          width: 31px;
-          height: 31px;
+          width: 26px;
+          height: 26px;
           border-radius: 50%;
           overflow: hidden;
           margin-right: 10px;
+          flex-shrink: 0;
           img{
               width: 100%;
+              border-radius: 50%;
           }
       }
       p{
@@ -140,4 +142,5 @@ export default class Player extends AbstractBaseVue {
           margin: 0 10px;
       }
   }
+  
 </style>

@@ -4,30 +4,21 @@
     <div class="intro_con_wrap wrap">
       <h4>课程介绍</h4>
       <div class="con" :class="isOpen?'open':''" v-html="lessonBrief.text"></div>
-      <div class="btn_open" @click="isOpen = true" v-if="!isOpen">
+      <!-- <div class="btn_open">
         <p>展开</p>
-      </div>
+      </div>-->
     </div>
     <div class="lesson_wrap">
       <h4 class="wrap">
         课程表
-        <span>40首儿歌课，每周更新1首</span>
+        <!-- <span>40首儿歌课，每周更新1首</span> -->
       </h4>
       <div class="lesson_name">{{lessonBrief.title}}</div>
-
-      <div class="try_part wrap">
-        <img src="../../assets/img/bg_song.png" alt>
-        <div class="try_word">
-          <h4>Rain, Rain, Go Away儿歌课程</h4>
-          <p>学习跟天气相关的单词、句式及表达学习跟天气相关…</p>
-        </div>
-        <div class="try_btn">试听</div>
-      </div>
-      <div>
+      <div v-if="lessonBrief.is_payment == 0">
         <div class="part_week wrap">
-          <ul>
+          <ul style="padding-bottom:20px">
             <li>
-              <h2>试听</h2>
+              <!-- <h2>试听</h2> -->
               <div
                 class="try_part wrap"
                 v-for="day in tryList"
@@ -39,22 +30,23 @@
                   <h4>{{day.title}}</h4>
                   <P>{{day.desc}}</P>
                 </div>
+                <div class="try_btn">试听</div>
               </div>
             </li>
           </ul>
         </div>
       </div>
-      <div v-for="week in lessonBrief.week_list" :key="week.id">
+      <!-- <div v-if="lessonBrief.is_payment == 1">
         <div class="part_week wrap">
           <ul>
             <li>
-              <h2>{{week.title}}</h2>
-              <div>
+              <h2 @click="toggleTry()">此处是试听课程的子段</h2>
+              <div ref="try_lesson" class="days_lesson">
                 <div
                   class="try_part wrap"
-                  v-for="day in week.days_list"
+                  v-for="day in tryList"
                   :key="day.id"
-                  @click="lessonRouter(day.id,1)"
+                  @click="lessonRouter(day.id,2)"
                 >
                   <img :src="imgPre+day.img" alt>
                   <div class="try_word">
@@ -65,6 +57,31 @@
               </div>
             </li>
           </ul>
+        </div>
+      </div> -->
+      <div v-if="lessonBrief.is_payment == 1">
+        <div v-for="(week,q) in lessonBrief.week_list" :key="week.id">
+          <div class="part_week wrap">
+            <ul>
+              <li>
+                <h2 @click="toggle(q)" ref='arrow_lesson'>{{week.title}}  <b></b></h2>
+                <div ref="days_lesson" class="days_lesson">
+                  <div
+                    class="try_part wrap"
+                    v-for="day in week.days_list"
+                    :key="day.id"
+                    @click="lessonRouter(day.id,1)"
+                  >
+                    <img :src="imgPre+day.img" alt>
+                    <div class="try_word">
+                      <h4>{{day.title}}</h4>
+                      <P>{{day.desc}}</P>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -108,19 +125,25 @@ export default class LessonBrief extends AbstractBaseVue {
     });
   }
   lessonRouter(id: number, type: number) {
-    if (type == 1 && this.lessonBrief.is_payment == 0) {
-      this.$util.showToast("请购买后再来看", "warn").show();
-      return false;
-    }
+    // if (type == 1 && this.lessonBrief.is_payment == 0) {
+    //   this.$util.showToast("请购买后再来看", "warn").show();
+    //   return false;
+    // }
     this.$router.push(`/detail/${id}/${type}`);
   }
   lessonBuy() {
-    let data = { curriculum_id: this.lessonBrief.id };
+    let data: object = { curriculum_id: this.lessonBrief.id };
+    if (sessionStorage.id) {
+      data = Object.assign({}, data, {
+        distribution_user_id: sessionStorage.id
+      });
+    }
     LessonApi.lessonPay(data).then(res => {
-      this.wxPay(res.data)
+      this.wxPay(res.data);
     });
   }
-  wxPay(data: any) {//配置支付路径params传参也可以（https://www.tjitfw.com/introduction/），query参数，路径可配置成https://www.tjitfw.com/introduction?lessonId/
+  wxPay(data: any) {
+    //配置支付路径params传参也可以（https://www.tjitfw.com/introduction/），query参数，路径可配置成https://www.tjitfw.com/introduction?lessonId/
     let self = this;
     wx.chooseWXPay({
       timestamp: data.timeStamp,
@@ -128,13 +151,35 @@ export default class LessonBrief extends AbstractBaseVue {
       package: data.package,
       signType: data.signType,
       paySign: data.paySign,
-      success:function(){
-        self.$util.showToast('支付成功','correct')
+      success: function() {
+        self.$util.showToast("支付成功", "correct");
       },
-      fail:function(err){
-        self.$util.showToast('支付失败','error')
+      fail: function(err) {
+        self.$util.showToast("支付失败", "error");
       }
-    })
+    });
+  }
+  toggle(index: number) {
+    let daysLesson = this.$refs.days_lesson as HTMLElement[]
+    let arrowLesson = this.$refs.arrow_lesson as HTMLElement[]
+    if (
+      daysLesson[index].style.display == "block"
+    ) {
+      daysLesson[index].style.display = "none";
+      this.$util.removeClass(arrowLesson[index],'on')
+    } else {
+      daysLesson[index].style.display = "block";
+      this.$util.addClass(arrowLesson[index],'on')
+    }
+  }
+  toggleTry() {
+    if (
+      (this.$refs.try_lesson as HTMLElement).style.display == "block"
+    ) {
+      (this.$refs.try_lesson as HTMLElement).style.display = "none";
+    } else {
+      (this.$refs.try_lesson as HTMLElement).style.display = "block";
+    }
   }
 }
 </script>

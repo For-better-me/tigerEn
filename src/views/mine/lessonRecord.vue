@@ -1,8 +1,8 @@
 <template>
   <div class="common_feature">
-      <scroll-page @pullingUp="loadMore" :scrollData="list"  v-if='list.length>0 && false'>
+      <scroll-page @pullingUp="loadMore" :scrollData="list"  v-if='list.length>0'>
         <div slot="content" class="wrap content">
-          <lesson v-for="item in list" :key="item.id" :item="item"></lesson>
+          <lesson v-for="item in list" :key="item.id" :item="item"  @infoEvent = goDetail></lesson>
         </div>
       </scroll-page>
       <no-data v-else :tip-text='noDataTip'></no-data>
@@ -35,6 +35,10 @@ export default class LessonRecord extends AbstractBaseVue.Mixins(FeatureMinix) {
   }
   created() {
     this.init();
+  }
+  goDetail(id:number|string){
+    // this.$router.push('/introduction?lessonId='+id)
+    this.$router.push('/introduction/'+id)
   }
 }
 </script>

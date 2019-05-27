@@ -54,11 +54,11 @@ function wxstart(data: wxconfig, shareLink: string) {
       link: isiOS?window.location.href+urlParam:shareLink+urlParam,
       imgUrl: "https://static.prim.im/8cdaa42c5887ab8c6ff0.jpeg",
       success: function () {
-        alert(urlParam)
+        // alert(urlParam)
         console.log("分享成功");
       },
       cancel: function () {
-        alert(urlParam)
+        // alert(urlParam)
         console.log("取消分享");
       }
     });
@@ -68,10 +68,10 @@ function wxstart(data: wxconfig, shareLink: string) {
       link: isiOS?window.location.href+urlParam:shareLink+urlParam, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
       imgUrl: "https://static.prim.im/8cdaa42c5887ab8c6ff0.jpeg", // 分享图标
       success: function () {
-        alert(urlParam)
+        // alert(urlParam)
         // 用户点击了分享后执行的回调函数
       },
-      cancel: function () { alert(urlParam)}
+      cancel: function () { }
     });
   });
 }
@@ -86,7 +86,6 @@ router.beforeEach((to, from, next) => {
   }
   // 保存分享用户的id
   if(to.query.id){
-    alert(to.query.id)
     sessionStorage.id = to.query.id
   }
   //保存登录返回的页面路径

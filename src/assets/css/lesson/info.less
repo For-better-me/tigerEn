@@ -11,13 +11,12 @@
     }
 }
 .lesson_info{
-    background: linear-gradient(to bottom, #FF878C 0%,#FC5E64 100%);
-    padding: 30px 15px;
-    background: #FF878C;
+    // background: linear-gradient(to bottom, #FF878C 0%,#FC5E64 100%);
+    // padding: 30px 15px;
+    // background: #FF878C;
     min-height: 100%;
     .lesson_poster{
-        width: 345px;
-        margin: 30px auto;
+        width: 100%;
         display: block;
     }
 }
@@ -27,7 +26,6 @@
   border-radius: 8px;
   box-sizing: border-box;
   background: #fff;
-  margin-top: 41px;
   .common_tit {
     width: 146px;
     height: 41px;
@@ -152,4 +150,41 @@
 .palyer{
     margin-top: 100px;
 }
-
+.music_avatar{
+    display: inline-block;
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    margin-right: 20px;
+    img{
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: #000;
+    }
+}
+.music{
+    width: 80%;
+    display: inline-block;
+    vertical-align: middle;
+}
+.game{
+    position: relative;
+    a{
+        display: block;
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        img{
+            width: 100%;
+        }
+    }
+    p{
+        font-size: 0.44rem;
+        color: #fff;
+        position: absolute;
+        right: 15px;
+        bottom: 15px;
+    }
+}

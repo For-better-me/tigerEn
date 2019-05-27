@@ -2,7 +2,7 @@
     <div class="common_gif" @click="goDetail(item.id)">
         <img :src="imgPre+item.img" alt="">
         <p>{{item.title}}</p>
-        <span>{{text}}</span>
+        <!-- <span>{{text}}</span> -->
     </div>
 </template>
 
@@ -31,13 +31,14 @@ export default class lesson extends AbstractBaseVueMixins {
     @import url('../assets/css/common/common.less');
     .common_gif{
         width: 100%;
-        height: 150px;
-        border-radius: 8px;
+        height: 186px;
+        border-radius: 16px;
         position: relative;
         overflow: hidden;
         margin-bottom: 15px;
         img{
             width: 100%;
+            height: 100%;
         }
         p{
             font-size: 14px;

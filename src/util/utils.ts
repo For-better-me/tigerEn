@@ -56,6 +56,15 @@ function addClass(el: any, className: string) {
     newClass.push(className)
     el.className = newClass.join(' ')
 }
+function removeClass(el: any, className: string) {
+    if (!hasClass(el, className)) {
+        return
+    }
+    let newClass = el.className.split(' ')
+    let delClassIndex = newClass.indexOf(className)
+    newClass[delClassIndex] = ''
+    el.className = newClass.join(' ')
+}
 
 function getData(el: any, name: string, val?: string) {
     const prefix = 'data-'
@@ -172,6 +181,7 @@ export default {
     deepClone,
     hasClass,
     addClass,
+    removeClass,
     getData,
     showLoad,
     showToast,

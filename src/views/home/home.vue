@@ -80,6 +80,7 @@ export default class Home extends AbstractBaseVue.Mixins(FeatureMinix) {
 </script>
 <style <style lang="less" scoped>
 @import url("../../assets/css/home/home.less");
+
 </style>
 
 

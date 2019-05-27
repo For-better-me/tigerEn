@@ -1,9 +1,9 @@
 <template>
-    <div class="common_record wrap">
+    <div class="common_record wrap" @click="goDetail(item.curriculum_id)">
         <img :src="imgPre+item.img" alt="">
         <div class="lesson_info">
             <h4>{{item.title}}</h4>
-            <p>2018年12月25日</p>
+            <p>{{item.time}}</p>
         </div>
     </div>
 </template>
@@ -13,7 +13,9 @@ import AbstractBaseVueMixins,{MyComponent,MyProp} from "@/util/AbstractBaseVue";
 @MyComponent
 export default class LessonRecord extends AbstractBaseVueMixins {
     @MyProp() private item!: any;
-  
+    goDetail(id:string|number){
+        this.$emit('infoEvent',id)
+    }
 }
 </script>
 

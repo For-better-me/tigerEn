@@ -15,7 +15,6 @@
     }
     .con {
         margin-top: 15px;
-        height: 180px;
         overflow: hidden;
         line-height: 1.5;
         padding-bottom: 10px;
@@ -44,6 +43,7 @@
 
 .lesson_wrap {
     margin-top: 20px;
+    margin-bottom: 50px;
     h4 {
         font-size: 18px;
         span {
@@ -64,7 +64,7 @@
 }
 
 .try_part {
-    padding: 10px 0;
+    padding-top:20px;
     position: relative;
     img {
         width: 60px;
@@ -102,7 +102,7 @@
         line-height: 18px;
         position: absolute;
         right: 9px;
-        top: 14px;
+        top: 20px;
     }
 }
 
@@ -112,9 +112,23 @@
             .border_1px(top);
             h2{
                 line-height: 50px;
-                .common_arrow;
                 font-size: 16px;
+                height: 50px;
                 color: #666;
+                b{
+                    width: 30px;
+                    height: 100%;
+                    float: right;
+                    .common_arrow;
+                    transition: all 0.4s ease;
+                    background-position: center;
+                }
+                &.on{
+                    b{
+                        transform: rotate(90deg)
+                        
+                    }
+                }
             }
         }
     }
@@ -154,4 +168,8 @@
         float: right;
         margin-top: 9.5px;
     }
+}
+.days_lesson{
+    display: none;
+    margin-bottom: 20px;
 }

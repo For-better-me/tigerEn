@@ -129,7 +129,6 @@ export default class Apply extends AbstractBaseVue {
   }
   //  表单提交
   submitForm() {
-      alert(sessionStorage.id)
       let self = this;
       let mode = this.mode
       this.$util.isFilled(this.formData).then(()=>{
@@ -168,12 +167,13 @@ export default class Apply extends AbstractBaseVue {
 
   sendCode(){
       let tel = this.formData.phone;
+      let model:string = this.mode == '2' ?'retail':'bind';
       let self = this;
       if(!this.$util.isTel(tel)){
          this.$util.showToast('手机格式不正确','error').show();
          return;
       }
-      let data = {phone:tel,model:this.mode}
+      let data = {phone:tel,model}
       UserApi.sms(data).then(res=>{
         let time = 120;
         let interval = setInterval(() => {
@@ -182,7 +182,7 @@ export default class Apply extends AbstractBaseVue {
                this.disable = true;
             } else {
                 clearInterval(interval)
-                this.captcha = '验证码'
+                this.captcha = '重新获取'
                 this.disable = false;
           
             }

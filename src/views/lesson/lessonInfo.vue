@@ -1,13 +1,18 @@
 <template>
   <div class="lesson_info" v-if="detail">
-    <img class="lesson_poster" src="../../assets/img/info.png" alt>
+    <img class="lesson_poster" :src="imgPre+detail.img" alt>
     <div class="common_box">
-      <div class="common_tit">One time</div>
+      <!-- <div class="common_tit">One time</div> -->
       <div v-for="item in detail.text" :key="item.id">
         <div class="common_item" v-if="item.type == 1">
           <div class="common_con words">
             <ul>
-              <li :class="wordActive == i?'active':''" v-for="(word,i) in item.text" :key="i" @click="playWords(imgPre+word.word_music_url,i)">
+              <li
+                :class="wordActive == i?'active':''"
+                v-for="(word,i) in item.text"
+                :key="i"
+                @click="playWords(imgPre+word.word_music_url,i)"
+              >
                 <img :src="imgPre+word.word_img" alt>
                 <div class="text">
                   <h4>{{word.word_title}}</h4>
@@ -19,46 +24,50 @@
         </div>
         <div class="common_item item_text" v-if="item.type == 2">
           <p>{{item.desc}}</p>
-          <p>本地占位--固儿歌特别适合孩子的英语启蒙，初期我们建议每周学习一首。本周的“One Little Finger”旋律很简单，适合在不同场景里运用，比如穿衣服、洗澡、挠痒痒等~</p>
         </div>
         <div class="common_item" v-if="item.type == 3">
           <img :src="imgPre+item.img" alt>
         </div>
         <div class="common_item" v-if="item.type == 4">
-          <div class="misic" v-for='(music,j) in item.text' :key='j'>
-            <player
-              :src="imgPre+music.music_file"
-              :time='music.music_time'
-              @stopAll = 'stopAll'
-              ref='player'
-            ></player>
+          <div class="music_wrap" v-for="(music,j) in item.text" :key="j">
+            <div class="music_avatar">
+              <img :src="imgPre+music.music_top_img" alt="">
+            </div>
+            <div class="music">
+              <player
+                :src="imgPre+music.music_file"
+                :time="music.music_time"
+                @stopAll="stopAll"
+                ref="player"
+              ></player>
+            </div>
           </div>
         </div>
         <div class="common_item" v-if="item.type == 5">
-          <div class="video" v-for='(video,k) in item.text' :key='k'>
+          <div class="video" v-for="(video,k) in item.text" :key="k">
             <video
-            :src="imgPre+video.video_file"
-            :poster="imgPre+video.video_img"
-            width="100%"
-            preload="meta"
-            controls="controls"
-            x5-video-player-type="h5"
-            x5-video-player-fullscreen="true"
-            @play = 'videoPlay'
-          >您的设备不支持HTML5播放器</video>
+              :src="imgPre+video.video_file"
+              :poster="imgPre+video.video_img"
+              width="100%"
+              preload="meta"
+              controls="controls"
+              x5-video-player-type="h5"
+              x5-video-player-fullscreen="true"
+              @play="videoPlay"
+            >您的设备不支持HTML5播放器</video>
           </div>
-          
         </div>
-        <div class="common_item" v-if="item.type == 6 || true">
-          <div class="video" v-for='(game,q) in item.game' :key='q'>
-            <p>{{game.title}}</p>
-            <a :href="game.game_url"><img :src="img+game.img" alt=""></a>
+        <div class="common_item" v-if="item.type == 6">
+          <div class="game" v-for="(game,q) in item.text" :key="q">
+            <a :href="game.game_url">
+              <p>{{game.game_title}}</p>
+              <img :src="imgPre+game.game_img" alt>
+            </a>
           </div>
-          
         </div>
       </div>
     </div>
-    <audio src="" ref='wordAudio' @pause="onWordPause"></audio>
+    <audio src ref="wordAudio" @pause="onWordPause"></audio>
 
     <!-- <div class="common_box module_con">
       <div class="common_tit">关键句型</div>
@@ -105,10 +114,10 @@ import { LessonApi } from "@/api/lesson";
 })
 export default class LessonInfo extends AbstractBaseVue {
   detail: any = null;
-  wordActive:number = -1;
+  wordActive: number = -1;
   mounted() {
     this.init();
-    console.log(this)
+    console.log(this);
   }
   init() {
     let type: number = parseInt(this.$route.params.type);
@@ -124,27 +133,28 @@ export default class LessonInfo extends AbstractBaseVue {
       this.detail = res.data;
     });
   }
-  stopAll(){
+  stopAll() {
     let arrPlayer = this.$refs.player;
-    (arrPlayer as any[]).forEach((player)=>{
-       (player.$refs.audio as HTMLAudioElement).pause()
-    })
+    (arrPlayer as any[]).forEach(player => {
+      (player.$refs.audio as HTMLAudioElement).pause();
+    });
+  }
+  videoPlay() {
+    if((this.$refs.player as any[]).length>0){
+      this.stopAll();
+    }
     
   }
-  videoPlay(){
-    this.stopAll()
-  }
-  playWords(src:string,i:number){
+  playWords(src: string, i: number) {
     this.wordActive = i;
     (this.$refs.wordAudio as HTMLAudioElement).src = src;
-    (this.$refs.wordAudio as HTMLAudioElement).play()
+    (this.$refs.wordAudio as HTMLAudioElement).play();
   }
-  onWordPause(){
+  onWordPause() {
     this.wordActive = -1;
   }
 }
 </script>
 <style lang='less' scoped>
 @import url("../../assets/css/lesson/info.less");
-
 </style>

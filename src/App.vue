@@ -25,4 +25,10 @@ export default class App extends AbstractBaseVue {
 
 <style lang="less">
   @import url("./assets/css/common/reset.css");
+  .cube-slide-dots{
+    bottom: 10px;
+    span.active{
+      background: #FC5E64;
+    }
+  }
 </style>
