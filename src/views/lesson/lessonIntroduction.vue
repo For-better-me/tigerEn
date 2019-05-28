@@ -152,11 +152,11 @@ export default class LessonBrief extends AbstractBaseVue {
       signType: data.signType,
       paySign: data.paySign,
       success: function() {
-        self.$util.showToast("支付成功", "correct");
+        self.$util.showToast("支付成功", "correct").show();
         self.init();
       },
       fail: function(err) {
-        self.$util.showToast("支付失败", "error");
+        self.$util.showToast("支付失败", "error").show();
       }
     });
   }

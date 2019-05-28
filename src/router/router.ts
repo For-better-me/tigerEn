@@ -80,10 +80,7 @@ router.beforeEach((to, from, next) => {
   // 设置浏览器标题
   document.title = to.meta.title;
   //设置分享时的用户id 
-  if(store.getters.userInfo.is_distribution == 1){
-   
-    urlParam = '?id='+store.getters.userInfo.id
-  }
+  
   // 保存分享用户的id
   if(to.query.id){
     sessionStorage.id = to.query.id
@@ -92,13 +89,9 @@ router.beforeEach((to, from, next) => {
   if(to.path.indexOf('login') == -1){
     localStorage.beforeLoginUrl = to.fullPath;
   }
-  // let _url = location.href.split('#')[0]
-  let _url = window.location.origin + to.fullPath
+ 
 
-  if(!isiOS){
-    reqConfig(_url)
-  }
-  console.log(_url, to)
+
   if (to.meta.author) {
     let user = store.getters.userInfo;
     if (!user.id && to.path != '/login') {
@@ -112,11 +105,25 @@ router.beforeEach((to, from, next) => {
 
 })
 
-
+router.afterEach((from,to)=>{
+  if(store.getters.userInfo.is_distribution == 1){
+   
+    urlParam = '?id='+store.getters.userInfo.id
+  }
+   // let _url = location.href.split('#')[0]
+  let _url = window.location.origin + to.fullPath
+  if(!isiOS){
+    reqConfig(_url)
+  }
+  console.log(_url, to)
+})
 
 
 // ios 设备进入页面则进行js-sdk签名
 if(isiOS){
+  if(store.getters.userInfo.is_distribution == 1){
+    urlParam = '?id='+store.getters.userInfo.id
+  }
   let url = window.location.href.split('#')[0]
   reqConfig(url)
 }

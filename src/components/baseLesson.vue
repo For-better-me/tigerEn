@@ -31,11 +31,12 @@ export default class lesson extends AbstractBaseVueMixins {
     @import url('../assets/css/common/common.less');
     .common_gif{
         width: 100%;
-        height: 190px;
+        height: 55vw;
         border-radius: 18px;
         position: relative;
         overflow: hidden;
-        margin-bottom: 25px;
+        margin-bottom: 8vw;
+        box-shadow: 0 0 4vw 1.46667vw #ddd;
         img{
             width: 100%;
             height: 100%;
