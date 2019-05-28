@@ -1,7 +1,7 @@
 <template>
   <div class="introduction" v-if="lessonBrief">
     <img :src="imgPre+lessonBrief.img" alt class="poster">
-    <div class="intro_con_wrap wrap">
+    <div class="intro_con_wrap wrap"  v-if="lessonBrief.is_payment == 0">
       <h4>课程介绍</h4>
       <div class="con" :class="isOpen?'open':''" v-html="lessonBrief.text"></div>
       <!-- <div class="btn_open">
@@ -9,11 +9,11 @@
       </div>-->
     </div>
     <div class="lesson_wrap">
-      <h4 class="wrap">
+      <!-- <h4 class="wrap">
         课程表
-        <!-- <span>40首儿歌课，每周更新1首</span> -->
-      </h4>
-      <div class="lesson_name">{{lessonBrief.title}}</div>
+      </h4> -->
+      <div class="lesson_name"  v-if="lessonBrief.is_payment == 0">试听列表</div>
+      <div class="lesson_name" v-else>课程表</div>
       <div v-if="lessonBrief.is_payment == 0">
         <div class="part_week wrap">
           <ul style="padding-bottom:20px">
@@ -153,6 +153,7 @@ export default class LessonBrief extends AbstractBaseVue {
       paySign: data.paySign,
       success: function() {
         self.$util.showToast("支付成功", "correct");
+        self.init();
       },
       fail: function(err) {
         self.$util.showToast("支付失败", "error");

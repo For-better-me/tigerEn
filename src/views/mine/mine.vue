@@ -14,9 +14,9 @@
           <img src="../../assets/img/icon_record.png" alt>
           <p>浏览记录</p>
         </router-link>
-        <router-link tag='li' to='/apply/1'  class="arrow">
+        <router-link tag='li' to='/apply/1'  class="arrow"  v-if='!userInfo.is_bind|| !userInfo.name'>
           <img src="../../assets/img/icon_info.png" alt>
-          <p v-if='!userInfo.is_bind|| !userInfo.name'>绑定个人资料 <span>（有好礼）</span></p>
+          <p>绑定个人资料 <span>（有好礼）</span></p>
         </router-link>
         <li class="arrow" @click='goRetail'>
           <img src="../../assets/img/icon_fx.png" alt>

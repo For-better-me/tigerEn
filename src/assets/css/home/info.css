@@ -128,6 +128,7 @@
 }
 .song_info .audio .btn-play img {
   width: 100%;
+  border-radius: 50%;
 }
 .song_info .audio p {
   font-size: 16px;

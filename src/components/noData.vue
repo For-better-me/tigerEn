@@ -1,6 +1,6 @@
 <template>
   <div class="no_data">
-    <img src="../assets/img/no_data.png" alt="">
+    <img src="../assets/img/no_data.png" alt="" class="tip_pic">
     <p>{{tipText}}</p>
   </div>
 </template>

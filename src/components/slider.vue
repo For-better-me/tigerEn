@@ -92,7 +92,7 @@ export default class Slider extends AbstractBaseVueMixins {
 <style lang='less' scoped>
 .progress-bar, .bar-inner {
   position: relative;
-  height: 1px;
+  height: 1.5px;
   background: rgba(0, 0, 0, 0.3);
 
   .progress {

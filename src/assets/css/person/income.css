@@ -167,3 +167,7 @@ html {
   float: right;
   margin-top: 32px;
 }
+.cube-slide-item {
+  min-height: 550px;
+  position: relative;
+}

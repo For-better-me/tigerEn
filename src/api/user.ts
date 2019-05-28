@@ -29,7 +29,7 @@ export class UserApi {
             method:'post',
             data
         })
-    }
+    } 
     public static login(params?:{},data?:{}):Promise<any>{
         return  http({
             url:'user/wechatLoginCallback',
@@ -37,5 +37,11 @@ export class UserApi {
             params
         })
     }
+    public static withdraw(params ?: {}, data ?: {}): Promise < any > {
+    return  http({
+        url: '/Withdraw/extract',
+        method: 'post',
+    })
+}
 
 }

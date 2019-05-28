@@ -8,7 +8,7 @@
       <ul>
         <li class="price">
           <img src="../../assets/img/icon_money.png" alt>
-          <p>可提现的余额 <span v-if='info.price'>￥{{info.price}}</span> <b class="btn">提取</b></p>
+          <p>可提现的余额 <span v-if='info.price'>￥{{info.price}}</span> <b class="btn" @click="withdraw">提取</b></p>
         </li>
          <li class="price">
           <img src="../../assets/img/icon_money2.png" alt>
@@ -26,6 +26,7 @@
 <script lang="ts">
 import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
 import {RetailApi} from '@/api/retail'
+import {UserApi} from '@/api/user'
 @MyComponent({
   components: {}
     
@@ -33,14 +34,26 @@ import {RetailApi} from '@/api/retail'
 export default class Retail extends AbstractBaseVue {
     // data
     info:object = {}
+    price:any = ''
     //   method
     getInfo(){
         RetailApi.info().then(res=>{
             this.info = res.data;
+            this.price = res.data.price
         })
     }
     created(){
         this.getInfo()
+    }
+    withdraw(){
+      if(this.price > 1){
+        UserApi.withdraw().then(res=>{
+          this.$util.showToast('提现成功','correct').show()
+          this.getInfo()
+        })
+      } else{
+        this.$util.showToast('提现余额不能小于1元','error').show()
+      }
     }
 }
 </script>

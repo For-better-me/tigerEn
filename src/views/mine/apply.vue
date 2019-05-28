@@ -145,12 +145,15 @@ export default class Apply extends AbstractBaseVue {
           }
           UserApi.apply(data).then(res=>{
               toast.hide()
+              this.$router.go(-1)
+
           }).catch(err=>{
               toast.hide()
           })
         } else{
           UserApi.fillInfo(data).then(res=>{
               toast.hide()
+              this.$router.go(-1)
           }).catch(err=>{
               toast.hide()
          

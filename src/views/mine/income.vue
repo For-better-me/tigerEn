@@ -52,7 +52,7 @@
               <no-data v-else tip-text='暂无记录'></no-data>
             </cube-slide-item>
             <cube-slide-item>
-              <cube-scroll :options="scrollOptions">
+              <cube-scroll :options="scrollOptions"   v-if = 'list_3.length>0'>
                 <ul class="list-wrapper income_list">
                   <li v-for='(item,i) in list_3' :key='i'>
                     <div class="income_info">
@@ -63,6 +63,7 @@
                   </li>
                 </ul>
               </cube-scroll>
+              <no-data v-else tip-text='暂无记录'></no-data>
             </cube-slide-item>
           </cube-slide>
         </div>
@@ -206,4 +207,5 @@ export default class Income extends AbstractBaseVue {
 </script>
 <style lang='less' scoped>
 @import url("../../assets/css/person/income.less");
+
 </style>

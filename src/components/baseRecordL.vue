@@ -29,7 +29,7 @@ export default class LessonRecord extends AbstractBaseVueMixins {
         padding:12px 15px;
         background: #fff;
         border-radius: 2px;
-        border:#FC5E64 solid 0.5px;
+        border:#FC5E64 solid 1px;
         margin-top: 15px;
         img{
             width: 75px;

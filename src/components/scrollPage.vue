@@ -42,7 +42,7 @@ export default class scrollPage extends AbstractBaseVueMixins {
         return this.$refs.scroll
         console.log('refresh')
     }
-     @MyEmit('PullingUp') 
+     @MyEmit('pullingUp') 
     loadMore(){
         // this.$emit('pullingDown',this.$refs.scroll)
         return this.$refs.scroll

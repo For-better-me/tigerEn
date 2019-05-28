@@ -15,8 +15,25 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 99;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+}
+.pos_center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.pos_fix_full {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
 }
 /*.img_wrap{
   position: relative;
@@ -63,12 +80,12 @@
   background: #ccc !important;
 }
 .btn-small {
-  width: 105upx;
-  height: 45upx;
+  width: 53px;
+  height: 23px;
   background: #fed351;
-  line-height: 45upx;
+  line-height: 45px;
   text-align: center;
-  font-size: 24upx;
+  font-size: 12px;
   color: #626469;
   margin: 0 auto;
   border-radius: 100px;
@@ -98,14 +115,15 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 999;
+  z-index: 9999999;
+  background: #fff;
 }
 .apply ul {
-  border-top: #f3f3f3 solid 10px;
+  background: #fff;
   padding-left: 15px;
+  margin-bottom: 10px;
 }
 .apply ul li {
-  height: 44px;
   position: relative;
 }
 .apply ul li:after {
@@ -114,7 +132,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  border-top: 1px solid #d9d7d7;
+  border-top: 0.7px solid #d9d7d7;
 }
 @media (-webkit-min-device-pixel-ratio: 1.5) {
   .apply ul li:after {
@@ -127,13 +145,23 @@
   }
 }
 .apply ul li.tel input {
-  width: 250px;
+  width: 220px;
   display: inline-block;
 }
 .apply ul li.tel .code_btn {
   float: right;
-  font-size: 14px;
   margin-right: 15px;
+  line-height: 24px;
+  font-size: 14px;
+  padding: 0 12px;
+  border-radius: 20px;
+  color: #FC5E64;
+  border: #FC5E64 solid 1px;
+  margin-top: 8.5px;
+}
+.apply ul li.tel .code_btn.disable {
+  border-color: #dcdcdc;
+  color: #bbb;
 }
 .apply ul li.chooseAddr {
   background: url(../../img/icon_arrow.png) no-repeat right center;
@@ -143,9 +171,32 @@
 .apply ul li:nth-last-of-type(1):after {
   display: none;
 }
-.apply ul li input {
+.apply ul li input,
+.apply ul li p {
+  line-height: 44px;
+  width: 300px;
+}
+.apply ul li textarea {
+  width: 95%;
+  line-height: 1.4;
+  padding-top: 9px;
+  resize: none;
+}
+.apply ul li input,
+.apply ul li textarea {
   font-size: 14px;
   color: #333;
+  padding-left: 3px;
+}
+.submit_btn {
+  width: 180px;
+  height: 44px;
+  background: #fc5e64;
   line-height: 44px;
-  text-indent: 3px;
+  text-align: center;
+  font-size: 16px;
+  color: #fff;
+  margin: 0 auto;
+  border-radius: 100px;
+  margin-top: 50px;
 }
