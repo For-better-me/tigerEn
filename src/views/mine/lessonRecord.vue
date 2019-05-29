@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import AbstractBaseVue, { MyComponent, MyMixins } from "@/util/AbstractBaseVue";
-import lesson from "@/components/baseRecordL.vue";
+import lesson from "@/components/baseLesson.vue";
 import { LessonApi } from "@/api/lesson";
 import { FeatureMinix } from "@/util/mixins";
 @MyComponent({
@@ -37,8 +37,15 @@ export default class LessonRecord extends AbstractBaseVue.Mixins(FeatureMinix) {
     this.init();
   }
   goDetail(id:number|string){
-    // this.$router.push('/introduction?lessonId='+id)
-    this.$router.push('/introduction/'+id)
+    const type: any = this.$route.params.type;
+    if (type == 1) {
+      //我的课程
+      this.$router.push('/introductionMy/'+id)
+    } else {
+      //浏览记录
+      this.$router.push('/introduction/'+id)
+    }
+    
   }
 }
 </script>

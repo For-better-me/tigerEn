@@ -61,6 +61,14 @@ export default [
           }
         },
         {
+          path: '/introductionMy/:lessonId',
+          name: 'introductionMy',
+          component: () => import('../views/mine/lessonMyIntro.vue'),
+          meta: {
+            title: '课程介绍'
+          }
+        },
+        {
           path: '/detail/:id/:type',//type详情来源，1：普通课程，2：试听，3：我的课程
           name: 'detail',
           component: () => import('../views/lesson/lessonInfo.vue'),

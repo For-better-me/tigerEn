@@ -1,9 +1,9 @@
 <template>
   <div class="introduction" v-if="lessonBrief">
     <img :src="imgPre+lessonBrief.img" alt class="poster">
-    <div class="intro_con_wrap wrap"  v-if="lessonBrief.is_payment == 0">
+    <div class="intro_con_wrap wrap">
       <h4>课程介绍</h4>
-      <div class="con" :class="isOpen?'open':''" v-html="lessonBrief.text"></div>
+      <div class="con" v-html="lessonBrief.text"></div>
       <!-- <div class="btn_open">
         <p>展开</p>
       </div>-->
@@ -12,9 +12,10 @@
       <!-- <h4 class="wrap">
         课程表
       </h4> -->
-      <div class="lesson_name"  v-if="lessonBrief.is_payment == 0">试听列表</div>
-      <div class="lesson_name" v-else>课程表</div>
-      <div v-if="lessonBrief.is_payment == 0">
+      <!-- <div class="lesson_name"  v-if="lessonBrief.is_payment == 0">试听列表</div>
+      <div class="lesson_name" v-else>课程表</div> -->
+      <div class="lesson_name">试听列表</div>
+      <div>
         <div class="part_week wrap">
           <ul style="padding-bottom:20px">
             <li>
@@ -59,7 +60,7 @@
           </ul>
         </div>
       </div> -->
-      <div v-if="lessonBrief.is_payment == 1">
+      <!-- <div v-if="lessonBrief.is_payment == 1">
         <div v-for="(week,q) in lessonBrief.week_list" :key="week.id">
           <div class="part_week wrap">
             <ul>
@@ -83,17 +84,19 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
-    <div class="pay_wrap" v-if="lessonBrief.is_payment == 0">
+    <div class="pay_wrap">
       <div class="pay_price">
         <h6>
           <s>售价：￥{{lessonBrief.primary_price}}</s>
         </h6>
         <p>实付：￥{{lessonBrief.price}}</p>
       </div>
-      <div class="btn-pay" @click="lessonBuy">购买</div>
+      <div class="btn-pay" @click="lessonBuy"  v-if="lessonBrief.is_payment == 0">购买</div>
+      <div class="btn-pay btn-pay-dis"  v-else>已购买</div>
     </div>
+    
   </div>
 </template>
 

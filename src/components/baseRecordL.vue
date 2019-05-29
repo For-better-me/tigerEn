@@ -32,16 +32,16 @@ export default class LessonRecord extends AbstractBaseVueMixins {
         border:#FC5E64 solid 1px;
         margin-top: 15px;
         img{
-            width: 75px;
-            height: 50px;
+            width: 85px;
+            height: 60px;
         }
         .lesson_info{
-            width: 250px;
+            width: 240px;
             margin-left: 10px;
             h4{
                 font-size: 16px;
                 color: #000;
-                line-height: 1.4;
+                line-height: 1.6;
                 .ellipsis;
             }
             p{
