@@ -34,12 +34,19 @@
       </div>
     </div>
     <tab index="3"></tab>
+    <div class="canvas_test" ref='box'>
+      <!-- <img src="../../assets/img/banner.png" alt=""> -->
+      <img src="../../assets/img/pic_card.png" alt="">
+    </div>
+    <div class="share-img" id="shareImg"></div
   </div>
 </template>
 
 <script lang="ts">
 import AbstractBaseVue, { MyComponent,MyAction,MyGetter} from "@/util/AbstractBaseVue";
 import tab from "@/components/tab.vue";
+import html2canvas from 'html2canvas';
+import Canvas2Image from 'canvas2image';
 @MyComponent({
   components: {
     tab
@@ -65,6 +72,29 @@ export default class Person extends AbstractBaseVue {
       }
     }
   }
+ 
+
+
+  //////////--------------/////////////
+
+    creatImg(){
+        let that = this;
+        if(true){
+            // 已经生成二维码
+            interface optParam {
+              allowTaint:boolean,
+              taintTest:boolean
+            }
+            let opts:optParam = {allowTaint:true,taintTest: false}
+            let element:any = that.$refs.box;
+            html2canvas(element,opts).then(function(canvas:any) {
+                (document.getElementById('shareImg') as Element).appendChild(Canvas2Image.convertToPNG(canvas));
+                 
+            });
+        }else{
+            
+        }
+    }
 }
 </script>
 <style <style lang="less" scoped>

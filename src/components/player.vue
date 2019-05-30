@@ -45,10 +45,11 @@ export default class Player extends AbstractBaseVue {
     created() {
       this.srcAudio = this.src
       this.duration = this.$util.formatDuration(this.time)
+     
     }
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
-    
+         
     }
 //   computed
   get percent():number{

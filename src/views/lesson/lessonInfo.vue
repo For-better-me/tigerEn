@@ -22,8 +22,7 @@
             </ul>
           </div>
         </div>
-        <div class="common_item item_text" v-if="item.type == 2">
-          <p>{{item.desc}}</p>
+        <div class="common_item item_text" v-if="item.type == 2" v-html="item.desc">
         </div>
         <div class="common_item" v-if="item.type == 3">
           <img :src="imgPre+item.img" alt>
@@ -155,6 +154,6 @@ export default class LessonInfo extends AbstractBaseVue {
   }
 }
 </script>
-<style lang='less' scoped>
+<style lang='less'>
 @import url("../../assets/css/lesson/info.less");
 </style>
