@@ -35,10 +35,9 @@
     </div>
     <tab index="3"></tab>
     <div class="canvas_test" ref='box'>
-      <!-- <img src="../../assets/img/banner.png" alt=""> -->
       <img src="../../assets/img/pic_card.png" alt="">
     </div>
-    <div class="share-img" id="shareImg"></div
+    <div class="share-img" id="shareImg"></div>
   </div>
 </template>
 
@@ -46,7 +45,7 @@
 import AbstractBaseVue, { MyComponent,MyAction,MyGetter} from "@/util/AbstractBaseVue";
 import tab from "@/components/tab.vue";
 import html2canvas from 'html2canvas';
-import Canvas2Image from 'canvas2image';
+import canvas2image from 'canvas2image';
 @MyComponent({
   components: {
     tab
@@ -59,6 +58,9 @@ export default class Person extends AbstractBaseVue {
   @MyAction('GetUserInfo') public getUserInfo!: any
   created(){
     this.getUserInfo()
+  }
+  mounted(){
+    this.creatImg()
   }
   goRetail(){
     if(this.userInfo.is_distribution == 1){
@@ -87,8 +89,9 @@ export default class Person extends AbstractBaseVue {
             }
             let opts:optParam = {allowTaint:true,taintTest: false}
             let element:any = that.$refs.box;
+            console.log(that.$refs,that.$refs.box,3333333333333,html2canvas,canvas2image)//refs获取不到的原因，dom元素还未生成，creatd里获取不到，mounted 须在这里使用
             html2canvas(element,opts).then(function(canvas:any) {
-                (document.getElementById('shareImg') as Element).appendChild(Canvas2Image.convertToPNG(canvas));
+                (document.getElementById('shareImg') as Element).appendChild(canvas2image.convertToPNG(canvas));
                  
             });
         }else{

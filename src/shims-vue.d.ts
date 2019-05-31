@@ -2,6 +2,11 @@ declare module '*.vue' {
   import Vue from 'vue'
   export default Vue
 }
+
+declare module 'canvas2image'{/////////ts
+  const canvas2image: any;
+  export default canvas2image;
+}
 // import Vue from 'vue'
 // declare module 'vue/types/vue' {
 //     // 可以使用 `VueConstructor` 接口
