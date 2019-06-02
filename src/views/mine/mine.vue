@@ -34,12 +34,7 @@
       </div>
     </div>
     <tab index="3"></tab>
-    <div class="save_pic" @click="savePoster">保存图片</div>
-    <div class="canvas_test" ref='box'>
-      <p>hello,world</p>
-      <img src="../../assets/img/pic_card.png" alt="">
-    </div>
-    <div class="share-img" id="shareImg" style="height:500px"></div>
+   
     
   </div>
 </template>
@@ -47,8 +42,7 @@
 <script lang="ts">
 import AbstractBaseVue, { MyComponent,MyAction,MyGetter} from "@/util/AbstractBaseVue";
 import tab from "@/components/tab.vue";
-import html2canvas from 'html2canvas';
-import Canvas2image from 'canvas2image';
+
 @MyComponent({
   components: {
     tab
@@ -62,9 +56,7 @@ export default class Person extends AbstractBaseVue {
   created(){
     this.getUserInfo()
   }
-  mounted(){
-    this.creatImg()
-  }
+ 
   goRetail(){
     if(this.userInfo.is_distribution == 1){
       this.$router.push('/retailCenter')
@@ -77,31 +69,7 @@ export default class Person extends AbstractBaseVue {
       }
     }
   }
-  //////////--------------/////////////
-    canvas:any = null
-    creatImg(){
-        let that = this;
-        if(true){
-            // 已经生成二维码
-            interface optParam {
-              allowTaint:boolean,
-              taintTest:boolean
-            }
-            let opts:optParam = {allowTaint:true,taintTest: false}
-            let element:any = that.$refs.box;
-            html2canvas(element,opts).then(function(canvas:any) {
-              (document.getElementById('shareImg') as Element).appendChild(Canvas2image.convertToPNG(canvas));
-                
-                that.canvas = canvas;
-            console.log(that.$refs,canvas,Canvas2image)//refs获取不到的原因，dom元素还未生成，creatd里获取不到，mounted 须在这里使用
-            });
-        }else{
-            
-        }
-    }
-    savePoster(){
-      Canvas2image.saveAsPNG(this.canvas,200,200)
-    }
+    
 }
 </script>
 <style <style lang="less" scoped>

@@ -1,13 +1,8 @@
 <template>
     <div class="common_gif" @click="goDetail(item.id)">
         <img :src="imgPre+item.img" alt="">
-        <div class='lead'>
-            <h4>{{item.title}}</h4>
-            <p>{{getDate(item.begins_time)}}开课</p>
-            <span>去试听</span>
-        </div>
-        
-        
+        <p>{{item.title}}</p>
+        <!-- <span>{{text}}</span> -->
     </div>
 </template>
 
@@ -22,13 +17,6 @@ export default class lesson extends AbstractBaseVueMixins {
     @MyProp({required:false,type:Function}) infoEvent!: ()=>{};
     goDetail(id:string|number){
         this.$emit('infoEvent',id)
-    }
-    getDate(val:string){
-        if(val){
-            let date = val.split('-')
-            return `${date[0]}月${date[1]}日`
-        }
-        
     }
 }
 
@@ -50,25 +38,26 @@ export default class lesson extends AbstractBaseVueMixins {
             width: 100%;
             height: 100%;
         }
-        .lead{
-            padding: 0.3rem;
+        p{
+            font-size: 14px;
             color: #fff;
             position: absolute;
-            left: 0.3rem;
-            top: 0.5rem;
-            h4{
-                font-size: 20px;
-            }
-            p{
-                font-size:14px;
-                margin-top: 15px;
-                margin-bottom: 10px;
-            }
-            span{
-                font-size: 12px;
-            }
+            right: 15px;
+            bottom: 15px;
         }
-        
+        span{
+            font-size: 10px;
+            color: #fff;
+            width: 30px;
+            height: 16px;
+            line-height: 16px;
+            text-align: center;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            background: #FC5E64;
+            border-radius: 2px;
+        }
     }
     
 </style>

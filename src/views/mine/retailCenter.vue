@@ -18,6 +18,10 @@
           <img src="../../assets/img/icon_money3.png" alt>
           <p>我的收入</p>
         </router-link>
+         <!-- <router-link tag='li' to='/retailSpread'  class="arrow">
+          <img src="../../assets/img/icon_money3.png" alt>
+          <p>推广二维码</p>
+        </router-link> -->
       </ul>
     </div>
   </div>

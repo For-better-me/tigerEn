@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import AbstractBaseVue, { MyComponent,MyMixins} from "@/util/AbstractBaseVue";
-import itemGif from '@/components/baseLesson.vue'
+import itemGif from '@/components/baseCartoon.vue'
 import {CartoonApi} from '@/api/feature'
 import {FeatureMinix} from "@/util/mixins";
 @MyComponent({

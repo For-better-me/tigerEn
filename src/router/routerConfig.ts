@@ -150,6 +150,14 @@ export default [
             title: '分销中心'
           }
         },
+        {
+          path: '/retailSpread',
+          name: 'retailSpread',
+          component: () => import('../views/mine/retailSpread.vue'),
+          meta: {
+            title: '推广二维码'
+          }
+        },
     
    
     
