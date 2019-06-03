@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <div class="share-img" id="shareImg" v-show="false"></div>
+    <div class="share-img" id="shareImg"></div>
   </div>
 </template>
 
