@@ -36,11 +36,16 @@ export default class LessonRecord extends AbstractBaseVue.Mixins(FeatureMinix) {
   created() {
     this.init();
   }
-  goDetail(id:number|string){
+  goDetail(id:number|string,is_begins:string|number){
     const type: any = this.$route.params.type;
     if (type == 1) {
       //我的课程
-      this.$router.push('/introductionMy/'+id)
+      if(is_begins == 0){
+        this.$util.showToast('该课程未开课','warn').show()
+      } else{
+        this.$router.push('/introductionMy/'+id)
+      }
+      
     } else {
       //浏览记录
       this.$router.push('/introduction/'+id)

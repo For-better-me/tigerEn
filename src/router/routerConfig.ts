@@ -13,7 +13,11 @@ export default [
         {
           path: '*',
           name: '404',
-          component: () => import('../views/lesson/lesson.vue'),
+          component: Home,
+          meta: {
+            title: '趣虎',
+            keepAlive: true,
+          }
         },
         {
           path: '/',
@@ -81,7 +85,8 @@ export default [
           name: 'income',
           component: () => import('../views/mine/income.vue'),
           meta: {
-            title: '收入明细'
+            title: '收入明细',
+            is_distribution:true
           }
         },
         {
@@ -147,7 +152,8 @@ export default [
           name: 'retailCenter',
           component: () => import('../views/mine/retailCenter.vue'),
           meta: {
-            title: '分销中心'
+            title: '分销中心',
+            is_distribution:true
           }
         },
         {
@@ -155,7 +161,8 @@ export default [
           name: 'retailSpread',
           component: () => import('../views/mine/retailSpread.vue'),
           meta: {
-            title: '推广二维码'
+            title: '推广二维码',
+            is_distribution:true
           }
         },
     

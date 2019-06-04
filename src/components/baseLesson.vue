@@ -1,5 +1,5 @@
 <template>
-    <div class="common_gif" @click="goDetail(item.id)">
+    <div class="common_gif" @click="goDetail(item.id,item.is_begins)">
         <img :src="imgPre+item.img" alt="">
         <div class='lead'>
             <h4>{{item.title}}</h4>
@@ -20,13 +20,15 @@ export default class lesson extends AbstractBaseVueMixins {
     @MyProp() private text!: string;
     @MyProp() private item!: any;
     @MyProp({required:false,type:Function}) infoEvent!: ()=>{};
-    goDetail(id:string|number){
-        this.$emit('infoEvent',id)
+    goDetail(id:string|number,is_begins:string|number){
+        this.$emit('infoEvent',id,is_begins)
     }
-    getDate(val:string){
+    getDate(val:any){
         if(val){
+            val = new Date(val);
+            val = this.$util.formatDate(val,'-')
             let date = val.split('-')
-            return `${date[0]}月${date[1]}日`
+            return `${date[1]}月${date[2]}日`
         }
         
     }
@@ -55,9 +57,10 @@ export default class lesson extends AbstractBaseVueMixins {
             color: #fff;
             position: absolute;
             left: 0.3rem;
-            top: 0.5rem;
+            top: 0.6rem;
             h4{
-                font-size: 20px;
+                font-size: 22px;
+                font-weight: 600;
             }
             p{
                 font-size:14px;

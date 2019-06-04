@@ -1,4 +1,4 @@
-
+@import url('../common/common.less');
 @keyframes play{
     0%{
         transform:scale(1)
@@ -60,7 +60,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     li {
-      width: 150px;
+      width: 160px;
       height: 75px;
       box-sizing: border-box;
       border: #fc686d solid 0.7px;
@@ -68,7 +68,7 @@
       display: flex;
       align-items: center;
       border-radius: 4px;
-      margin: 10px 0;
+      margin: 8px 0;
       transition: all 0.5s linear;
       &.active{
         -webkit-animation-duration: 1s;
@@ -79,18 +79,19 @@
         animation-name: play;
       }
       img {
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        background: #fc686d;
+        width: 50px;
+        height: 50px;
+        // border-radius: 50%;
         margin-right: 15px;
         flex-shrink: 0;
       }
       .text {
         font-size: 0.28rem;
         color: #333;
+        width: 88px;
         p{
             margin-top: 6px;
+            .ellipsis;
         }
       }
     }

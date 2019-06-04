@@ -51,7 +51,7 @@ function wxstart(data: wxconfig, shareLink: string) {
     wx.onMenuShareAppMessage({
       title: "趣虎",
       desc: "如果现在不移民，你的未来将会...",
-      link: isiOS?window.location.href+urlParam:shareLink+urlParam,
+      link: isiOS?window.location.href:shareLink,
       imgUrl: "https://static.prim.im/8cdaa42c5887ab8c6ff0.jpeg",
       success: function () {
         // alert(urlParam)
@@ -65,7 +65,7 @@ function wxstart(data: wxconfig, shareLink: string) {
     // 分享给朋友圈
     wx.onMenuShareTimeline({
       title: "趣虎", // 分享标题
-      link: isiOS?window.location.href+urlParam:shareLink+urlParam, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+      link: isiOS?window.location.href:shareLink, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
       imgUrl: "https://static.prim.im/8cdaa42c5887ab8c6ff0.jpeg", // 分享图标
       success: function () {
         // alert(urlParam)
@@ -106,6 +106,10 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((from,to)=>{
+  if(to.meta.is_distribution && store.getters.userInfo.is_distribution == 0){
+     router.replace('/')
+     return;
+  }
   if(store.getters.userInfo.is_distribution == 1){
    
     urlParam = '?id='+store.getters.userInfo.id

@@ -98,7 +98,7 @@ export default class Slider extends AbstractBaseVueMixins {
   .progress {
     position: absolute;
     height: 100%;
-    background:#FC5E64;
+    background:#ff9051;
   }
 
   .progress-btn-wrapper {
@@ -115,7 +115,7 @@ export default class Slider extends AbstractBaseVueMixins {
       box-sizing: border-box;
       width: 10px;
       height: 10px;
-      border: 3px solid #FC5E64;
+      border: 3px solid #ff9051;
       border-radius: 50%;
       background: #fff;
     }

@@ -2,42 +2,42 @@
   <div class="common_feature">
     <scroll-page @pullingUp="loadMore" :scrollData="list" v-if="list.length>0">
       <div slot="content" class="wrap content">
-        <div
-          class="common_gif"
-          @click="posterShow(imgPre+item.poster_img)"
-          v-for="item in list"
-          :key="item.id"
-        >
-          <img :src="imgPre+item.img" alt>
-          <div class="lead">
+        <div class="common_record wrap" v-for="item in list" :key="item.id" @click="posterShow(imgPre,item.poster_img,item.id)">
+          <img :src="imgPre+item.poster_img" alt>
+          <div class="lesson_info">
             <h4>{{item.title}}</h4>
-            <p>生成推广海报</p>
           </div>
+          <button type="button">生成专属海报</button>
         </div>
       </div>
     </scroll-page>
     <no-data v-else :tip-text="noDataTip"></no-data>
-    <div class="poster" v-show="show" @click.self="closePoster">
+    
+    <div class="poster" v-show="show"  @click.self="closePoster">
       <div class="poster_box">
         <div class="poster_img" id="shareImg"></div>
-        <div class="share-img" ref="box"  v-if="exam_show">
+        <button class="save_pic" @click="savePoster" type="button">长按图片保存</button>
+         <!-- v-if="exam_show" -->
+        <div class="share-img" ref="box">
           <img :src="poster" alt>
+          
           <div class="user_info">
-            <img src="../../assets/img/pic_card.png" alt class="avatar">
+            <img :src="imgPre+userInfo.top_img_path" alt class="avatar">
             <p>随心所欲</p>
-            <img src="../../assets/img/code.png" alt class="code">
+            <img :src="codeSrc" alt class="code">
           </div>
         </div>
-        <button class="save_pic" @click="savePoster" type="button">长按图片保存</button>
+        
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import AbstractBaseVue, { MyComponent, MyMixins } from "@/util/AbstractBaseVue";
+import AbstractBaseVue, { MyComponent, MyMixins,MyGetter } from "@/util/AbstractBaseVue";
 import lesson from "@/components/baseLesson.vue";
 import { LessonApi } from "@/api/lesson";
+import { otherApi } from "@/api/other";
 import { FeatureMinix } from "@/util/mixins";
 import html2canvas from "html2canvas";
 // import Canvas2Image from "canvas2image";
@@ -50,6 +50,8 @@ export default class LessonSpread extends AbstractBaseVue.Mixins(FeatureMinix) {
   show: boolean = false;
   exam_show: boolean = true;
   poster: string = "";
+  codeSrc:string = ''
+  @MyGetter('userInfo') public userInfo!: any
   // method
   init() {
     this.getList(LessonApi.lessonList);
@@ -58,13 +60,18 @@ export default class LessonSpread extends AbstractBaseVue.Mixins(FeatureMinix) {
     this.init();
   }
   canvas: any = null;
-  posterShow(imgStr: string) {
-    if (imgStr) {
-      this.show = true;
-      this.poster = imgStr;
-      this.$nextTick(()=>{
-        this.savePoster();
-      })
+  posterShow(imgPre:string,posterImg:any,id:string|number) {
+    if (posterImg) {
+        this.show = true;
+        this.poster = imgPre+posterImg;
+        otherApi.getCodeSpread({id}).then(res=>{
+            this.codeSrc = imgPre+res.data;
+            this.$nextTick(() => {
+              this.savePoster();
+            });
+        })
+    } else{
+      this.$util.showToast('该课程未上传宣传海报','warn').show()
     }
   }
   savePoster() {
@@ -79,7 +86,6 @@ export default class LessonSpread extends AbstractBaseVue.Mixins(FeatureMinix) {
     html2canvas(element, opts).then(function(canvas: any) {
       (document.getElementById("shareImg") as Element).appendChild(
         Canvas2Image.convertToPNG(canvas)
-        
       );
       that.exam_show = false;
       console.log(element, canvas, 22222222); //refs获取不到的原因，dom元素还未生成，creatd里获取不到，mounted 须在这里使用
@@ -87,10 +93,10 @@ export default class LessonSpread extends AbstractBaseVue.Mixins(FeatureMinix) {
       //   that.show = false
     });
   }
-  closePoster(){
-    (document.getElementById("shareImg") as Element).innerHTML = ''
-    this.show = false
-    this.exam_show = true
+  closePoster() {
+    (document.getElementById("shareImg") as Element).innerHTML = "";
+    this.show = false;
+    this.exam_show = true;
   }
 }
 </script>
@@ -98,32 +104,44 @@ export default class LessonSpread extends AbstractBaseVue.Mixins(FeatureMinix) {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
 @import url("../../assets/css/common/common.less");
-.common_gif {
-  width: 100%;
-  height: 55vw;
-  border-radius: 18px;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 8vw;
-  box-shadow: 0 0 4vw 1.46667vw #ddd;
+.common_record {
+  display: flex;
+  align-items: top;
+  box-sizing: border-box;
+  padding: 12px 15px;
+  background: #fff;
+  border-radius: 2px;
+  border: #fc5e64 solid 1px;
+  margin-top: 15px;
   img {
-    width: 100%;
-    height: 100%;
+    width: 85px;
+    height: 60px;
   }
-  .lead {
-    padding: 0.3rem;
-    color: #fff;
-    position: absolute;
-    left: 0.3rem;
-    top: 0.5rem;
+  .lesson_info {
+    width: 110px;
+    margin-left: 10px;
     h4 {
-      font-size: 20px;
+      font-size: 16px;
+      color: #000;
+      line-height: 1.6;
+      .ellipsis_num(2);
     }
-    p {
-      font-size: 14px;
-      margin-top: 15px;
-      margin-bottom: 10px;
-    }
+    
+  }
+  button {
+    width: 102px;
+    height: 30px;
+    background: #fc5e64;
+    font-size: 13px;
+    color: #fff;
+    border-radius: 100px;
+    display: block;
+    // position: absolute;
+    // left: 0;
+    // right: 0;
+    // bottom: 20px;
+    margin: 10px auto;
+    margin-bottom: 0;
   }
 }
 .poster {
@@ -146,7 +164,7 @@ export default class LessonSpread extends AbstractBaseVue.Mixins(FeatureMinix) {
     overflow: hidden;
   }
   .poster_img {
-    max-height: 480px;
+    max-height: 420px;
     img {
       overflow-y: auto;
     }
@@ -159,10 +177,10 @@ export default class LessonSpread extends AbstractBaseVue.Mixins(FeatureMinix) {
     color: #626469;
     border-radius: 100px;
     display: block;
-    // position: absolute;
-    // left: 0;
-    // right: 0;
-    // bottom: 20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20px;
     margin: 10px auto;
     margin-bottom: 0;
   }
@@ -170,6 +188,7 @@ export default class LessonSpread extends AbstractBaseVue.Mixins(FeatureMinix) {
 .share-img {
   width: 100%;
   position: relative;
+  top: 430px;
   & > img {
     width: 100%;
   }
@@ -180,33 +199,32 @@ export default class LessonSpread extends AbstractBaseVue.Mixins(FeatureMinix) {
     align-items: center;
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: 10px;
     right: 0;
     margin: 0 auto;
     img.avatar {
-      width: 30px;
-      height: 30px;
+      width: 40px;
+      height: 40px;
       border-radius: 100%;
-      margin: 0 15px;
+      margin-right:15px;
     }
     p {
       font-size: 14px;
       color: #333;
     }
     img.code {
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
       margin-left: 80px;
     }
   }
 }
 </style>
 <style  lang="less">
-
 .poster_img {
-    height: 480px;
-    img {
-      overflow-y: auto;
-    }
+  height: 420px;
+  img {
+    overflow-y: auto;
   }
+}
 </style>

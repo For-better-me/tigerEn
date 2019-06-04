@@ -70,5 +70,12 @@ export class LessonApi {
             data
         })
     }
+    public static lessonMyWeek(params?: {}): Promise<any> {
+        return http({
+            url: 'user/myWeekCurriculum',
+            method: 'get',
+            params
+        })
+    }
 
 }

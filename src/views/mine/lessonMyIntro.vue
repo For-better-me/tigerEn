@@ -3,8 +3,8 @@
     <img :src="imgPre+lessonBrief.img" alt class="poster">
     <div class="lesson_wrap">
       <div class="lesson_name">课程表</div>
-      <div v-if="lessonBrief.is_payment == 1">
-        <div v-for="(week,q) in lessonBrief.week_list" :key="week.id">
+      <div>
+        <div v-for="(week,q) in lessonBrief" :key="week.id">
           <div class="part_week wrap">
             <ul>
               <li>
@@ -12,7 +12,7 @@
                 <div ref="days_lesson" class="days_lesson">
                   <div
                     class="try_part wrap"
-                    v-for="day in week.days_list"
+                    v-for="day in week._child"
                     :key="day.id"
                     @click="lessonRouter(day.id,1)"
                   >
@@ -48,8 +48,8 @@ export default class LessonBrief extends AbstractBaseVue {
     this.init();
   }
   init() {
-    let id = this.$route.params.lessonId;
-    LessonApi.lessonBrief({ id }).then(res => {
+    let curriculum_id = this.$route.params.lessonId;
+    LessonApi.lessonMyWeek({ curriculum_id }).then(res => {
       this.lessonBrief = res.data;
     });
   }

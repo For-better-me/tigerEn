@@ -16,6 +16,13 @@ export class otherApi {
             data
         })
     }
+    public static getCodeSpread(data?:{},params?:{}):Promise<any>{
+        return  http({
+            url:'Code/getCodeImg',
+            method:'post',
+            data
+        })
+    }
 
     
 }
@@ -44,4 +51,5 @@ export class AreaApi {
             data
         })
     }
+    
 }

@@ -5,8 +5,8 @@
       <img :src="imgPre+infoContent.img" alt>
       <div class="audio">
         <div class="btn-play" @click="startPlayOrPause()">
-          <img src="../../assets/img/icon-play.png" style="background: #fff;" v-if='!audio.playing'>
-          <img src="../../assets/img/btn-pause.png" style="background: #FC5E64;" v-else>
+          <img src="../../assets/img/icon-play2.png" style="background: #fff;" v-if='!audio.playing'>
+          <img src="../../assets/img/btn-pause.png" style="background: #ff9051;" v-else>
         </div>
         <p>{{format(currentTime)}}</p>
         <div class="slider_wrap">
