@@ -23,7 +23,7 @@
           
           <div class="user_info">
             <img :src="imgPre+userInfo.top_img_path" alt class="avatar">
-            <p>随心所欲</p>
+            <p>{{userInfo.nickname}}</p>
             <img :src="codeSrc" alt class="code">
           </div>
         </div>
@@ -207,6 +207,7 @@ export default class LessonSpread extends AbstractBaseVue.Mixins(FeatureMinix) {
       height: 40px;
       border-radius: 100%;
       margin-right:15px;
+      box-shadow: 0 0 15px 2px #dcdcdc;
     }
     p {
       font-size: 14px;

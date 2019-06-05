@@ -36,7 +36,6 @@
 <script lang='ts'>
 import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
 import { LessonApi } from "@/api/lesson";
-import wx, { chooseWXPay } from "wx-sdk-ts";
 @MyComponent({
   components: {}
 })

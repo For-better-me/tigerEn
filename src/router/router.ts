@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import wx, { config } from 'wx-sdk-ts'
+import wx from 'wx-jssdk-ts'
 import { otherApi } from '../api/other'
 import { stringify } from 'qs'
 import qs from 'qs';
@@ -19,7 +19,7 @@ const router = new Router({
 interface wxconfig {
   debug: boolean;
   appId: string;
-  timestamp: string;
+  timestamp: number;
   nonceStr: string;
   signature: string;
   jsApiList: any;
@@ -48,7 +48,7 @@ function wxstart(data: wxconfig, shareLink: string) {
   wx.ready(() => {
     // 分享到朋友
     
-    wx.onMenuShareAppMessage({
+    wx.updateAppMessageShareData({
       title: "趣虎",
       desc: "如果现在不移民，你的未来将会...",
       link: isiOS?window.location.href:shareLink,
@@ -63,7 +63,7 @@ function wxstart(data: wxconfig, shareLink: string) {
       }
     });
     // 分享给朋友圈
-    wx.onMenuShareTimeline({
+    wx.updateTimelineShareData({
       title: "趣虎", // 分享标题
       link: isiOS?window.location.href:shareLink, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
       imgUrl: "https://static.prim.im/8cdaa42c5887ab8c6ff0.jpeg", // 分享图标
