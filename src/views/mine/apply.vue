@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="apply">
-    <p class="tip" v-if="mode == "2"">请填写相关信息，以便于快速审核通过</p>
+    <p class="tip" v-if="mode == '2'">请填写相关信息，以便于快速审核通过</p>
     <ul>
       <li>
         <input type="text" v-model="formData.name" placeholder="请输入姓名">

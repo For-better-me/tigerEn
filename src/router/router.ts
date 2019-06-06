@@ -105,7 +105,7 @@ router.beforeEach((to, from, next) => {
 
 })
 
-router.afterEach((from,to)=>{
+router.afterEach((to, from)=>{
   if(to.meta.is_distribution && store.getters.userInfo.is_distribution == 0){
      router.replace('/')
      return;

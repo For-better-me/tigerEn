@@ -3,7 +3,7 @@
     <scroll-page @pullingUp="loadMore" :scrollData="list" v-if="list.length>0">
       <div slot="content" class="wrap content">
         <div class="common_record wrap" v-for="item in list" :key="item.id" @click="posterShow(imgPre,item.poster_img,item.id)">
-          <img :src="imgPre+item.poster_img" alt>
+          <img :src="imgPre+item.img" alt>
           <div class="lesson_info">
             <h4>{{item.title}}</h4>
           </div>
