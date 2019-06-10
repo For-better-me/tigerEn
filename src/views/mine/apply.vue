@@ -14,6 +14,9 @@
       <li>
         <input type="text" v-model="formData.code" placeholder="请输入验证码">
       </li>
+      <li>
+        <input type="text" v-model="formData.code" placeholder="请输入推荐码（选填）">
+      </li>
     </ul>
     <ul>
       <li class="chooseAddr" @click="chooseSite()">
