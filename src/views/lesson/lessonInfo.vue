@@ -105,13 +105,14 @@
 </template>
 
 <script lang='ts'>
-import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
+import AbstractBaseVue, { MyComponent,MyGetter } from "@/util/AbstractBaseVue";
 import Player from "@/components/player.vue";
 import { LessonApi } from "@/api/lesson";
 @MyComponent({
   components: { Player }
 })
 export default class LessonInfo extends AbstractBaseVue {
+  @MyGetter('userInfo') public userInfo!: any
   detail: any = null;
   wordActive: number = -1;
   mounted() {
@@ -119,6 +120,7 @@ export default class LessonInfo extends AbstractBaseVue {
     console.log(this);
   }
   init() {
+    // if(this.userInfo.)
     let type: number = parseInt(this.$route.params.type);
     let id = this.$route.params.id;
     console.log(type, id, this.$route.params);

@@ -4,20 +4,33 @@
       <router-view v-if="$route.meta.keepAlive"></router-view>
     </keep-alive>
     <router-view v-if="!$route.meta.keepAlive"></router-view>
+    <back-home v-if="show"></back-home>
   </div>
 </template>
 <script lang="ts">
-import AbstractBaseVue, { MyComponent, MyAction } from "@/util/AbstractBaseVue";
+import backHome from "@/components/backHome.vue";
+import AbstractBaseVue, { MyComponent, MyAction,MyWatch } from "@/util/AbstractBaseVue";
 @MyComponent({
-  components: {}
+  components: { backHome }
 })
 export default class App extends AbstractBaseVue {
   @MyAction("GetUserInfo") public getUserInfo!: any;
+  show: boolean = true;
   created() {
     this.getUserInfo();
-    // let url = 'https://www.tjitfw.com/quhu/'
-    // url = encodeURIComponent(url)
-    // window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx16cb5a501e876d70&redirect_uri='+url+'&response_type=code&scope=snsapi_userinfo&state=8fff58aa7393ef3f3cd61945f49db12d&connect_redirect=1#wechat_redirect/'
+    if(this.$route.name == 'home' ||this.$route.name == 'lesson' ||this.$route.name == 'person'){
+      this.show = false
+    } else{
+      this.show = true
+    }
+  }
+  @MyWatch("$route")
+  watchRoute(n: any, o: any) {
+    if(n.name == 'home' ||n.name == 'lesson' ||n.name == 'person'){
+      this.show = false
+    } else{
+      this.show = true
+    }
   }
 }
 </script>
@@ -30,5 +43,4 @@ export default class App extends AbstractBaseVue {
     background: #fc5e64;
   }
 }
-
 </style>

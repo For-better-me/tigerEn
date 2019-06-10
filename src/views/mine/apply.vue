@@ -15,7 +15,7 @@
         <input type="text" v-model="formData.code" placeholder="请输入验证码">
       </li>
       <li>
-        <input type="text" v-model="formData.code" placeholder="请输入推荐码（选填）">
+        <input type="text" v-model="user_code" placeholder="请输入推荐码（选填）">
       </li>
     </ul>
     <ul>
@@ -61,6 +61,7 @@ export default class Apply extends AbstractBaseVue {
   area: any[] = [];
   indexArr: number[] = [0, 0, 0];
   updatePropsPicker: any = null;
+  user_code:string = '';
   created() {
     this.mode = this.$route.params.mode; //1是个人资料，2是申请开通分销
     document.title = this.mode == "1" ? "个人资料" : "申请";
@@ -148,11 +149,14 @@ export default class Apply extends AbstractBaseVue {
       .then(() => {
         let data = self.formData;
         if (mode == "2") {
-          if (sessionStorage.id) {
-            data = Object.assign({}, self.formData, {
-              parent_user_id: sessionStorage.id
-            });
-          }
+          // if (sessionStorage.id) {
+          //   data = Object.assign({}, self.formData, {
+          //     parent_user_id: sessionStorage.id
+          //   });
+          // }
+          data = Object.assign({}, self.formData, {
+              user_code: this.user_code
+          });
           UserApi.apply(data)
             .then(res => {
               this.$util.showToast("提交成功", "correct").show();

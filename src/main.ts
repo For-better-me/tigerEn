@@ -17,6 +17,9 @@ Vue.config.productionTip = false
 Vue.prototype.$util = util
 Vue.prototype.$http = _http
 Vue.prototype.imgPre = 'https://www.tjitfw.com'
+
+import vueClipboard from 'vue-clipboard2'
+Vue.use(vueClipboard)
 // Vue.use(VueLazyload, {
 //   preLoad: 1.3,
 //   error: '',
