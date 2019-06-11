@@ -12,7 +12,7 @@
         <b class="code_btn disable" v-else>{{captcha}}</b>
       </li>
       <li>
-        <input type="text" v-model="formData.code" placeholder="请输入验证码">
+        <input type="number" v-model="formData.code" placeholder="请输入验证码">
       </li>
       <li v-if="mode == '2'">
         <input type="text" v-model="user_code" placeholder="请输入推荐码（选填）">

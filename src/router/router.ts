@@ -6,6 +6,7 @@ import { stringify } from 'qs'
 import qs from 'qs';
 import store from '../store'
 import routerConfig from './routerConfig';
+import _util from '../util/utils'
 Vue.use(Router)
 
 const router = new Router({
@@ -83,7 +84,11 @@ router.beforeEach((to, from, next) => {
   
   // 保存分享用户的id
   if(to.query.id){
-    sessionStorage.id = to.query.id
+    if(!_util.getCookie('qh_user_id')){
+      // _util.setCookie('qh_user_id',to.query.id,3600*30)
+      _util.setCookie('qh_user_id',to.query.id,600)
+    }
+    // sessionStorage.id = to.query.id
   }
   //保存登录返回的页面路径
   if(to.path.indexOf('login') == -1){

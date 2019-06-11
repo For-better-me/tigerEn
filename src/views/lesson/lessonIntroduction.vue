@@ -136,9 +136,12 @@ export default class LessonBrief extends AbstractBaseVue {
   }
   lessonBuy() {
     let data: object = { curriculum_id: this.lessonBrief.id };
-    if (sessionStorage.id) {
+    let user_id:any = this.$util.getCookie('qh_user_id')
+    console.log(user_id)
+    alert(user_id)
+    if (user_id) {
       data = Object.assign({}, data, {
-        distribution_user_id: sessionStorage.id
+        distribution_user_id: user_id
       });
     }
     LessonApi.lessonPay(data).then(res => {
