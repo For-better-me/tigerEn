@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import wx from 'wx-jssdk-ts'
 import { otherApi } from '../api/other'
+import { UserApi } from '../api/user'
 import { stringify } from 'qs'
 import qs from 'qs';
 import store from '../store'
@@ -30,7 +31,7 @@ var isiOS:boolean = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 var urlParam :string  = ''
 function reqConfig(shareLink: string) {
   // let url = encodeURIComponent(shareLink)
-  otherApi.jsConfig({ url:shareLink }).then((response) => {
+  otherApi.getConfig({ url:shareLink }).then((response) => {
     wxstart(response.data, shareLink);
   }).catch(() => {
     console.log('err');
@@ -81,22 +82,12 @@ router.beforeEach((to, from, next) => {
   // 设置浏览器标题
   document.title = to.meta.title;
   //设置分享时的用户id 
-  
-  // 保存分享用户的id
-  if(to.query.id){
-    if(!_util.getCookie('qh_user_id')){
-      // _util.setCookie('qh_user_id',to.query.id,3600*30)
-      _util.setCookie('qh_user_id',to.query.id,600)
-    }
-    // sessionStorage.id = to.query.id
-  }
+
   //保存登录返回的页面路径
   if(to.path.indexOf('login') == -1){
     localStorage.beforeLoginUrl = to.fullPath;
   }
- 
-
-
+  
   if (to.meta.author) {
     let user = store.getters.userInfo;
     if (!user.id && to.path != '/login') {
@@ -115,27 +106,31 @@ router.afterEach((to, from)=>{
      router.replace('/')
      return;
   }
-  if(store.getters.userInfo.is_distribution == 1){
+  // if(store.getters.userInfo.is_distribution == 1){
    
-    urlParam = '?id='+store.getters.userInfo.id
-  }
+  //   urlParam = '?id='+store.getters.userInfo.id
+  // }
    // let _url = location.href.split('#')[0]
-  let _url = window.location.origin + to.fullPath
+  
   if(!isiOS){
+    let _url = window.location.origin + to.fullPath
+    reqConfig(_url)
+    console.log(_url, to)
+  } else{
+    let _url = window.location.href.split('#')[0]
     reqConfig(_url)
   }
-  console.log(_url, to)
+  
 })
 
 
 // ios 设备进入页面则进行js-sdk签名
-if(isiOS){
-  if(store.getters.userInfo.is_distribution == 1){
-    urlParam = '?id='+store.getters.userInfo.id
-  }
-  let url = window.location.href.split('#')[0]
-  reqConfig(url)
-}
+// if(isiOS){
+//   if(store.getters.userInfo.is_distribution == 1){
+//     urlParam = '?id='+store.getters.userInfo.id
+//   }
+  
+// }
 
 
 

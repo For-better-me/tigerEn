@@ -5,7 +5,16 @@
 </template>
 
 
+<script lang="ts">
+import AbstractBaseVue, { MyComponent, MyAction,MyWatch } from "@/util/AbstractBaseVue";
+@MyComponent({
+  components: {}
+})
+export default class BackHome extends AbstractBaseVue {
 
+
+}
+</script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
     .back_home{

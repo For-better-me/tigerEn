@@ -11,9 +11,9 @@
     <div class="lesson_wrap">
       <!-- <h4 class="wrap">
         课程表
-      </h4> -->
+      </h4>-->
       <!-- <div class="lesson_name"  v-if="lessonBrief.is_payment == 0">试听列表</div>
-      <div class="lesson_name" v-else>课程表</div> -->
+      <div class="lesson_name" v-else>课程表</div>-->
       <div class="lesson_name">试听列表</div>
       <div>
         <div class="part_week wrap">
@@ -59,7 +59,7 @@
             </li>
           </ul>
         </div>
-      </div> -->
+      </div>-->
       <!-- <div v-if="lessonBrief.is_payment == 1">
         <div v-for="(week,q) in lessonBrief.week_list" :key="week.id">
           <div class="part_week wrap">
@@ -84,7 +84,7 @@
             </ul>
           </div>
         </div>
-      </div> -->
+      </div>-->
     </div>
     <div class="pay_wrap">
       <div class="pay_price">
@@ -93,16 +93,16 @@
         </h6>
         <p>实付：￥{{lessonBrief.price}}</p>
       </div>
-      <div class="btn-pay" @click="lessonBuy"  v-if="lessonBrief.is_payment == 0">购买</div>
-      <div class="btn-pay btn-pay-dis"  v-else>已购买</div>
+      <div class="btn-pay" @click="getDistriId" v-if="lessonBrief.is_payment == 0">购买</div>
+      <div class="btn-pay btn-pay-dis" v-else>已购买</div>
     </div>
-    
   </div>
 </template>
 
 <script lang='ts'>
 import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
 import { LessonApi } from "@/api/lesson";
+import { RetailApi } from "@/api/retail";
 import wx from "wx-jssdk-ts";
 @MyComponent({
   components: {}
@@ -134,16 +134,19 @@ export default class LessonBrief extends AbstractBaseVue {
     // }
     this.$router.push(`/detail/${id}/${type}`);
   }
-  lessonBuy() {
+  getDistriId() {
     let data: object = { curriculum_id: this.lessonBrief.id };
-    let user_id:any = this.$util.getCookie('qh_user_id')
-    console.log(user_id)
-    alert(user_id)
-    if (user_id) {
-      data = Object.assign({}, data, {
-        distribution_user_id: user_id
-      });
-    }
+    RetailApi.getId().then(res => {
+      alert(res.data);
+      if (res.data) {
+        data = Object.assign({}, data, {
+          distribution_user_id: res.data
+        });
+      }
+      this.lessonBuy(data)
+    });
+  }
+  lessonBuy(data:any) {
     LessonApi.lessonPay(data).then(res => {
       this.wxPay(res.data);
     });
@@ -167,22 +170,18 @@ export default class LessonBrief extends AbstractBaseVue {
     });
   }
   toggle(index: number) {
-    let daysLesson = this.$refs.days_lesson as HTMLElement[]
-    let arrowLesson = this.$refs.arrow_lesson as HTMLElement[]
-    if (
-      daysLesson[index].style.display == "block"
-    ) {
+    let daysLesson = this.$refs.days_lesson as HTMLElement[];
+    let arrowLesson = this.$refs.arrow_lesson as HTMLElement[];
+    if (daysLesson[index].style.display == "block") {
       daysLesson[index].style.display = "none";
-      this.$util.removeClass(arrowLesson[index],'on')
+      this.$util.removeClass(arrowLesson[index], "on");
     } else {
       daysLesson[index].style.display = "block";
-      this.$util.addClass(arrowLesson[index],'on')
+      this.$util.addClass(arrowLesson[index], "on");
     }
   }
   toggleTry() {
-    if (
-      (this.$refs.try_lesson as HTMLElement).style.display == "block"
-    ) {
+    if ((this.$refs.try_lesson as HTMLElement).style.display == "block") {
       (this.$refs.try_lesson as HTMLElement).style.display = "none";
     } else {
       (this.$refs.try_lesson as HTMLElement).style.display = "block";

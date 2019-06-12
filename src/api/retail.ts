@@ -22,5 +22,19 @@ export class RetailApi {
             data
         })
     }
+    public static getId(data?: {}, params?: {}): Promise<any> {
+        return http({
+            url: 'Distributionageing/showAgeing',
+            method: 'post',
+            data
+        })
+    }
+    public static setId(data?: {}, params?: {}): Promise<any> {
+        return http({
+            url: 'Distributionageing/addAgeing',
+            method: 'post',
+            data
+        })
+    }
 
 }

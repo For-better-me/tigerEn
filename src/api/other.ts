@@ -8,7 +8,7 @@ export class otherApi {
             data
         })
     }
-    public static jsConfig(data?:{},params?:{}):Promise<any>{
+    public static getConfig(data?:{},params?:{}):Promise<any>{
         return  http({
             loading:false,
             url:'Share/getShareConfig',
