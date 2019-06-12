@@ -15,6 +15,7 @@ import AbstractBaseVue, {
   MyWatch
 } from "@/util/AbstractBaseVue";
 import { RetailApi } from "@/api/retail";
+import reqConfig from "@/util/enjoyWx";
 @MyComponent({
   components: { backHome }
 })
@@ -23,7 +24,10 @@ export default class App extends AbstractBaseVue {
   show: boolean = true;
   created() {
     this.getUserInfo();
-    this.recordId();
+    setTimeout(() => {
+      this.recordId();
+    }, 1000);
+
     if (
       this.$route.name == "home" ||
       this.$route.name == "lesson" ||
@@ -33,20 +37,32 @@ export default class App extends AbstractBaseVue {
     } else {
       this.show = true;
     }
+    // ios 设备进入页面则进行js-sdk签名
+    this.getIosConfig()
   }
-  recordId() {
-    if (this.$route.query.id) {
-      this.getId(this.$route.query.id);
+  getIosConfig() {
+    var u: any = navigator.userAgent;
+    var isiOS: boolean = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    if (isiOS) {
+      let _url = window.location.href.split("#")[0];
+      reqConfig(_url);
     }
   }
-  getId(distribution_user_id: any) {
+  recordId() {
+    console.log(this.$route);
+    if (this.$route.query.id) {
+      this.getDistriId(this.$route.query.id);
+    }
+  }
+  getDistriId(distribution_user_id: any) {
     RetailApi.getId().then(res => {
-      if (res.data.length > 0) {
-        this.setId(distribution_user_id);
+      let data = res.data;//疑惑：ts里空数组居然--->boolean == true，number没有length属性，所以number.length == false
+      if (data.length == 0) {
+        this.setDistriId(distribution_user_id);
       }
     });
   }
-  setId(distribution_user_id: any) {
+  setDistriId(distribution_user_id: any) {
     let data = { distribution_user_id };
     RetailApi.setId(data);
   }

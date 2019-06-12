@@ -137,8 +137,8 @@ export default class LessonBrief extends AbstractBaseVue {
   getDistriId() {
     let data: object = { curriculum_id: this.lessonBrief.id };
     RetailApi.getId().then(res => {
-      alert(res.data);
-      if (res.data) {
+      alert(`分销者id${res.data}`);
+      if (!res.data.length) {
         data = Object.assign({}, data, {
           distribution_user_id: res.data
         });
