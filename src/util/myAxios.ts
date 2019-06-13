@@ -103,6 +103,7 @@ let _http = function (opt: RequestOptions):Promise<any> {
         }).then((res:any)=>{
             if(opt.loading) load.hide();
             if(res.data.code == 1001){
+                localStorage.token = ''
                 router.push('/login')
                 reject({
                     code: 1001,

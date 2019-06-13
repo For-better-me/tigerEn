@@ -57,7 +57,7 @@ export default class App extends AbstractBaseVue {
   getDistriId(distribution_user_id: any) {
     RetailApi.getId().then(res => {
       let data = res.data;//疑惑：ts里空数组居然--->boolean == true，number没有length属性，所以number.length == false
-      if (data.length == 0) {
+      if (data.length == '') {
         this.setDistriId(distribution_user_id);
       }
     });

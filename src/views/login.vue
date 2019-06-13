@@ -51,7 +51,7 @@ export default class Login extends AbstractBaseVue {
       self.$router.replace(url);
     })
     .catch((err:any)=>{
-      self.getUser()
+      // self.getUser()
       console.log(err,'GetUserInfo')
     })
   }

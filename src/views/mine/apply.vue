@@ -149,11 +149,6 @@ export default class Apply extends AbstractBaseVue {
       .then(() => {
         let data = self.formData;
         if (mode == "2") {
-          // if (sessionStorage.id) {
-          //   data = Object.assign({}, self.formData, {
-          //     parent_user_id: sessionStorage.id
-          //   });
-          // }
           data = Object.assign({}, self.formData, {
               user_code: this.user_code
           });

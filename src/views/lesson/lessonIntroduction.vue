@@ -3,6 +3,7 @@
     <img :src="imgPre+lessonBrief.img" alt class="poster">
     <div class="intro_con_wrap wrap">
       <h4>课程介绍</h4>
+      <p>{{payCallbackTip}}</p>
       <div class="con" v-html="lessonBrief.text"></div>
       <!-- <div class="btn_open">
         <p>展开</p>
@@ -111,6 +112,7 @@ export default class LessonBrief extends AbstractBaseVue {
   lessonBrief: any = null;
   isOpen: boolean = false;
   tryList: any[] = [];
+  payCallbackTip:any = '啥也没返回呢'
   mounted() {
     this.init();
     this.lessonTry();
@@ -137,8 +139,9 @@ export default class LessonBrief extends AbstractBaseVue {
   getDistriId() {
     let data: object = { curriculum_id: this.lessonBrief.id };
     RetailApi.getId().then(res => {
-      alert(`分销者id${res.data}`);
-      if (!res.data.length) {
+      alert(`分销者id：${res.data}`);
+      if (res.data != '') {
+        alert('该订单是分销订单')
         data = Object.assign({}, data, {
           distribution_user_id: res.data
         });
@@ -149,6 +152,7 @@ export default class LessonBrief extends AbstractBaseVue {
   lessonBuy(data:any) {
     LessonApi.lessonPay(data).then(res => {
       this.wxPay(res.data);
+      this.payCallbackTip = res.data+localStorage.token
     });
   }
   wxPay(data: any) {
@@ -160,12 +164,17 @@ export default class LessonBrief extends AbstractBaseVue {
       package: data.package,
       signType: data.signType,
       paySign: data.paySign,
-      success: function() {
+      success: function(res) {
         self.$util.showToast("支付成功", "correct").show();
         self.init();
+        self.payCallbackTip = res
       },
       fail: function(err) {
-        self.$util.showToast("支付失败", "error").show();
+        self.$util.showToast(err, "error").show();
+        self.payCallbackTip = err
+      },
+      complete:function(res){
+        self.payCallbackTip = res
       }
     });
   }
