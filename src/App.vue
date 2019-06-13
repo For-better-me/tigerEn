@@ -23,7 +23,7 @@ export default class App extends AbstractBaseVue {
   @MyAction("GetUserInfo") public getUserInfo!: any;
   show: boolean = true;
   created() {
-    this.getUserInfo();
+    // this.getUserInfo();
     setTimeout(() => {
       this.recordId();
     }, 1000);
@@ -57,7 +57,7 @@ export default class App extends AbstractBaseVue {
   getDistriId(distribution_user_id: any) {
     RetailApi.getId().then(res => {
       let data = res.data;//疑惑：ts里空数组居然--->boolean == true，number没有length属性，所以number.length == false
-      if (data.length == '') {
+      if (data == '') {
         this.setDistriId(distribution_user_id);
       }
     });

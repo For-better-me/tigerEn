@@ -3,7 +3,6 @@
     <img :src="imgPre+lessonBrief.img" alt class="poster">
     <div class="intro_con_wrap wrap">
       <h4>课程介绍</h4>
-      <p>{{payCallbackTip}}</p>
       <div class="con" v-html="lessonBrief.text"></div>
       <!-- <div class="btn_open">
         <p>展开</p>
@@ -152,7 +151,6 @@ export default class LessonBrief extends AbstractBaseVue {
   lessonBuy(data:any) {
     LessonApi.lessonPay(data).then(res => {
       this.wxPay(res.data);
-      this.payCallbackTip = res.data+localStorage.token
     });
   }
   wxPay(data: any) {
@@ -167,14 +165,11 @@ export default class LessonBrief extends AbstractBaseVue {
       success: function(res) {
         self.$util.showToast("支付成功", "correct").show();
         self.init();
-        self.payCallbackTip = res
       },
       fail: function(err) {
         self.$util.showToast(err, "error").show();
-        self.payCallbackTip = err
       },
       complete:function(res){
-        self.payCallbackTip = res
       }
     });
   }

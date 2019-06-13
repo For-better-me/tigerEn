@@ -12,14 +12,14 @@ const router = new Router({
   // route level code-splitting
   // this generates a separate chunk (about.[hash].js) for this route
   // which is lazy-loaded when the route is visited.
-  mode:'history',
+  mode: 'history',
   // base:'/quhu',
-  routes:routerConfig
+  routes: routerConfig
 })
 
-var u:any = navigator.userAgent;
-var isiOS:boolean = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-var urlParam :string  = ''
+var u: any = navigator.userAgent;
+var isiOS: boolean = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+var urlParam: string = ''
 
 router.beforeEach((to, from, next) => {
   // 设置浏览器标题
@@ -27,40 +27,36 @@ router.beforeEach((to, from, next) => {
   //设置分享时的用户id 
 
   //保存登录返回的页面路径
-  if(to.path.indexOf('login') == -1){
+  if (to.path.indexOf('login') == -1) {
     localStorage.beforeLoginUrl = to.fullPath;
   }
-  
-  if (to.meta.author) {
-    let user = store.getters.userInfo;
-    if (!user.id && to.path != '/login') {
-      next('/login')
-      return false
-    }
 
-
+  let user = store.getters.userInfo;
+  if (!user.id && to.path != '/login') {
+    next('/login')
+    return false
   }
   next()
 
 })
 
-router.afterEach((to, from)=>{
-  if(to.meta.is_distribution && store.getters.userInfo.is_distribution == 0){
-     router.replace('/')
-     return;
+router.afterEach((to, from) => {
+  if (to.meta.is_distribution && store.getters.userInfo.is_distribution == 0) {
+    router.replace('/')
+    return;
   }
   // if(store.getters.userInfo.is_distribution == 1){
-   
+
   //   urlParam = '?id='+store.getters.userInfo.id
   // }
-   // let _url = location.href.split('#')[0]
-  
-  if(!isiOS){
+  // let _url = location.href.split('#')[0]
+
+  if (!isiOS) {
     let _url = window.location.origin + to.fullPath
     reqConfig(_url)
     console.log(_url, to)
-  } 
-  
+  }
+
 })
 
 export default router

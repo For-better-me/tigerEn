@@ -27,7 +27,7 @@
         <textarea rows="6" v-model="formData.address" placeholder="请输入详细地址"></textarea>
       </li>
     </ul>
-    <div class="submit_btn" @click="submitForm">立即绑定</div>
+    <div class="submit_btn" @click="submitEvent">立即绑定</div>
   </div>
 </template>
 
@@ -61,7 +61,7 @@ export default class Apply extends AbstractBaseVue {
   area: any[] = [];
   indexArr: number[] = [0, 0, 0];
   updatePropsPicker: any = null;
-  user_code:string = '';
+  user_code: string = "";
   created() {
     this.mode = this.$route.params.mode; //1是个人资料，2是申请开通分销
     document.title = this.mode == "1" ? "个人资料" : "申请";
@@ -140,6 +140,13 @@ export default class Apply extends AbstractBaseVue {
       });
     });
   }
+  submitEvent(){
+    if(this.mode == '2'){
+      this.showBtn();
+    } else{
+      this.submitForm()
+    }
+  }
   //  表单提交
   submitForm() {
     let self = this;
@@ -150,7 +157,7 @@ export default class Apply extends AbstractBaseVue {
         let data = self.formData;
         if (mode == "2") {
           data = Object.assign({}, self.formData, {
-              user_code: this.user_code
+            user_code: this.user_code
           });
           UserApi.apply(data)
             .then(res => {
@@ -206,6 +213,33 @@ export default class Apply extends AbstractBaseVue {
       .catch(err => {
         this.disable = false;
       });
+  }
+  showBtn() {
+    let self = this
+    this.$createDialog({
+      type: "confirm",
+      icon: "cubeic-alert",
+      title: "",
+      content: "您确定不填写推荐码吗？",
+      confirmBtn: {
+        text: "确定提交",
+        active: false,
+        disabled: false,
+        href: "javascript:;"
+      },
+      cancelBtn: {
+        text: "返回填写",
+        active: true,
+        disabled: false,
+        href: "javascript:;"
+      },
+      onConfirm: () => {
+        self.submitForm()
+      },
+      onCancel: () => {
+        
+      }
+    }).show();
   }
 }
 </script>
