@@ -25,6 +25,7 @@ export default class lesson extends AbstractBaseVueMixins {
     }
     getDate(val:any){
         if(val){
+            val = parseInt(val) * 1000;
             val = new Date(val);
             val = this.$util.formatDate(val,'-')
             let date = val.split('-')
