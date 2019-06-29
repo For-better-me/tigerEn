@@ -25,11 +25,11 @@ export default class lesson extends AbstractBaseVueMixins {
     }
     getDate(val:any){
         if(val){
-            val = parseInt(val) * 1000;
-            val = new Date(val);
-            val = this.$util.formatDate(val,'-')
+            // val = parseInt(val) * 1000;
+            // val = new Date(val);
+            // val = this.$util.formatDate(val,'-')
             let date = val.split('-')
-            return `${date[1]}月${date[2]}日`
+            return `${date[0]}月${date[1]}日`
         }
         
     }
