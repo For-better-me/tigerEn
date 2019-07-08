@@ -23,6 +23,12 @@ export class otherApi {
             data
         })
     }
+    public static getAboutUs(data?:{},params?:{}):Promise<any>{
+        return  http({
+            url:'config/getContactInfo',
+            method:'get',
+        })
+    }
 
     
 }

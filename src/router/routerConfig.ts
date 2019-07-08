@@ -165,6 +165,14 @@ export default [
             is_distribution:true
           }
         },
+        {
+          path: '/aboutUs',
+          name: 'aboutUs',
+          component: () => import('../views/mine/aboutUs.vue'),
+          meta: {
+            title: '联系我们',
+          }
+        },
     
    
     

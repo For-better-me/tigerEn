@@ -22,6 +22,10 @@
           <img src="../../assets/img/icon_fx.png" alt>
           <p>分销中心</p>
         </li>
+        <router-link tag='li' to='/aboutUs'  class="arrow">
+          <img src="../../assets/img/icon_us.png" alt>
+          <p>联系我们</p>
+        </router-link>
       </ul>
     </div>
     <div class="layer_wrap" v-show="layerShow">
