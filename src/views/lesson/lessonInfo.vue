@@ -1,6 +1,6 @@
 <template>
   <div class="lesson_info" v-if="detail">
-    <img class="lesson_poster" :src="imgPre+detail.img" alt>
+    <!-- <img class="lesson_poster" :src="imgPre+detail.img" alt> -->
     <div class="common_box">
       <!-- <div class="common_tit">One time</div> -->
       <div v-for="item in detail.text" :key="item.id">
