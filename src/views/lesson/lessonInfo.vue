@@ -1,6 +1,6 @@
 <template>
   <div class="lesson_info" v-if="detail">
-    <!-- <img class="lesson_poster" :src="imgPre+detail.img" alt> -->
+    <img class="lesson_poster" :src="imgPre+detail.img" alt>
     <div class="common_box">
       <!-- <div class="common_tit">One time</div> -->
       <div v-for="item in detail.text" :key="item.id">
@@ -158,4 +158,12 @@ export default class LessonInfo extends AbstractBaseVue {
 </script>
 <style lang='less'>
 @import url("../../assets/css/lesson/info.less");
+</style>
+<style lang="less">
+.audio{
+  margin: 10px 0 !important;
+  p{
+    color: #868686 !important;
+  }
+}
 </style>

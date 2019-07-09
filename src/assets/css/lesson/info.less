@@ -1,111 +1,112 @@
 @import url('../common/common.less');
-@keyframes play{
-    0%{
-        transform:scale(1)
+@keyframes play {
+    0% {
+        transform: scale(1)
     }
-    50%{
-        transform:scale(1.025)
+    50% {
+        transform: scale(1.025)
     }
-    100%{
-        transform:scale(1)
+    100% {
+        transform: scale(1)
     }
 }
-.lesson_info{
+
+.lesson_info {
     // background: linear-gradient(to bottom, #FF878C 0%,#FC5E64 100%);
     // padding: 30px 15px;
     // background: #FF878C;
-    min-height: 100%;
-    background: #fe7a76;
-    border:#fe7a76 solid 8px;
-    .lesson_poster{
+    .lesson_poster {
         width: 100%;
         display: block;
     }
 }
+
 .common_box {
-  position: relative;
-  padding: 20px 12px;
-  border-radius: 8px;
-  box-sizing: border-box;
-  background: #fff;
-  .common_tit {
-    width: 146px;
-    height: 41px;
-    background: url(../../img/bg-tit.png) no-repeat center;
-    background-size: 100%;
-    margin: 0 auto;
-    margin-top: -34px;
-    margin-bottom: 20px;
-    font-size: 18px;
-    color: #fff;
-    text-align: center;
-    line-height: 42px;
-  }
-  .common_item {
-      margin: 20px auto;
-  }
-  .item_text{
-      padding: 0 15px;
-      p{
-        font-size: 16px;
-        color: #545454;
-        line-height: 1.6;
-        margin-bottom: 10px;
+    position: relative;
+    padding: 20px 12px;
+    box-sizing: border-box;
+    background: #fff;
+    border: #fe7a76 solid 8px;
+    border-top: none;
+    border-bottom: none;
+    .common_tit {
+        width: 146px;
+        height: 41px;
+        background: url(../../img/bg-tit.png) no-repeat center;
+        background-size: 100%;
+        margin: 0 auto;
+        margin-top: -34px;
+        margin-bottom: 20px;
+        font-size: 18px;
+        color: #fff;
         text-align: center;
-      }
-      
-  }
-}
-.words {
-  ul {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    li {
-      width: 160px;
-      height: 75px;
-      box-sizing: border-box;
-      border: #fc686d solid 0.7px;
-      padding: 15px;
-      display: flex;
-      align-items: center;
-      border-radius: 4px;
-      margin: 8px 0;
-      transition: all 0.5s linear;
-      &.active{
-        -webkit-animation-duration: 1s;
-        animation-duration: 1s;
-        -webkit-animation-fill-mode: both;
-        animation-fill-mode: both;
-        -webkit-animation-name: play;
-        animation-name: play;
-      }
-      img {
-        width: 50px;
-        height: 50px;
-        // border-radius: 50%;
-        margin-right: 15px;
-        flex-shrink: 0;
-      }
-      .text {
-        font-size: 0.28rem;
-        color: #333;
-        width: 88px;
-        p{
-            margin-top: 6px;
-            .ellipsis;
-        }
-      }
+        line-height: 42px;
     }
-  }
+    .common_item {
+        margin: 20px auto;
+    }
+    .item_text {
+        padding: 0 15px;
+        p {
+            font-size: 16px;
+            color: #545454;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    }
 }
-.module_con{
-    p{
+
+.words {
+    ul {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        li {
+            width: 162px;
+            height: 75px;
+            box-sizing: border-box;
+            border: #fc686d solid 0.7px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            border-radius: 4px;
+            margin: 8px 0;
+            transition: all 0.5s linear;
+            &.active {
+                -webkit-animation-duration: 1s;
+                animation-duration: 1s;
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+                -webkit-animation-name: play;
+                animation-name: play;
+            }
+            img {
+                width: 52px;
+                height: 50px; // border-radius: 50%;
+                margin-right: 15px;
+                flex-shrink: 0;
+            }
+            .text {
+                font-size: 0.28rem;
+                color: #333;
+                width: 88px;
+                p {
+                    margin-top: 6px;
+                    .ellipsis;
+                }
+            }
+        }
+    }
+}
+
+.module_con {
+    p {
         font-size: 14px;
         color: #666;
         line-height: 1.6;
     }
-    .target{
+    .target {
         width: 320px;
         box-sizing: border-box;
         padding: 10px 20px;
@@ -115,16 +116,16 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        p{
+        p {
             color: #fff;
             font-size: 14px;
         }
-        .tit{
+        .tit {
             width: 60px;
             text-align: center;
             border-right: #fff solid 0.7px;
             padding-right: 10px;
-            img{
+            img {
                 width: 22px;
                 height: 26px;
                 background: #fff;
@@ -132,66 +133,78 @@
                 margin: 5px auto;
             }
         }
-        .target_info{
+        .target_info {
             width: 190px;
         }
     }
 }
-.module_item{
-    p.guide{
+
+.module_item {
+    p.guide {
         width: 150px;
-        margin:0 auto;
+        margin: 0 auto;
         text-align: center;
         font-size: 14px;
         color: #FC686D;
         line-height: 1.6;
     }
-    img{
+    img {
         width: 257px;
-        margin:30px auto;
+        margin: 30px auto;
         display: block;
     }
 }
-.item_video{
-    video{
+
+.item_video {
+    video {
         width: 100%;
     }
 }
-.palyer{
+
+.palyer {
     margin-top: 100px;
 }
-.music_avatar{
+
+.music_avatar {
     display: inline-block;
     vertical-align: middle;
     width: 45px;
     height: 45px;
     overflow: hidden;
     margin-right: 20px;
-    img{
+    img {
         width: 100%;
         height: 100%;
         border-radius: 50%;
         background: #000;
     }
 }
-.music{
+
+.music {
     width: 80%;
     display: inline-block;
     vertical-align: middle;
+    box-sizing: border-box;
+    background: #f6f6f6;
+    padding-right: 8px;
+    padding-left: 12px;
+    border-radius: 4px;
+    margin: 8px 0;
 }
-.game{
+
+.game {
     position: relative;
     margin-bottom: 15px;
-    a{
+    a {
         display: block;
         width: 100%;
         border-radius: 10px;
         overflow: hidden;
-        img{
+        img {
             width: 100%;
         }
     }
-    p{
+    p {
         font-size: 0.44rem;
         color: #fff;
         position: absolute;
