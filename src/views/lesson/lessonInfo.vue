@@ -1,6 +1,6 @@
 <template>
   <div class="lesson_info" v-if="detail">
-    <!-- <img class="lesson_poster" :src="imgPre+detail.img" alt> -->
+    <img class="lesson_poster" :src="imgPre+detail.img" alt>
     <div class="common_box">
       <!-- <div class="common_tit">One time</div> -->
       <div v-for="item in detail.text" :key="item.id">
@@ -24,7 +24,7 @@
         </div>
         <div class="common_item item_text" v-if="item.type == 2" v-html="item.desc">
         </div>
-        <div class="common_item" v-if="item.type == 3">
+        <div class="" v-if="item.type == 3" style="padding:12px 0;">
           <img :src="imgPre+item.img" alt>
         </div>
         <div class="common_item" v-if="item.type == 4">
@@ -56,7 +56,7 @@
             >您的设备不支持HTML5播放器</video>
           </div>
         </div>
-        <div class="common_item" v-if="item.type == 6">
+        <div class="common_item" v-if="item.type == 6" style="padding:0 12px;">
           <div class="game" v-for="(game,q) in item.text" :key="q">
             <a :href="game.game_url">
               <p>{{game.game_title}}</p>
@@ -158,4 +158,12 @@ export default class LessonInfo extends AbstractBaseVue {
 </script>
 <style lang='less'>
 @import url("../../assets/css/lesson/info.less");
+</style>
+<style lang="less">
+.audio{
+  margin: 10px 0 !important;
+  p{
+    color: #868686 !important;
+  }
+}
 </style>

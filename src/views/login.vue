@@ -21,7 +21,7 @@ export default class Login extends AbstractBaseVue {
         let time:number = localStorage.time;
         let now:number = new Date().getTime()
         let secondHDay :number = 24*60*60*1000
-        const Expire_Date  = 7//token有效期
+        const Expire_Date  = 1//token有效期
         if((now - time)/secondHDay < Expire_Date){
           this.getUser()
         } else{

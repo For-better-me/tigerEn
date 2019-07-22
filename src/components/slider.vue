@@ -78,7 +78,7 @@ export default class Slider extends AbstractBaseVueMixins {
       }
     @MyWatch('percent')
     watchPercent(newPercent:number, oldPercent:number){
-      if (newPercent > 0 && !this.touchInfo.initiated) {
+      if (newPercent >= 0 && !this.touchInfo.initiated) {
           // 进度条总长度
           const barWidth = (this.$refs.progressBar as HTMLElement).clientWidth - this.btnWidth
           const offsetWidth = barWidth * newPercent
@@ -98,7 +98,7 @@ export default class Slider extends AbstractBaseVueMixins {
   .progress {
     position: absolute;
     height: 100%;
-    background:#ff9051;
+    background:#525252;
   }
 
   .progress-btn-wrapper {
@@ -115,7 +115,7 @@ export default class Slider extends AbstractBaseVueMixins {
       box-sizing: border-box;
       width: 10px;
       height: 10px;
-      border: 3px solid #ff9051;
+      border: 3px solid #525252;
       border-radius: 50%;
       background: #fff;
     }
