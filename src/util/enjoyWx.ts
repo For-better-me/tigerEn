@@ -34,9 +34,9 @@ function wxstart(data: wxconfig, shareLink: string) {
 
         wx.updateAppMessageShareData({
             title: "趣虎",
-            desc: "如果现在不移民，你的未来将会...",
+            desc: "趣虎",
             link: isiOS ? window.location.href : shareLink,
-            imgUrl: "https://static.prim.im/8cdaa42c5887ab8c6ff0.jpeg",
+            imgUrl: "http://m.vipqm.cn/logo.png",
             success: function () {
                 // alert(urlParam)
                 console.log("分享成功");
@@ -50,7 +50,7 @@ function wxstart(data: wxconfig, shareLink: string) {
         wx.updateTimelineShareData({
             title: "趣虎", // 分享标题
             link: isiOS ? window.location.href : shareLink, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: "https://static.prim.im/8cdaa42c5887ab8c6ff0.jpeg", // 分享图标
+            imgUrl: "http://m.vipqm.cn/logo.png", // 分享图标
             success: function () {
                 // alert(urlParam)
                 // 用户点击了分享后执行的回调函数

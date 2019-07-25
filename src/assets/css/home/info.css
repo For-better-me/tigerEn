@@ -130,6 +130,10 @@
   width: 100%;
   border-radius: 50%;
 }
+.song_info .audio .btn-play .icon {
+  width: 86%;
+  height: 86%;
+}
 .song_info .audio p {
   font-size: 16px;
   padding-right: 5px;

@@ -21,7 +21,7 @@ module.exports = {
     disableHostCheck: true,
     proxy: {
       '/apis': {
-        target: 'https://www.tjitfw.com',
+        target: 'http://m.vipqm.cn',
         ws: true,
         changeOrigin: true,
         pathRewrite: {

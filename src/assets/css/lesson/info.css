@@ -120,19 +120,14 @@
     transform: scale(1);
   }
 }
-.lesson_info {
-  min-height: 100%;
-  background: #fe7a76;
-  border: #fe7a76 solid 8px;
-}
 .lesson_info .lesson_poster {
   width: 100%;
   display: block;
 }
 .common_box {
   position: relative;
-  padding: 20px 12px;
-  border-radius: 8px;
+  padding: 20px 0px;
+  padding-bottom: 0;
   box-sizing: border-box;
   background: #fff;
 }
@@ -150,7 +145,11 @@
   line-height: 42px;
 }
 .common_box .common_item {
-  margin: 20px auto;
+  margin: 0px auto;
+  border: #fff solid 8px;
+  border-top: none;
+  border-bottom: none;
+  padding: 10px 12px;
 }
 .common_box .item_text {
   padding: 0 15px;
@@ -168,11 +167,11 @@
   flex-wrap: wrap;
 }
 .words ul li {
-  width: 160px;
+  width: 162px;
   height: 75px;
   box-sizing: border-box;
   border: #fc686d solid 0.7px;
-  padding: 15px;
+  padding: 14px;
   display: flex;
   align-items: center;
   border-radius: 4px;
@@ -188,7 +187,7 @@
   animation-name: play;
 }
 .words ul li img {
-  width: 50px;
+  width: 52px;
   height: 50px;
   margin-right: 15px;
   flex-shrink: 0;
@@ -277,10 +276,17 @@
   width: 80%;
   display: inline-block;
   vertical-align: middle;
+  box-sizing: border-box;
+  background: #f6f6f6;
+  padding-right: 8px;
+  padding-left: 12px;
+  border-radius: 4px;
+  margin: 8px 0;
 }
 .game {
   position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 .game a {
   display: block;

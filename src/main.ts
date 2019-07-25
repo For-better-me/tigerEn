@@ -16,7 +16,7 @@ Vue.component('NoData',NoData)
 Vue.config.productionTip = false
 Vue.prototype.$util = util
 Vue.prototype.$http = _http
-Vue.prototype.imgPre = 'https://www.tjitfw.com'
+Vue.prototype.imgPre = 'http://m.vipqm.cn'
 
 import vueClipboard from 'vue-clipboard2'
 Vue.use(vueClipboard)

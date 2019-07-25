@@ -38,7 +38,7 @@ export default class Login extends AbstractBaseVue {
       let url:string = window.location.href;
       // url = decodeURIComponent(url)
       url = encodeURIComponent(url)
-      window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx16cb5a501e876d70&response_type=code&scope=snsapi_userinfo&state=1234a7393ef3f3cd61945f49db12d&redirect_uri='+url+'&connect_redirect=1#wechat_redirect/'
+      window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx9a20f5a69b500a93&response_type=code&scope=snsapi_userinfo&state=1234a7393ef3f3cd61945f49db12d&redirect_uri='+url+'&connect_redirect=1#wechat_redirect/'
     
   }
   getUser(){
