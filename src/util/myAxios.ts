@@ -104,7 +104,7 @@ let _http = function (opt: RequestOptions):Promise<any> {
             if(opt.loading) load.hide();
             if(res.data.code == 1001){
                 localStorage.token = ''
-                router.push('/login')
+                router.replace('/login',()=>{},(err)=>{router.go(0)})//不能从当前页面跳转到当前页面，会走异常
                 reject({
                     code: 1001,
                     msg: opt.url + '接口需要token参数，但系统中不存在token'

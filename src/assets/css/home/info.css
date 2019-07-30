@@ -112,6 +112,9 @@
 .song_info {
   background: #fff;
   padding: 10px 0 50px 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100%;
 }
 .song_info .audio {
   height: 30px;

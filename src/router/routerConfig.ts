@@ -6,7 +6,7 @@ export default [
           name: 'login',
           component: Login,
           meta: {
-            title: '趣虎',
+            title: '登录',
             keepAlive: false,
           }
         },

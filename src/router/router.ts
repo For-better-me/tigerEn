@@ -30,22 +30,20 @@ router.beforeEach((to, from, next) => {
   if (to.path.indexOf('login') == -1) {
     localStorage.beforeLoginUrl = to.fullPath;
   }
-
-  // let user = store.getters.userInfo;
-  // if (!user.id && to.path != '/login') {
-  //   next('/login')
-  //   return false
-  // }
+  
+  let user = store.getters.userInfo;
+  if (!user.id && to.path != '/login') {
+    next({
+      replace:true,
+      path:'/login'
+    })
+    return false
+  }
   next()
 
 })
 
 router.afterEach((to, from) => {
-  let user = store.getters.userInfo;
-  if (!user.id && to.path != '/login') {
-    router.replace('/login')
-    return;
-  }
   if (to.meta.is_distribution && store.getters.userInfo.is_distribution == 0) {
     router.replace('/')
     return;

@@ -34,9 +34,9 @@ function wxstart(data: wxconfig, shareLink: string) {
 
         wx.updateAppMessageShareData({
             title: "趣虎",
-            desc: "趣虎",
-            link: isiOS ? window.location.href : shareLink,
-            imgUrl: "http://m.vipqm.cn/logo.png",
+            desc: "专注0-6岁儿童英语启蒙，亲子早教",
+            link: isiOS ? window.location.origin : shareLink,
+            imgUrl: "http://m.vipqm.cn/public/logo.png",
             success: function () {
                 // alert(urlParam)
                 console.log("分享成功");
@@ -49,8 +49,8 @@ function wxstart(data: wxconfig, shareLink: string) {
         // 分享给朋友圈
         wx.updateTimelineShareData({
             title: "趣虎", // 分享标题
-            link: isiOS ? window.location.href : shareLink, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: "http://m.vipqm.cn/logo.png", // 分享图标
+            link: isiOS ? window.location.origin : shareLink, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: "http://m.vipqm.cn/public/logo.png", // 分享图标
             success: function () {
                 // alert(urlParam)
                 // 用户点击了分享后执行的回调函数
