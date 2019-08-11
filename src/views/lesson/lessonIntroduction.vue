@@ -1,8 +1,8 @@
 <template>
   <div class="introduction" v-if="lessonBrief">
     <img :src="imgPre+lessonBrief.img" alt class="poster">
-    <div class="intro_con_wrap wrap">
-      <h4>课程介绍</h4>
+    <div class="intro_con_wrap">
+      <h4 class='wrap'>课程介绍</h4>
       <div class="con" v-html="lessonBrief.text"></div>
       <!-- <div class="btn_open">
         <p>展开</p>
