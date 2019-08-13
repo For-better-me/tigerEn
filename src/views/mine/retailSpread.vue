@@ -20,7 +20,9 @@
 
     <div class="poster" v-show="show" @click.self="closePoster">
       <div class="poster_box">
-        <div class="poster_img" id="shareImg"></div>
+        <div class="btn_close"  @click="closePoster"><img src="../../assets/img/close.png" alt=""></div>
+        <div class="poster_img" id="shareImg">
+        </div>
         <button class="save_pic" @click="savePoster" type="button">长按图片保存</button>
         <!-- v-if="exam_show" -->
         <div class="share-img" ref="box">
@@ -169,11 +171,25 @@ export default class LessonSpread extends AbstractBaseVue.Mixins(FeatureMinix) {
     padding: 10px;
     margin: 1.4rem auto;
     position: relative;
-    max-height: 500px;
-    overflow: hidden;
+    height: 500px;
+    .btn_close{
+      width: 23px;
+      height: 23px;
+      padding: 2px;
+      background: #fff;
+      border-radius: 100%;
+      overflow: hidden;
+      position: absolute;
+      top: -21px;
+      right: -21px;;
+      img{
+        width: 100%;
+      }
+    }
   }
   .poster_img {
-    max-height: 420px;
+    height: 420px;
+    overflow-y: auto;
     img {
       overflow-y: auto;
     }
@@ -231,17 +247,10 @@ export default class LessonSpread extends AbstractBaseVue.Mixins(FeatureMinix) {
     }
 
     img.code {
-      width: 60px;
-      height: 60px;
+      width: 80px;
+      height: 80px;
     }
   }
 }
 </style>
-<style  lang="less">
-.poster_img {
-  height: 420px;
-  img {
-    overflow-y: auto;
-  }
-}
-</style>
+
