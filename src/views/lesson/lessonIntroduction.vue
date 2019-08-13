@@ -1,19 +1,15 @@
 <template>
   <div class="introduction" v-if="lessonBrief">
-    <img :src="imgPre+lessonBrief.img" alt class="poster">
+    <!-- <img :src="imgPre+lessonBrief.img" alt class="poster"> -->
     <div class="intro_con_wrap">
-      <h4 class='wrap'>课程介绍</h4>
+      <!-- <h4 class='wrap'>课程介绍</h4> -->
       <div class="con" v-html="lessonBrief.text"></div>
       <!-- <div class="btn_open">
         <p>展开</p>
       </div>-->
     </div>
     <div class="lesson_wrap">
-      <!-- <h4 class="wrap">
-        课程表
-      </h4>-->
-      <!-- <div class="lesson_name"  v-if="lessonBrief.is_payment == 0">试听列表</div>
-      <div class="lesson_name" v-else>课程表</div>-->
+     
       <div class="lesson_name">试听列表</div>
       <div>
         <div class="part_week wrap">

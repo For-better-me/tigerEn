@@ -36,5 +36,11 @@ export class RetailApi {
             data
         })
     }
+    public static getTip(): Promise<any> {
+        return http({
+            url: 'config/getcooperation',
+            method: 'get'
+        })
+    }
 
 }

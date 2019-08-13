@@ -31,8 +31,7 @@
     <div class="layer_wrap" v-show="layerShow">
       <div class="layer">
         <b class="close" @click="layerShow=false"></b>
-        <h4>分销规则文字介绍</h4>
-        <p>文字介绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字绍文字介绍文字介绍文字介绍文字介 文字介绍文字介绍文字介绍文字介绍文字介 文字介绍文字介绍文字介绍文字介绍文字介 文字介</p>
+        <div class="retail_tip" v-html="retailTip"></div>
         <div class="btn" v-if='!applyStatus' @click="$router.push('/apply/2')">立即申请</div>
         <div class="btn wait" v-else>审核中</div>
       </div>
@@ -46,7 +45,7 @@
 <script lang="ts">
 import AbstractBaseVue, { MyComponent,MyAction,MyGetter} from "@/util/AbstractBaseVue";
 import tab from "@/components/tab.vue";
-
+import {RetailApi} from '@/api/retail'
 @MyComponent({
   components: {
     tab
@@ -55,10 +54,12 @@ import tab from "@/components/tab.vue";
 export default class Person extends AbstractBaseVue {
   layerShow:boolean = false;
   applyStatus:boolean = false;//false未通过/没申请 ，true审核中
+  retailTip:string = ''
   @MyGetter('userInfo') public userInfo!: any
   @MyAction('GetUserInfo') public getUserInfo!: any
   created(){
     this.getUserInfo()
+    this.getRetailTip()
   }
  
   goRetail(){
@@ -72,6 +73,11 @@ export default class Person extends AbstractBaseVue {
           this.applyStatus = true;
       }
     }
+  }
+  getRetailTip(){
+    RetailApi.getTip().then(res=>{
+      this.retailTip = res.data
+    })
   }
     
 }

@@ -216,6 +216,10 @@ export default class Apply extends AbstractBaseVue {
   }
   showBtn() {
     let self = this
+    if(self.user_code){
+      self.submitForm()
+      return;
+    }
     this.$createDialog({
       type: "confirm",
       icon: "cubeic-alert",
