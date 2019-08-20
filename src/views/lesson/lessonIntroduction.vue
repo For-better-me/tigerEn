@@ -89,7 +89,7 @@
         </h6>
         <p>实付：￥{{lessonBrief.price}}</p>
       </div>
-      <div class="btn-pay" @click="getDistriId" v-if="lessonBrief.is_payment == 0">购买</div>
+      <div class="btn-pay" @click="_getDistriId" v-if="lessonBrief.is_payment == 0">购买</div>
       <div class="btn-pay btn-pay-dis" v-else>已购买</div>
     </div>
   </div>
@@ -108,9 +108,13 @@ export default class LessonBrief extends AbstractBaseVue {
   isOpen: boolean = false;
   tryList: any[] = [];
   payCallbackTip:any = '啥也没返回呢'
+  created(){
+    
+  }
   mounted() {
     this.init();
     this.lessonTry();
+    this.recordId()
   }
   init() {
     let id = this.$route.params.lessonId;
@@ -131,10 +135,9 @@ export default class LessonBrief extends AbstractBaseVue {
     // }
     this.$router.push(`/detail/${id}/${type}`);
   }
-  getDistriId() {
+  _getDistriId() {
     let data: object = { curriculum_id: this.lessonBrief.id };
     RetailApi.getId().then(res => {
-      // alert(`分销者id：${res.data}`);
       if (res.data != '') {
         // alert('该订单是分销订单')
         data = Object.assign({}, data, {
@@ -143,6 +146,23 @@ export default class LessonBrief extends AbstractBaseVue {
       }
       this.lessonBuy(data)
     });
+  }
+  recordId() {
+    if (this.$route.query.id) {
+      this.getDistriId(this.$route.query.id);
+    }
+  }
+  getDistriId(distribution_user_id: any) {
+    RetailApi.getId().then(res => {
+      let data = res.data;//疑惑：ts里空数组居然--->boolean == true，number没有length属性，所以number.length == false
+      if (data == '') {
+        this.setDistriId(distribution_user_id);
+      }
+    });
+  }
+  setDistriId(distribution_user_id: any) {
+    let data = { distribution_user_id };
+    RetailApi.setId(data);
   }
   lessonBuy(data:any) {
     LessonApi.lessonPay(data).then(res => {

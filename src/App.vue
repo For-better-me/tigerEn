@@ -24,10 +24,6 @@ export default class App extends AbstractBaseVue {
   show: boolean = true;
   created() {
     // this.getUserInfo();
-    setTimeout(() => {
-      this.recordId();
-    }, 1000);
-
     if (
       this.$route.name == "home" ||
       this.$route.name == "lesson" ||
