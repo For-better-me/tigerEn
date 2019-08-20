@@ -1,9 +1,9 @@
 <template>
   <div class="word_card">
     <div class="word_show" ref="test">
-      <img :src='imgPre+currentWord.img' alt>
-      <h4>{{currentWord.title}}</h4>
-      <p>{{currentWord.english_title}}</p>
+      <img :src="imgPre+currentWord.img" alt />
+      <!-- <h4>{{currentWord.title}}</h4>
+      <p>{{currentWord.english_title}}</p>-->
 
       <audio
         @play="onPlay"
@@ -18,14 +18,14 @@
     </div>
     <div class="btn_control">
       <div class="btn prev" @click="prev()">
-        <img src="../../assets/img/arrow1.png" alt>
+        <img src="../../assets/img/arrow1.png" alt />
       </div>
       <div class="btn play" @click="startPlayOrPause()">
-        <img src="../../assets/img/btn-play.png" v-if='!audio.playing' alt>
-        <img src="../../assets/img/btn-pause.png" v-else alt>
+        <img src="../../assets/img/btn-play.png" v-if="!audio.playing" alt />
+        <img src="../../assets/img/btn-pause.png" v-else alt />
       </div>
       <div class="btn next" @click="next()">
-        <img src="../../assets/img/arrow2.png" alt>
+        <img src="../../assets/img/arrow2.png" alt />
       </div>
     </div>
   </div>
@@ -33,7 +33,7 @@
 
 <script lang="ts">
 import AbstractBaseVue, { MyComponent, MyWatch } from "@/util/AbstractBaseVue";
-import {WordApi} from '@/api/feature'
+import { WordApi } from "@/api/feature";
 @MyComponent({
   components: {}
 })
@@ -52,12 +52,29 @@ export default class WordCard extends AbstractBaseVue {
   MAXPLAYCOUNT: number = 3;
 
   //    methods
-  init(){
-      WordApi.list().then(res=>{
-          this.audioList = res.data;
-          this.currentWord = res.data[0];
-          this.wordsTotle = res.data.length-1;
-      })
+  init() {
+    WordApi.list().then(res => {
+      let data = this.sortCard(res.data);
+      this.audioList = data;
+      this.currentWord = data[0];
+      this.wordsTotle = data.length - 1;
+    });
+  }
+  sortCard(data: any[]) {
+    let cardId = this.$route.query.id;
+    let newData = data;
+    if (cardId) {
+      for (let i = 0; i < newData.length; i++) {
+        let card = newData[i];
+        if (card.id == cardId) {
+          data.splice(i,1)
+          data.unshift(card)
+          break;
+        }
+      }
+    }
+    console.log(newData,data)
+    return data;
   }
   startPlayOrPause() {
     return this.audio.playing ? this.pause() : this.play();
@@ -116,10 +133,10 @@ export default class WordCard extends AbstractBaseVue {
     }, 1000);
   }
 
-//   生命周期
-    created(){
-        this.init()
-    }
+  //   生命周期
+  created() {
+    this.init();
+  }
 }
 </script>
 
