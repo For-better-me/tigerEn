@@ -1,8 +1,7 @@
 <template>
   <div class="song_info" v-if="infoContent">
+    <img :src="imgPre+infoContent.img" alt>
     <div class="wrap">
-      <!-- <img src="imgPre+infoContent.img" alt=""> -->
-      <img :src="imgPre+infoContent.img" alt>
       <div class="audio">
         <div class="btn-play" @click="startPlayOrPause()">
           <!-- <svg  v-if='!audio.playing' t="1562830592228" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5521"><path d="M874.9 571.1L217.4 950.8C171.8 977 115 944.2 115 891.6V132.4c0-52.5 56.9-85.4 102.4-59.1l657.5 379.6c45.5 26.3 45.5 91.9 0 118.2z" fill="#525252" p-id="5522"></path></svg>

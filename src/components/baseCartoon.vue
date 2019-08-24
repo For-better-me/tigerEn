@@ -1,5 +1,5 @@
 <template>
-    <div class="common_gif" @click="goDetail(item.id)">
+    <div class="common_gif" @click="goDetail(item.url)">
         <img :src="imgPre+item.img" alt="">
         <p>{{item.title}}</p>
         <!-- <span>{{text}}</span> -->
@@ -15,8 +15,8 @@ export default class lesson extends AbstractBaseVueMixins {
     @MyProp() private text!: string;
     @MyProp() private item!: any;
     @MyProp({required:false,type:Function}) infoEvent!: ()=>{};
-    goDetail(id:string|number){
-        this.$emit('infoEvent',id)
+    goDetail(url:string|number){
+        this.$emit('infoEvent',url)
     }
 }
 

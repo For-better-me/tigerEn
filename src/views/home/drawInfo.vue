@@ -1,5 +1,6 @@
 <template>
   <div class="pic_info" v-if="infoContent">
+    <img :src="imgPre+infoContent.img" alt>
     <div class="wrap">
       <h4>{{infoContent.title}}</h4>
       <p>{{infoContent.time}}</p>

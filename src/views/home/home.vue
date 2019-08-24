@@ -73,7 +73,7 @@ export default class Home extends AbstractBaseVue.Mixins(FeatureMinix) {
     } else if(item.tid == 208){
       window.location.href = item.url
     } else if(item.tid == 209){
-      this.$router.push('/card')
+      this.$router.push('/card?id='+item.id)
     }
   }
 }

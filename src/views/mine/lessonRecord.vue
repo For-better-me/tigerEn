@@ -40,11 +40,7 @@ export default class LessonRecord extends AbstractBaseVue.Mixins(FeatureMinix) {
     const type: any = this.$route.params.type;
     if (type == 1) {
       //我的课程
-      if(is_begins == 0){
-        this.$util.showToast('该课程未开课','warn').show()
-      } else{
-        this.$router.push('/introductionMy/'+id)
-      }
+      this.$router.push('/introductionMy/'+id)
       
     } else {
       //浏览记录

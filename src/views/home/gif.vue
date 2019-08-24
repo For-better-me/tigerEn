@@ -2,7 +2,7 @@
   <div class="common_feature">
       <scroll-page @pullingUp='loadMore' :scrollData='list'>
          <div slot='content' class='wrap content'>
-             <item-gif text='动画' v-for='item in list' :key='item.id' :item = 'item'></item-gif>
+             <item-gif text='动画' v-for='item in list' :key='item.id' :item = 'item' @infoEvent='link'></item-gif>
          </div>
       </scroll-page>
     
@@ -22,6 +22,14 @@ export default class Song extends AbstractBaseVue.Mixins(FeatureMinix)  {
 
   created(){
 	  this.getList(CartoonApi.list)
+  }
+  link(url:string){
+    if(url){
+      window.location.href = url
+    } else{
+      this.$util.showToast('当前动画跑偏啦~','warn').show()
+    }
+     
   }
   
 }
