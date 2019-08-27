@@ -67,13 +67,13 @@ export default class WordCard extends AbstractBaseVue {
       for (let i = 0; i < newData.length; i++) {
         let card = newData[i];
         if (card.id == cardId) {
-          data.splice(i,1)
-          data.unshift(card)
+          data.splice(i, 1);
+          data.unshift(card);
           break;
         }
       }
     }
-    console.log(newData,data)
+    console.log(newData, data);
     return data;
   }
   startPlayOrPause() {
@@ -83,14 +83,18 @@ export default class WordCard extends AbstractBaseVue {
     if (this.indexAudio > 0) {
       this.indexAudio--;
     }
+    if (this.indexAudio == 0) {
+      this.$util.showToast("当前是第一个单词哦！", "warn").show();
+    }
 
     console.log(this.indexAudio);
   }
   next() {
     if (this.indexAudio < this.wordsTotle) {
       this.indexAudio++;
+    } else {
+      this.$util.showToast("已经是最后一个单词了哦！", "warn").show();
     }
-    console.log(this.indexAudio);
   }
   play() {
     (this.$refs.audio as HTMLAudioElement).play();
