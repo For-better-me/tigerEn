@@ -20,7 +20,7 @@
         </router-link>
         <li class="arrow" @click='goRetail'>
           <img src="../../assets/img/icon_fx.png" alt>
-          <p>分销中心</p>
+          <p>合伙人中心</p>
         </li>
         <router-link tag='li' to='/aboutUs'  class="arrow">
           <img src="../../assets/img/icon_us.png" alt>

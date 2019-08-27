@@ -152,7 +152,7 @@ export default [
           name: 'retailCenter',
           component: () => import('../views/mine/retailCenter.vue'),
           meta: {
-            title: '分销中心',
+            title: '合伙人中心',
             is_distribution:true
           }
         },
