@@ -40,6 +40,7 @@ export default class LessonRecord extends AbstractBaseVueMixins {
             overflow: hidden;
             img{
                 width:100%;
+                min-height: 110px;
             };
         }
         h4{

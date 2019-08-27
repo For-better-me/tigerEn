@@ -19,8 +19,8 @@ export default class BackHome extends AbstractBaseVue {
 <style scoped lang="less">
     .back_home{
         position: fixed;
-        right: 32px;
-        bottom: 66px;
+        right: 20px;
+        bottom: 33px;
         width: 50px;
         height: 50px;
         background: #fff;

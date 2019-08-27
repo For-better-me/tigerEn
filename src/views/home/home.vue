@@ -29,7 +29,9 @@
           <h4>精彩推荐</h4>
           <ul>
             <li v-for='item in list' :key='item.id' @click="hotInfo(item)">
-              <img :src="imgPre+item.img" alt>
+              <div class="img">
+                <img :src="imgPre+item.img" alt>
+              </div>
               <p>{{item.title}}</p>
             </li>
           </ul>

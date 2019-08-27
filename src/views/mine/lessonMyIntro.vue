@@ -1,6 +1,6 @@
 <template>
   <div class="introduction" v-if="lessonBrief">
-    <img :src="imgPre+poster_img" alt class="poster" />
+    <img :src="imgPre+poster_img" alt class="poster" v-if='poster_img'/>
     <div class="lesson_wrap">
       <div class="lesson_name">课程表</div>
       <div>
@@ -53,7 +53,7 @@ export default class LessonBrief extends AbstractBaseVue {
     let curriculum_id = this.$route.params.lessonId;
     LessonApi.lessonMyWeek({ curriculum_id }).then(res => {
       this.lessonBrief = res.data;
-      this.poster_img = res.img;
+      this.poster_img = res.curriculum_img;
     });
   }
 
