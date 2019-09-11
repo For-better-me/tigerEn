@@ -5,7 +5,7 @@
         </div>
         <h4>{{item.title}}</h4>
         <div class="text">
-            <span>{{item.time}}</span>
+            <!-- <span>{{item.time}}</span> -->
             <img src="../assets/img/icon_eye.png" alt="">
             <span>{{item.hits}}</span>
         </div>
@@ -61,7 +61,7 @@ export default class LessonRecord extends AbstractBaseVueMixins {
             img{
                 width: 15px;
                 height: 15px;
-                margin-left: 10px;
+                margin-left: 2px;
                 margin-right: 4px;
                 display: block;
             }
