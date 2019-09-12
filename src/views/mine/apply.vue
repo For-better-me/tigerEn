@@ -62,9 +62,24 @@ export default class Apply extends AbstractBaseVue {
   indexArr: number[] = [0, 0, 0];
   updatePropsPicker: any = null;
   user_code: string = "";
+  @MyGetter('userInfo') public userInfo!: any
+  @MyAction('GetUserInfo') public getUserInfo!: any
   created() {
     this.mode = this.$route.params.mode; //1是个人资料，2是申请开通分销
     document.title = this.mode == "1" ? "个人资料" : "申请";
+    if(this.mode == 2){
+      this.getUserInfo().then(res=>{
+        if(res.data.is_distribution == 1){
+          this.$router.replace('/retailCenter')
+        } else{
+          if(this.userInfo.distribution == [] || this.userInfo.distribution.status == 2){
+              
+          } else if(this.userInfo.distribution.status == 1){
+              this.$router.replace('/person')
+          }
+        }
+      })
+    }
   }
   mounted() {
     this.getProvince();
