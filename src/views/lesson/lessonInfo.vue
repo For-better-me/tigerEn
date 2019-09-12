@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="common_item item_text" v-if="item.type == 2" v-html="item.desc"></div>
-        <div class v-if="item.type == 3" style="padding:12px 0;">
+        <div class v-if="item.type == 3" class='pic_show'>
           <img :src="imgPre+item.img" alt />
         </div>
         <div class="common_item" v-if="item.type == 4">
@@ -57,7 +57,7 @@
             >您的设备不支持HTML5播放器</video>
           </div>
         </div>
-        <div class="common_item" v-if="item.type == 6" style="padding:0 12px;">
+        <div class="common_item" v-if="item.type == 6">
           <div class="game" v-for="(game,q) in item.text" :key="q">
             <a :href="game.game_url">
               <p>{{game.game_title}}</p>

@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="apply">
+  <div class="apply" v-show='pageShow'>
     <p class="tip" v-if="mode == '2'">请填写相关信息，以便于快速审核通过</p>
     <ul>
       <li>
@@ -32,7 +32,7 @@
 </template>
 
 <script lang='ts'>
-import AbstractBaseVue, { MyComponent } from "@/util/AbstractBaseVue";
+import AbstractBaseVue, { MyComponent ,MyAction} from "@/util/AbstractBaseVue";
 import { UserApi } from "@/api/user";
 import { AreaApi } from "@/api/other";
 @MyComponent({
@@ -62,23 +62,25 @@ export default class Apply extends AbstractBaseVue {
   indexArr: number[] = [0, 0, 0];
   updatePropsPicker: any = null;
   user_code: string = "";
-  @MyGetter('userInfo') public userInfo!: any
+  pageShow:boolean = false;
   @MyAction('GetUserInfo') public getUserInfo!: any
   created() {
     this.mode = this.$route.params.mode; //1是个人资料，2是申请开通分销
     document.title = this.mode == "1" ? "个人资料" : "申请";
-    if(this.mode == 2){
-      this.getUserInfo().then(res=>{
+    if(this.mode == '2'){
+      this.getUserInfo().then((res:any)=>{
         if(res.data.is_distribution == 1){
           this.$router.replace('/retailCenter')
         } else{
-          if(this.userInfo.distribution == [] || this.userInfo.distribution.status == 2){
-              
-          } else if(this.userInfo.distribution.status == 1){
+          if(res.data.distribution == [] || res.data.distribution.status == 2){
+              this.pageShow = true
+          } else if(res.data.distribution.status == 1){
               this.$router.replace('/person')
           }
         }
       })
+    } else{
+      this.pageShow = true
     }
   }
   mounted() {

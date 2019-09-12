@@ -26,10 +26,11 @@
 }
 
 .common_box {
-    position  : relative;
+    position      : relative;
     padding-bottom: 0;
-    box-sizing: border-box;
-    background: #fff;
+    box-sizing    : border-box;
+    background    : #fff;
+    min-height    : 100vh;
 
     .common_tit {
         width          : 146px;
@@ -50,7 +51,17 @@
         border       : #fff solid 8px;
         border-top   : none;
         border-bottom: none;
-        padding : 10px 12px;
+        padding      : 10px 12px;
+        &.pic_show{
+            padding : 12px 0px;
+        }
+        &:nth-last-of-type(1) {
+            padding-bottom: 0 !important;
+        }
+
+        &:nth-of-type(1) {
+            padding-top   : 0 !important;
+        }
     }
 
     .item_text {
@@ -214,9 +225,9 @@
 }
 
 .game {
-    position     : relative;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    position        : relative;
+    // margin-bottom: 10px;
+    // margin-top   : 10px;
 
     a {
         display      : block;
