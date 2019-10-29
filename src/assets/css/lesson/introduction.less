@@ -9,13 +9,13 @@
 .intro_con_wrap {
     background: #fff;
     position: relative;
+    font-size: 0;
     h4 {
         font-size: 18px;
     }
     .con {
         overflow: hidden;
-        line-height: 1.5;
-        padding-bottom: 10px;
+        /*padding-bottom: 10px;*/
         &.open{
             height: auto;
         }
@@ -40,8 +40,8 @@
 }
 
 .lesson_wrap {
-    margin-top: 20px;
-    margin-bottom: 50px;
+    /*margin-top: 20px;*/
+    margin-bottom: 100px;
     h4 {
         font-size: 18px;
         span {
@@ -57,7 +57,7 @@
         text-indent: 15px;
         font-size: 18px;
         color: #FC5E64;
-        margin-top: 10px;
+        /*margin-top: 10px;*/
     }
 }
 
@@ -110,13 +110,19 @@
             .border_1px(top);
             h2{
                 line-height:52px;
-                font-size: 20px;
                 height:52px;
-                color: #444444;
+                display: flex;
+                justify-content: space-between;
+                p{
+                    font-size: 20px;
+                    color: #444444;
+                    width: 300px;
+                    .ellipsis;
+                }
                 b{
                     width: 30px;
                     height: 100%;
-                    float: right;
+                    flex-shrink: 0;
                     .common_arrow;
                     transition: all 0.4s ease;
                     background-position: center;
@@ -134,37 +140,42 @@
 
 .pay_wrap {
     .border_1px(top);
-    background: #fff;
+    background: #fb79cc;
     position: fixed;
     left: 0;
     bottom: 0;
     right: 0;
     height: 49px;
     overflow: hidden;
-    padding: 0 15px;
+    padding: 16px 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     .pay_price {
         float: left;
         h6 {
-            font-size: 10px;
-            margin-top: 7px;
+            // font-size: 14px;
+            margin-top: 9px;
+            s{
+                font-size: 15px;
+                color: #eee;
+            }
         }
         p {
-            font-size: 12px;
-            color: #FC5E64;
-            margin-top: 6px;
+            font-size: 20px;
+            color: #fff;
+            margin-bottom: 8px;
         }
     }
     .btn-pay {
-        width: 90px;
-        height: 30px;
-        background: rgba(252, 94, 100, 1);
-        border-radius: 44px;
-        font-size: 16px;
-        color: #fff;
-        line-height: 30px;
+        width: 120px;
+        height: 45px;
+        background:#fff;
+        border-radius: 46px;
+        font-size: 22px;
+        color: #fb79cc;
+        line-height: 45px;
         text-align: center;
         float: right;
-        margin-top: 9.5px;
     }
     .btn-pay-dis{
         background: #e2e2e2;

@@ -27,30 +27,38 @@ body,html{ min-height: 100%; background: #f8f8f8 !important}
             display: inline-block;
             vertical-align: top
         }
-        .income_info{
-            display: inline-block;
-            vertical-align: top;
-            width: 160px;
-            margin-left: 10px;
-            h5{
-                font-size: 16px;
-                color: #333;
-                .ellipsis;
-                margin-top: 9px;
+        h6{
+            border-bottom: #eaeaea solid 1px;
+            padding-bottom: 3px;
+            span{
+                font-size: 13px;
+                color: #999;
+                line-height: 30px;
+                margin-right: 20px;
             }
+        }
+        h5{
+            font-size: 16px;
+            color: #333;
+            .ellipsis;
+            margin-top: 15px;
+        }
+        .income_info{
+            padding-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
             span{
                 font-size: 14px;
                 color: #999;
-                padding-top: 8px;
-                display: block;
+            }
+            p{
+                font-size: 14px;
+                color: #ff0000;
             }
         }
-        p{
-            font-size: 14px;
-            color: #ff0000;
-            float: right;
-            margin-top: 32px;
-        }
+       
     }
 }
 

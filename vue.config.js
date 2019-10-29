@@ -1,4 +1,11 @@
+const version = 1.20;
 module.exports = {
+  configureWebpack: { // webpack 配置
+    output: { // 输出重构  打包编译后的 文件名称  【模块名称.版本号.时间戳】
+      filename: `js/[name].${version}.js`,
+      chunkFilename: `js/[name].${version}.js`
+    },
+  },
   css: {
     loaderOptions: {
       stylus: {

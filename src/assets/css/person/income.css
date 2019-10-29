@@ -141,31 +141,38 @@ html {
   display: inline-block;
   vertical-align: top;
 }
-.income_list li .income_info {
-  display: inline-block;
-  vertical-align: top;
-  width: 160px;
-  margin-left: 10px;
+.income_list li h6 {
+  border-bottom: #eaeaea solid 1px;
+  padding-bottom: 3px;
 }
-.income_list li .income_info h5 {
+.income_list li h6 span {
+  font-size: 13px;
+  color: #999;
+  line-height: 30px;
+  margin-right: 20px;
+}
+.income_list li h5 {
   font-size: 16px;
   color: #333;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  margin-top: 9px;
+  margin-top: 15px;
+}
+.income_list li .income_info {
+  padding-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
 }
 .income_list li .income_info span {
   font-size: 14px;
   color: #999;
-  padding-top: 8px;
-  display: block;
 }
-.income_list li p {
+.income_list li .income_info p {
   font-size: 14px;
   color: #ff0000;
-  float: right;
-  margin-top: 32px;
 }
 .cube-slide-item {
   min-height: 550px;

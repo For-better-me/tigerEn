@@ -15,7 +15,7 @@ export default [
           name: '404',
           component: Home,
           meta: {
-            title: '趣虎',
+            title: '首页',
             keepAlive: true,
           }
         },
@@ -24,8 +24,9 @@ export default [
           name: 'home',
           component: Home,
           meta: {
-            title: '趣虎',
+            title: '首页',
             keepAlive: true,
+            isTab:true
           }
         },
         {
@@ -35,6 +36,7 @@ export default [
           meta: {
             title: '课程',
             keepAlive: true,
+            isTab:true
           }
         },
         {
@@ -44,7 +46,8 @@ export default [
           meta: {
             title: '个人中心',
             keepAlive: false,
-            author:true
+            author:true,
+            isTab:true
           }
         },
         {
@@ -61,7 +64,8 @@ export default [
           name: 'introduction',
           component: () => import('../views/lesson/lessonIntroduction.vue'),
           meta: {
-            title: '课程介绍'
+            title: '课程介绍',
+            keepAlive: false,
           }
         },
         {
@@ -69,7 +73,8 @@ export default [
           name: 'introductionMy',
           component: () => import('../views/mine/lessonMyIntro.vue'),
           meta: {
-            title: '课程介绍'
+            title: '课程介绍',
+            keepAlive: false,
           }
         },
         {
@@ -77,7 +82,8 @@ export default [
           name: 'detail',
           component: () => import('../views/lesson/lessonInfo.vue'),
           meta: {
-            title: '课程详情'
+            title: '课程详情',
+            keepAlive: false,
           }
         },
         {
@@ -86,7 +92,8 @@ export default [
           component: () => import('../views/mine/income.vue'),
           meta: {
             title: '收入明细',
-            is_distribution:true
+            is_distribution:true,
+            keepAlive: false,
           }
         },
         {
@@ -94,7 +101,8 @@ export default [
           name: 'apply',
           component: () => import('../views/mine/apply.vue'),
           meta: {
-            title: '申请'
+            title: '申请',
+            keepAlive: false,
           }
         },
         {
@@ -120,7 +128,8 @@ export default [
           name: 'card',
           component: () => import('../views/home/card.vue'),
           meta: {
-            title: '词卡'
+            title: '词卡',
+            keepAlive: true,
           }
         },
         {
@@ -128,7 +137,8 @@ export default [
           name: 'songInfo',
           component: () => import('../views/home/songInfo.vue'),
           meta: {
-            title: '儿歌详情'
+            title: '儿歌详情',
+            keepAlive: true,
           }
         },
         {
@@ -136,7 +146,8 @@ export default [
           name: 'drawInfo',
           component: () => import('../views/home/drawInfo.vue'),
           meta: {
-            title: '绘本详情'
+            title: '绘本详情',
+            keepAlive: true,
           }
         },
         {
@@ -171,6 +182,7 @@ export default [
           component: () => import('../views/mine/aboutUs.vue'),
           meta: {
             title: '联系我们',
+            keepAlive: true,
           }
         },
     

@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="common_item item_text" v-if="item.type == 2" v-html="item.desc"></div>
-        <div class v-if="item.type == 3" class='pic_show'>
+        <div v-if="item.type == 3" class='common_item pic_show'>
           <img :src="imgPre+item.img" alt />
         </div>
         <div class="common_item" v-if="item.type == 4">
@@ -48,6 +48,7 @@
               :poster="imgPre+video.video_img"
               preload="auto"
               controls="controls"
+              loop="loop"
               webkit-playsinline="true"
               playsinline="true"
               x-webkit-airplay="allow"
@@ -142,7 +143,7 @@ export default class LessonInfo extends AbstractBaseVue {
     });
   }
   videoPlay() {
-    if ((this.$refs.player as any[]).length > 0) {
+    if ((this.$refs.player as any[]) && (this.$refs.player as any[]).length > 0) {
       this.stopAll();
     }
   }

@@ -12,7 +12,8 @@ import backHome from "@/components/backHome.vue";
 import AbstractBaseVue, {
   MyComponent,
   MyAction,
-  MyWatch
+  MyWatch,
+  MyGetter
 } from "@/util/AbstractBaseVue";
 import { RetailApi } from "@/api/retail";
 import reqConfig from "@/util/enjoyWx";
@@ -21,20 +22,27 @@ import reqConfig from "@/util/enjoyWx";
 })
 export default class App extends AbstractBaseVue {
   @MyAction("GetUserInfo") public getUserInfo!: any;
+  @MyGetter("list") public list!: any[]; //测试数据
+
   show: boolean = true;
   created() {
-    // this.getUserInfo();
+    if (localStorage.token) {
+      this.getUserInfo();
+    }
     if (
       this.$route.name == "home" ||
       this.$route.name == "lesson" ||
-      this.$route.name == "person"
+      this.$route.name == "login" ||
+      this.$route.name == "person" ||
+      this.$route.name == "card"||
+      this.$route.name == "introduction"
     ) {
       this.show = false;
     } else {
       this.show = true;
     }
     // ios 设备进入页面则进行js-sdk签名
-    this.getIosConfig()
+    this.getIosConfig();
   }
   getIosConfig() {
     var u: any = navigator.userAgent;
@@ -52,8 +60,8 @@ export default class App extends AbstractBaseVue {
   }
   getDistriId(distribution_user_id: any) {
     RetailApi.getId().then(res => {
-      let data = res.data;//疑惑：ts里空数组居然--->boolean == true，number没有length属性，所以number.length == false
-      if (data == '') {
+      let data = res.data; //疑惑：ts里空数组居然--->boolean == true，number没有length属性，所以number.length == false
+      if (data == "") {
         this.setDistriId(distribution_user_id);
       }
     });
@@ -64,7 +72,14 @@ export default class App extends AbstractBaseVue {
   }
   @MyWatch("$route")
   watchRoute(n: any, o: any) {
-    if (n.name == "home" || n.name == "lesson" || n.name == "person") {
+    if (
+      n.name == "home" ||
+      n.name == "lesson" ||
+      n.name == "person" ||
+      n.name == "login" ||
+      n.name == "card"||
+      n.name == "introduction"
+    ) {
       this.show = false;
     } else {
       this.show = true;

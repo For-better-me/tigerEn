@@ -129,6 +129,7 @@
   padding-bottom: 0;
   box-sizing: border-box;
   background: #fff;
+  min-height: 100vh;
 }
 .common_box .common_tit {
   width: 146px;
@@ -149,6 +150,17 @@
   border-top: none;
   border-bottom: none;
   padding: 10px 12px;
+}
+.common_box .common_item.pic_show {
+  padding: 12px 0px;
+  font-size: 0;
+  border: none;
+}
+.common_box .common_item:nth-last-of-type(1) {
+  padding-bottom: 0 !important;
+}
+.common_box .common_item:nth-of-type(1) {
+  padding-top: 0 !important;
 }
 .common_box .item_text {
   padding: 0 15px;
@@ -284,8 +296,6 @@
 }
 .game {
   position: relative;
-  margin-bottom: 10px;
-  margin-top: 10px;
 }
 .game a {
   display: block;

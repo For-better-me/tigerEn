@@ -118,14 +118,14 @@
 .intro_con_wrap {
   background: #fff;
   position: relative;
+  font-size: 0;
 }
 .intro_con_wrap h4 {
   font-size: 18px;
 }
 .intro_con_wrap .con {
   overflow: hidden;
-  line-height: 1.5;
-  padding-bottom: 10px;
+  /*padding-bottom: 10px;*/
 }
 .intro_con_wrap .con.open {
   height: auto;
@@ -148,8 +148,8 @@
   right: 0;
 }
 .lesson_wrap {
-  margin-top: 20px;
-  margin-bottom: 50px;
+  /*margin-top: 20px;*/
+  margin-bottom: 100px;
 }
 .lesson_wrap h4 {
   font-size: 18px;
@@ -166,21 +166,21 @@
   text-indent: 15px;
   font-size: 18px;
   color: #FC5E64;
-  margin-top: 10px;
+  /*margin-top: 10px;*/
 }
 .try_part {
   padding-top: 20px;
   position: relative;
 }
 .try_part img {
-  width: 90px;
-  height: 60px;
+  width: 81px;
+  height: 54px;
   display: inline-block;
   vertical-align: top;
   background: #FC5E64;
 }
 .try_part .try_word {
-  width: 180px;
+  width: 190px;
   margin-left: 10px;
   display: inline-block;
   vertical-align: top;
@@ -239,14 +239,22 @@
 }
 .part_week ul li h2 {
   line-height: 52px;
-  font-size: 20px;
   height: 52px;
+  display: flex;
+  justify-content: space-between;
+}
+.part_week ul li h2 p {
+  font-size: 20px;
   color: #444444;
+  width: 300px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .part_week ul li h2 b {
   width: 30px;
   height: 100%;
-  float: right;
+  flex-shrink: 0;
   background: url(../../img/icon_arrow.png) no-repeat right center;
   background-size: 9px 16px;
   transition: all 0.4s ease;
@@ -257,14 +265,16 @@
 }
 .pay_wrap {
   position: relative;
-  background: #fff;
+  background: #fb79cc;
   position: fixed;
   left: 0;
   bottom: 0;
   right: 0;
   height: 49px;
   overflow: hidden;
-  padding: 0 15px;
+  padding: 16px 15px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 .pay_wrap:before {
   content: "";
@@ -288,25 +298,27 @@
   float: left;
 }
 .pay_wrap .pay_price h6 {
-  font-size: 10px;
-  margin-top: 7px;
+  margin-top: 9px;
+}
+.pay_wrap .pay_price h6 s {
+  font-size: 15px;
+  color: #eee;
 }
 .pay_wrap .pay_price p {
-  font-size: 12px;
-  color: #FC5E64;
-  margin-top: 6px;
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 8px;
 }
 .pay_wrap .btn-pay {
-  width: 90px;
-  height: 30px;
-  background: #fc5e64;
-  border-radius: 44px;
-  font-size: 16px;
-  color: #fff;
-  line-height: 30px;
+  width: 120px;
+  height: 45px;
+  background: #fff;
+  border-radius: 46px;
+  font-size: 22px;
+  color: #fb79cc;
+  line-height: 45px;
   text-align: center;
   float: right;
-  margin-top: 9.5px;
 }
 .pay_wrap .btn-pay-dis {
   background: #e2e2e2;

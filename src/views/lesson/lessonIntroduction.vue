@@ -84,10 +84,10 @@
     </div>
     <div class="pay_wrap">
       <div class="pay_price">
+        <p>抢购价：￥{{lessonBrief.price}}</p>
         <h6>
           <s>售价：￥{{lessonBrief.primary_price}}</s>
         </h6>
-        <p>实付：￥{{lessonBrief.price}}</p>
       </div>
       <div class="btn-pay" @click="_getDistriId" v-if="lessonBrief.is_payment == 0">购买</div>
       <div class="btn-pay btn-pay-dis" v-else>已购买</div>

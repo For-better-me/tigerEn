@@ -23,6 +23,7 @@ var urlParam: string = ''
 
 router.beforeEach((to, from, next) => {
   // 设置浏览器标题
+  console.log(from,to)
   document.title = to.meta.title;
   //设置分享时的用户id 
 
@@ -30,20 +31,48 @@ router.beforeEach((to, from, next) => {
   if (to.path.indexOf('login') == -1) {
     localStorage.beforeLoginUrl = to.fullPath;
   }
-  
-  let user = store.getters.userInfo;
-  if (!user.id && to.path != '/login') {
-    next({
-      replace:true,
-      path:'/login'
-    })
-    return false
+
+  // let user = store.getters.userInfo;
+
+  if (to.path != '/login') {
+    if (!localStorage.token) {
+      // next({
+      //   replace: true,
+      //   path: '/login'
+      // })
+      router.replace('/login')
+      next()
+      return false
+    } else {
+      // 如果有token 但是vuex中没有用户登录信息则做登录操作
+      // let time: number = localStorage.time;
+      // let now: number = new Date().getTime()
+      // let secondHDay: number = 24 * 60 * 60 * 1000
+      // const Expire_Date = 1//token有效期
+      // if ((now - time) / secondHDay < Expire_Date) {
+       
+      // } else {
+      //   next({
+      //     replace: true,
+      //     path: '/login'
+      //   })
+      //   return false
+      // }
+      
+      next()
+      
+
+    }
+
+  } else {
+    next()
   }
-  next()
+
 
 })
 
 router.afterEach((to, from) => {
+  store.commit('SET_LIST',to.path)
   if (to.meta.is_distribution && store.getters.userInfo.is_distribution == 0) {
     router.replace('/')
     return;

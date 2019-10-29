@@ -67,10 +67,12 @@ export default class Person extends AbstractBaseVue {
       this.$router.push('/retailCenter')
     } else{
       this.layerShow = true
-      if(this.userInfo.distribution == [] || this.userInfo.distribution.status == 2){
+      if(this.userInfo.distribution == null || this.userInfo.distribution.status == 2){//2 是审核失败
           this.applyStatus = false;
-      } else if(this.userInfo.distribution.status == 1){
+      } else if(this.userInfo.distribution.status == 1){//审核中
           this.applyStatus = true;
+          
+          
       }
     }
   }

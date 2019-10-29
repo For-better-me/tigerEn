@@ -16,9 +16,11 @@ Vue.use(Vuex)
 let user: userParams = {
  
 }
+let route:any[] = []
 export default new Vuex.Store({
   state: {
-    user: user
+    user: user,
+    route:route
   },
   getters:{
     userInfo(state){
@@ -28,11 +30,18 @@ export default new Vuex.Store({
         return JSON.parse(sessionStorage.userInfo)
       }
      
+    },
+    list(state){
+      return state.route
+     
     }
   },
   mutations: {
     SET_USERINFO: (state, info) => {
       state.user = info
+    },
+    SET_LIST: (state, info) => {
+      state.route.push(info)
     }
   },
   actions: {

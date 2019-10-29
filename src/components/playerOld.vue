@@ -94,7 +94,7 @@ export default class Player extends AbstractBaseVue {
     this.audio.playing = false;
     (this.$refs.audio as HTMLAudioElement).currentTime = 0;
     this.currentTime = 0;
-    alert(".sotp");
+    // alert(".sotp");
     console.log(this.percent);
   }
   percentChange(percent: number) {

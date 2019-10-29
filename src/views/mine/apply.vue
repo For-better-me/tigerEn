@@ -1,26 +1,26 @@
 <!--  -->
 <template>
-  <div class="apply" v-show='pageShow'>
+  <div class="apply" v-show="pageShow">
     <p class="tip" v-if="mode == '2'">请填写相关信息，以便于快速审核通过</p>
     <ul>
       <li>
-        <input type="text" v-model="formData.name" placeholder="请输入姓名">
+        <input type="text" v-model="formData.name" placeholder="请输入姓名" />
       </li>
       <li class="tel">
-        <input type="number" v-model="formData.phone" placeholder="请输入手机号">
+        <input type="number" v-model="formData.phone" placeholder="请输入手机号" />
         <b class="code_btn" @click="sendCode" v-if="!disable">{{captcha}}</b>
         <b class="code_btn disable" v-else>{{captcha}}</b>
       </li>
       <li>
-        <input type="number" v-model="formData.code" placeholder="请输入验证码">
+        <input type="number" v-model="formData.code" placeholder="请输入验证码" />
       </li>
       <li v-if="mode == '2'">
-        <input type="text" v-model="user_code" placeholder="请输入推荐码（选填）">
+        <input type="text" v-model="user_code" placeholder="请输入推荐码（选填）" />
       </li>
     </ul>
     <ul>
       <li class="chooseAddr" @click="chooseSite()">
-        <input type="text" v-if="!province_name" placeholder="请选择地址" readonly>
+        <input type="text" v-if="!province_name" placeholder="请选择地址" readonly />
         <p v-else>{{province_name}} - {{city_name}} - {{area_name}}</p>
       </li>
       <li>
@@ -32,7 +32,7 @@
 </template>
 
 <script lang='ts'>
-import AbstractBaseVue, { MyComponent ,MyAction} from "@/util/AbstractBaseVue";
+import AbstractBaseVue, { MyComponent, MyAction } from "@/util/AbstractBaseVue";
 import { UserApi } from "@/api/user";
 import { AreaApi } from "@/api/other";
 @MyComponent({
@@ -62,25 +62,28 @@ export default class Apply extends AbstractBaseVue {
   indexArr: number[] = [0, 0, 0];
   updatePropsPicker: any = null;
   user_code: string = "";
-  pageShow:boolean = false;
-  @MyAction('GetUserInfo') public getUserInfo!: any
+  pageShow: boolean = false;
+  @MyAction("GetUserInfo") public getUserInfo!: any;
   created() {
     this.mode = this.$route.params.mode; //1是个人资料，2是申请开通分销
     document.title = this.mode == "1" ? "个人资料" : "申请";
-    if(this.mode == '2'){
-      this.getUserInfo().then((res:any)=>{
-        if(res.data.is_distribution == 1){
-          this.$router.replace('/retailCenter')
-        } else{
-          if(res.data.distribution == [] || res.data.distribution.status == 2){
-              this.pageShow = true
-          } else if(res.data.distribution.status == 1){
-              this.$router.replace('/person')
+    if (this.mode == "2") {
+      this.getUserInfo().then((res: any) => {
+        if (res.data.is_distribution == 1) {
+          this.$router.replace("/retailCenter");
+        } else {
+          if (
+            res.data.distribution == null ||
+            res.data.distribution.status == 2
+          ) {
+            this.pageShow = true;
+          } else if (res.data.distribution.status == 1) {
+            this.$router.replace("/person");
           }
         }
-      })
-    } else{
-      this.pageShow = true
+      });
+    } else {
+      this.pageShow = true;
     }
   }
   mounted() {
@@ -151,17 +154,19 @@ export default class Apply extends AbstractBaseVue {
   getArea(id: number) {
     AreaApi.getAreaList({ id }).then(res => {
       this.area = res.data;
-      this.updatePropsPicker.$updateProps({
-        data: [this.provice, this.city, this.area],
-        selectedIndex: this.indexArr
-      });
+      if (this.updatePropsPicker) {
+        this.updatePropsPicker.$updateProps({
+          data: [this.provice, this.city, this.area],
+          selectedIndex: this.indexArr
+        });
+      }
     });
   }
-  submitEvent(){
-    if(this.mode == '2'){
+  submitEvent() {
+    if (this.mode == "2") {
       this.showBtn();
-    } else{
-      this.submitForm()
+    } else {
+      this.submitForm();
     }
   }
   //  表单提交
@@ -180,7 +185,7 @@ export default class Apply extends AbstractBaseVue {
             .then(res => {
               this.$util.showToast("提交成功", "correct").show();
               setTimeout(() => {
-                this.$router.go(-1);
+                this.$router.replace('/person')
               }, 1000);
             })
             .catch(err => {});
@@ -232,9 +237,9 @@ export default class Apply extends AbstractBaseVue {
       });
   }
   showBtn() {
-    let self = this
-    if(self.user_code){
-      self.submitForm()
+    let self = this;
+    if (self.user_code) {
+      self.submitForm();
       return;
     }
     this.$createDialog({
@@ -255,11 +260,9 @@ export default class Apply extends AbstractBaseVue {
         href: "javascript:;"
       },
       onConfirm: () => {
-        self.submitForm()
+        self.submitForm();
       },
-      onCancel: () => {
-        
-      }
+      onCancel: () => {}
     }).show();
   }
 }

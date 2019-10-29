@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="income">
-    <scroll-page @pullingUp="loadMore" >
+    <scroll-page @pullingUp="loadMore">
       <div slot="content">
         <cube-tab-bar
           v-model="selectedLabel"
@@ -23,47 +23,59 @@
           >
             <!-- 关注 -->
             <cube-slide-item>
-              <cube-scroll :options="scrollOptions" v-if = 'list_1.length>0'>
+              <cube-scroll :options="scrollOptions" v-if="list_1.length>0">
                 <ul class="list-wrapper income_list">
-                  <li v-for='(item,i) in list_1' :key='i'>
+                  <li v-for="(item,i) in list_1" :key="i">
+                    <h6>
+                      <span>分销者：{{item.name}}</span>
+                      <span>购买者：{{item.nickname}}</span>
+                    </h6>
+                    <h5>{{item.curriculum_title}}</h5>
                     <div class="income_info">
-                      <h5>{{item.curriculum_title}}</h5>
                       <span>{{item.time}}</span>
+                      <p>消费：¥{{item.type == 1?"+":"-"}}{{item.price}}</p>
                     </div>
-                    <p>消费：¥{{item.type == 1?"+":"-"}}{{item.price}}</p>
                   </li>
                 </ul>
               </cube-scroll>
-              <no-data v-else tip-text='暂无记录'></no-data>
+              <no-data v-else tip-text="暂无记录"></no-data>
             </cube-slide-item>
             <!-- 推荐 -->
             <cube-slide-item>
-              <cube-scroll :options="scrollOptions"  v-if = 'list_2.length>0'>
-                <ul class="list-wrapper income_list" >
-                  <li v-for='(item,i) in list_2' :key='i'>
+              <cube-scroll :options="scrollOptions" v-if="list_2.length>0">
+                <ul class="list-wrapper income_list">
+                  <li v-for="(item,i) in list_2" :key="i">
+                    <h6>
+                      <span>分销者：{{item.name}}</span>
+                      <span>购买者：{{item.nickname}}</span>
+                    </h6>
+                    <h5>{{item.curriculum_title}}</h5>
                     <div class="income_info">
-                      <h5>{{item.curriculum_title}}</h5>
                       <span>{{item.time}}</span>
+                      <p>消费：¥{{item.type == 1?"+":"-"}}{{item.price}}</p>
                     </div>
-                    <p>消费：¥{{item.type == 1?"+":"-"}}{{item.price}}</p>
                   </li>
                 </ul>
               </cube-scroll>
-              <no-data v-else tip-text='暂无记录'></no-data>
+              <no-data v-else tip-text="暂无记录"></no-data>
             </cube-slide-item>
             <cube-slide-item>
-              <cube-scroll :options="scrollOptions"   v-if = 'list_3.length>0'>
+              <cube-scroll :options="scrollOptions" v-if="list_3.length>0">
                 <ul class="list-wrapper income_list">
-                  <li v-for='(item,i) in list_3' :key='i'>
+                  <li v-for="(item,i) in list_3" :key="i">
+                    <h6>
+                      <span>分销者：{{item.name}}</span>
+                      <span>购买者：{{item.nickname}}</span>
+                    </h6>
+                    <h5>{{item.curriculum_title}}</h5>
                     <div class="income_info">
-                      <h5>{{item.curriculum_title}}</h5>
                       <span>{{item.time}}</span>
+                      <p>消费：¥{{item.type == 1?"+":"-"}}{{item.price}}</p>
                     </div>
-                    <p>消费：¥{{item.type == 1?"+":"-"}}{{item.price}}</p>
                   </li>
                 </ul>
               </cube-scroll>
-              <no-data v-else tip-text='暂无记录'></no-data>
+              <no-data v-else tip-text="暂无记录"></no-data>
             </cube-slide-item>
           </cube-slide>
         </div>
@@ -127,24 +139,24 @@ export default class Income extends AbstractBaseVue {
       } else {
         scroll.forceUpdate();
       }
-    } else if(this.initialIndex == 2){
-        this.page_2 = this.page_2 + 1;
-        if (this.page_2 <= this.totalPage_2) {
-            this.getList_2(this.page_2);
-        } else {
-            scroll.forceUpdate();
-        }
-    } else{
-        this.page_3 = this.page_3 + 1;
-        if (this.page_3 <= this.totalPage_3) {
-            this.getList_3(this.page_3);
-        } else {
-            scroll.forceUpdate();
-        }
+    } else if (this.initialIndex == 2) {
+      this.page_2 = this.page_2 + 1;
+      if (this.page_2 <= this.totalPage_2) {
+        this.getList_2(this.page_2);
+      } else {
+        scroll.forceUpdate();
+      }
+    } else {
+      this.page_3 = this.page_3 + 1;
+      if (this.page_3 <= this.totalPage_3) {
+        this.getList_3(this.page_3);
+      } else {
+        scroll.forceUpdate();
+      }
     }
   }
   getList_1(page: number = 1, limit: number = this.limit) {
-    let data = {level:1,page, limit };
+    let data = { level: 1, page, limit };
     RetailApi.income(data).then((res: any) => {
       if (page == 1) {
         this.list_1 = res.data;
@@ -155,7 +167,7 @@ export default class Income extends AbstractBaseVue {
     });
   }
   getList_2(page: number = 1, limit: number = this.limit) {
-    let data = {level:2, page, limit };
+    let data = { level: 2, page, limit };
     RetailApi.income(data).then((res: any) => {
       if (page == 1) {
         this.list_2 = res.data;
@@ -166,7 +178,7 @@ export default class Income extends AbstractBaseVue {
     });
   }
   getList_3(page: number = 1, limit: number = this.limit) {
-    let data = {level:3, page, limit };
+    let data = { level: 3, page, limit };
     RetailApi.income(data).then((res: any) => {
       if (page == 1) {
         this.list_3 = res.data;
@@ -198,14 +210,13 @@ export default class Income extends AbstractBaseVue {
     );
     return index;
   }
-  created(){
-      this.getList_1()
-      this.getList_2()
-      this.getList_3()
+  created() {
+    this.getList_1();
+    this.getList_2();
+    this.getList_3();
   }
 }
 </script>
 <style lang='less' scoped>
 @import url("../../assets/css/person/income.less");
-
 </style>

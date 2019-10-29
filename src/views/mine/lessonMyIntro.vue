@@ -9,7 +9,7 @@
             <ul>
               <li>
                 <h2 @click="toggle(q)" ref="arrow_lesson">
-                  {{week.title}}
+                  <p>{{week.title}}</p>
                   <b></b>
                 </h2>
                 <div ref="days_lesson" class="days_lesson">
